@@ -25,6 +25,9 @@ embed-slides:
 
 slides-all: slides embed-slides
 
+sync-labs:
+	python3 scripts/sync-lab-content.py
+
 sync-sections:
 	python3 scripts/sync-section-tags.py
 

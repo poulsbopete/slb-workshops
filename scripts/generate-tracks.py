@@ -26,10 +26,7 @@ KIBANA_TAB = """\
   custom_response_headers:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
-      style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-- title: Terminal
-  type: terminal
-  hostname: es3-api"""
+      style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'"""
 
 SETUP_TRACK = """\
 #!/bin/bash
@@ -142,13 +139,16 @@ FROM logs-* | LIMIT 10
 1. Open **Integrations** and browse an OTel or Elastic Agent integration.
 2. Note the data stream naming pattern (`logs-*`, `metrics-*`, `traces-*`).
 
-## Part 4 — API peek (Terminal tab)
+## Part 4 — See your indices (Dev Tools)
 
-```bash
-source ~/.bashrc
-curl -s -H "Authorization: ApiKey $ES_API_KEY" \\
-  "$ES_URL/_cat/indices?v" | head -20
+1. Open **Management → Dev Tools** (search “Dev Tools” in the Kibana header).
+2. Paste into the console and click the **play** button:
+
 ```
+GET _cat/indices?v
+```
+
+3. Scan the table for `logs-*`, `metrics-*`, and `traces-*` data streams.
 
 Click **Check** when complete.
 """,
@@ -184,7 +184,7 @@ Customize one panel title and layout. Click **Check**.
 
 ## Part 1 — Syntax basics
 
-In **Discover** or **Logs → Explorer**, run these queries:
+Open **Discover** or **Observability → Logs → Explorer**, switch to **ES|QL**, and paste each query below (one at a time):
 
 ```esql
 FROM logs-* | WHERE @timestamp > NOW() - 1 hour | LIMIT 20
@@ -229,16 +229,17 @@ Click **Check** when done.
 
 ## Part 3 — Saved views
 
-1. Save an ES|QL query as a **saved search**.
+1. Save an ES|QL query as a **saved search** (**Save** in the ES|QL editor).
 2. Pin a dashboard panel for post-deploy validation.
 
-## Part 4 — Runbook snippet (Terminal)
+## Part 4 — Runbook in Kibana
 
-Document your validation query in a note:
+1. Open your dashboard (or create one) and add a **Markdown** panel.
+2. Paste a short post-deploy checklist, for example:
 
-```bash
-source ~/.bashrc
-echo "Post-deploy check: FROM logs-* | WHERE service.environment == 'production' ..."
+```
+Post-deploy check (ES|QL):
+FROM logs-* | WHERE service.environment == "production" | LIMIT 20
 ```
 
 Click **Check**.
@@ -262,13 +263,15 @@ Click **Check**.
 1. **Fleet → Agents** — review Fleet-managed model.
 2. Compare with **Integrations → OTel** standalone collector docs.
 
-## Part 4 — Terminal inspection
+## Part 4 — Confirm data streams (Dev Tools)
 
-```bash
-source ~/.bashrc
-curl -s -H "Authorization: ApiKey $ES_API_KEY" \\
-  "$ES_URL/_data_stream" | jq '.data_streams[].name' | head -10
+You already browsed **Index Management** in Part 1. Optionally paste in **Management → Dev Tools**:
+
 ```
+GET _data_stream
+```
+
+Review the `data_streams` names in the JSON response.
 
 Click **Check**.
 """,
@@ -294,13 +297,15 @@ Checklist to review:
 - Warm phase shrink/replica settings
 - Frozen searchable snapshot prerequisites
 
-## Part 4 — API
+## Part 4 — Policy names (Dev Tools)
 
-```bash
-source ~/.bashrc
-curl -s -H "Authorization: ApiKey $ES_API_KEY" \\
-  "$ES_URL/_ilm/policy" | jq 'keys'
+After reviewing policies in the UI, paste in **Management → Dev Tools**:
+
 ```
+GET _ilm/policy
+```
+
+Note the policy names in the response (keys of the JSON object).
 
 Click **Check**.
 """,
@@ -322,13 +327,16 @@ Click **Check**.
 1. **Stack Management → Index Management** — look for failure store indices.
 2. **Ingest Pipelines** — review on_failure handlers.
 
-## Part 4 — Troubleshooting commands
+## Part 4 — Index health
 
-```bash
-source ~/.bashrc
-curl -s -H "Authorization: ApiKey $ES_API_KEY" \\
-  "$ES_URL/_cat/indices?v&health=red"
+1. **Stack Management → Index Management** — check for **red** or **yellow** health badges.
+2. Optional — **Management → Dev Tools**, paste:
+
 ```
+GET _cat/indices?v&health=red
+```
+
+An empty response means no red indices (good).
 
 Click **Check**.
 """,
@@ -352,17 +360,17 @@ Work through this checklist in Kibana:
 
 ## Part 3 — Runbook draft
 
-In the Terminal tab, create a runbook outline:
+1. **Analytics → Dashboards** — open or create a dashboard.
+2. Add a **Markdown** panel with your production readiness outline, for example:
 
-```bash
-cat > /root/production-readiness-notes.md <<'EOF'
-# SLB Elastic Production Readiness
-## Ingestion health checks
-## Escalation contacts
-## Rollback criteria
-EOF
-cat /root/production-readiness-notes.md
 ```
+# SLB Elastic Production Readiness
+- Ingestion health checks
+- Escalation contacts
+- Rollback criteria
+```
+
+3. Save the dashboard.
 
 Click **Check**.
 """,
@@ -396,11 +404,15 @@ Click **Check**.
 
 ## Part 1 — Aggregations
 
+In **Discover** or **Logs → Explorer** (ES|QL mode), paste:
+
 ```esql
 FROM logs-* | STATS events = COUNT(*) BY service.name | SORT events DESC | LIMIT 10
 ```
 
 ## Part 2 — Time-based analysis
+
+Paste in the same ES|QL editor:
 
 ```esql
 FROM logs-* | STATS count = COUNT(*) BY bucket = BUCKET(@timestamp, 1 hour) | SORT bucket
@@ -409,7 +421,7 @@ FROM logs-* | STATS count = COUNT(*) BY bucket = BUCKET(@timestamp, 1 hour) | SO
 ## Part 3 — Cost / utilization correlation
 
 Discuss with facilitator how to join observability metrics with cost data
-(lookup join or separate index). Try:
+(lookup join or separate index). Paste:
 
 ```esql
 FROM metrics-* | STATS avg_cpu = AVG(system.cpu.total.pct) BY host.name | LIMIT 10
@@ -420,24 +432,33 @@ Click **Check**.
     "bi-03": """
 # APIs, Integrations & Dashboard Building
 
-## Part 1 — Search API (Terminal)
+## Part 1 — Search API (Dev Tools)
 
-```bash
-source ~/.bashrc
-curl -s -H "Authorization: ApiKey $ES_API_KEY" \\
-  -H "Content-Type: application/json" \\
-  "$ES_URL/logs-*/_search" \\
-  -d '{"size":3,"sort":[{"@timestamp":"desc"}]}' | jq '.hits.hits[]._source | keys'
+1. Open **Management → Dev Tools**.
+2. Paste and click **Run**:
+
 ```
+GET logs-*/_search
+{
+  "size": 3,
+  "sort": [{ "@timestamp": "desc" }]
+}
+```
+
+3. In the response, expand a hit and note field names under `_source`.
+
+**Tip:** The same data appears in **Discover** — Dev Tools shows the raw API shape analysts integrate against.
 
 ## Part 2 — Dashboard for business review
 
-1. Create a dashboard with at least two Lens panels.
-2. Add a markdown panel with session context / KPI definitions.
+1. **Analytics → Dashboards → Create dashboard**.
+2. Add at least two **Lens** panels.
+3. Add a **Markdown** panel with session context / KPI definitions.
 
 ## Part 3 — Schema considerations
 
-Note field types in **Stack Management → Data views** — keyword vs text vs date.
+1. **Stack Management → Data views** — open a data view.
+2. Note field types: **keyword** vs **text** vs **date**.
 
 Click **Check**.
 """,
@@ -531,13 +552,13 @@ def iframe_note(workshop: dict) -> str:
     code = workshop["code"]
     url = f"{PAGES_BASE}/slides/{wid}/"
     return (
-        f"## While you wait…\\n\\n"
-        f"<iframe src=\\"{url}\\"\\n"
-        f"  width=\\"100%\\" height=\\"800\\" frameborder=\\"0\\"\\n"
-        f"  style=\\"border-radius:8px;display:block\\">\\n"
-        f"</iframe>\\n\\n"
+        "## While you wait…\\n\\n"
+        f'<iframe src="{url}"\\n'
+        '  width="100%" height="800" frameborder="0"\\n'
+        '  style="border-radius:8px;display:block">\\n'
+        "</iframe>\\n\\n"
         f"*Provisioning your Elastic **Observability Serverless** lab for **{code}** "
-        f"(usually 2–3 minutes).*"
+        "(usually 2–3 minutes).*"
     )
 
 

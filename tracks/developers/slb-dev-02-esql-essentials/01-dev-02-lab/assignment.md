@@ -7,26 +7,10 @@ teaser: Core ES|QL syntax, common patterns, and queries across logs, metrics, an
   traces.
 notes:
 - type: text
-  contents: |-
-    ## While you wait…
-
-    <iframe src="https://poulsbopete.github.io/slb-workshops/slides/dev-02/"
-      width="100%" height="800" frameborder="0"
-      style="border-radius:8px;display:block">
-    </iframe>
-
-    *Provisioning your Elastic **Observability Serverless** lab for **Dev 02** (usually 2–3 minutes).*
-- type: text
-  contents: |
-    ## Provisioning your lab…
-
-    Creating an Elastic **Observability Serverless** project for **Dev 02**.
-    This usually takes 2–3 minutes.
-
-    **Live session topics:**
-    - Core ES|QL syntax and common patterns
-    - Logs/metrics/traces query patterns
-    - Incident investigation workflows
+  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/dev-02/\"\
+    \n  width=\"100%\" height=\"800\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block\"\
+    >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
+    \ **Dev 02** (usually 2–3 minutes).*"
 tabs:
 - id: jzljtmzm5amx
   title: Elastic Serverless
@@ -42,20 +26,17 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-- id: oqayvaidbcg0
-  title: Terminal
-  type: terminal
-  hostname: es3-api
-difficulty: ""
+difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
+> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
 
 # ES|QL Essentials for Troubleshooting
 
 ## Part 1 — Syntax basics
 
-In **Discover** or **Logs → Explorer**, run these queries:
+Open **Discover** or **Observability → Logs → Explorer**, switch to **ES|QL**, and paste each query below (one at a time):
 
 ```esql
 FROM logs-* | WHERE @timestamp > NOW() - 1 hour | LIMIT 20

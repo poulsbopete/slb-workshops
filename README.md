@@ -84,7 +84,7 @@ make push-section SECTION=aiops   # push one section only
 make publish               # git push + push all Instruqt tracks
 ```
 
-Each track provisions a fresh **Elastic Observability Serverless** project per participant via `elastic/es3-api-v2`.
+Each track provisions a fresh **Elastic Observability Serverless** project per participant via `elastic/es3-api-v2`. Labs are **Kibana-only** — copy/paste in the UI (ES|QL, Dev Tools, Lens). The Terminal tab is omitted from session tracks; the reference DB monitoring track keeps it for optional advanced steps.
 
 ## Instruqt collections
 

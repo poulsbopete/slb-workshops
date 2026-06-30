@@ -10,24 +10,6 @@ notes:
     \n  width=\"100%\" height=\"800\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block\"\
     >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
     \ **SRE 02** (usually 2–3 minutes).*"
-- type: text
-  contents: '## Provisioning your lab…
-
-
-    Creating an Elastic **Observability Serverless** project for **SRE 02**.
-
-    This usually takes 2–3 minutes.
-
-
-    **Live session topics:**
-
-    - ILM policy design and data tier allocation
-
-    - ILM phase transitions and tier allocation behavior
-
-    - Node roles and common misconfigurations
-
-    '
 tabs:
 - id: mdakwvjarazc
   title: Elastic Serverless
@@ -43,14 +25,11 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-- id: rmbjgbbaojz6
-  title: Terminal
-  type: terminal
-  hostname: es3-api
 difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
+> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
 
 # ILM & Data Tier Deep Dive
 
@@ -73,12 +52,14 @@ Checklist to review:
 - Warm phase shrink/replica settings
 - Frozen searchable snapshot prerequisites
 
-## Part 4 — API
+## Part 4 — Policy names (Dev Tools)
 
-```bash
-source ~/.bashrc
-curl -s -H "Authorization: ApiKey $ES_API_KEY" \
-  "$ES_URL/_ilm/policy" | jq 'keys'
+After reviewing policies in the UI, paste in **Management → Dev Tools**:
+
 ```
+GET _ilm/policy
+```
+
+Note the policy names in the response (keys of the JSON object).
 
 Click **Check**.

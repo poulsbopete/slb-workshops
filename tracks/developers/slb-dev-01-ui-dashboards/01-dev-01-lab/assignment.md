@@ -7,26 +7,10 @@ teaser: Fast track to Kibana — Discover, dashboards, filters, and drilldowns w
   direct comparisons to Grafana workflows.
 notes:
 - type: text
-  contents: |-
-    ## While you wait…
-
-    <iframe src="https://poulsbopete.github.io/slb-workshops/slides/dev-01/"
-      width="100%" height="800" frameborder="0"
-      style="border-radius:8px;display:block">
-    </iframe>
-
-    *Provisioning your Elastic **Observability Serverless** lab for **Dev 01** (usually 2–3 minutes).*
-- type: text
-  contents: |
-    ## Provisioning your lab…
-
-    Creating an Elastic **Observability Serverless** project for **Dev 01**.
-    This usually takes 2–3 minutes.
-
-    **Live session topics:**
-    - Navigating Discover, filtering, drilldowns
-    - Grafana-to-Elastic translation for dashboard users
-    - Dashboard navigation and customization
+  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/dev-01/\"\
+    \n  width=\"100%\" height=\"800\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block\"\
+    >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
+    \ **Dev 01** (usually 2–3 minutes).*"
 tabs:
 - id: dvt78huvv8ng
   title: Elastic Serverless
@@ -42,14 +26,11 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-- id: 0henpfrjwxl3
-  title: Terminal
-  type: terminal
-  hostname: es3-api
-difficulty: ""
+difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
+> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
 
 # Elastic UI & Dashboard Workflows
 
