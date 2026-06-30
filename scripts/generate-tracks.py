@@ -509,11 +509,13 @@ def section_tag(section_id: str) -> str:
 
 
 def tags_for(workshop: dict, section_id: str) -> list[str]:
-    tags = BASE_TAGS + [section_tag(section_id)]
-    return sorted(set(tags))
+    return ["slb", "slb-workshops", section_tag(section_id)] + [
+        t for t in BASE_TAGS if t not in {"slb", "slb-workshops"}
+    ]
 
 BASE_TAGS = [
     "slb",
+    "slb-workshops",
     "elastic",
     "serverless",
     "observability",

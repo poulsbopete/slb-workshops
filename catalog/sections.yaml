@@ -1,5 +1,8 @@
 # Instruqt section groupings — one track per workshop session.
-# Filter in Instruqt UI by tag: slb-section-<id>
+# Filter in Instruqt UI:
+#   slb-workshops  — all SLB program tracks
+#   slb            — same (short alias)
+#   slb-section-<id> — one persona/phase section
 
 sections:
   - id: foundations

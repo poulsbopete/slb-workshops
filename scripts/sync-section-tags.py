@@ -15,11 +15,25 @@ TRACKS_DIR = ROOT / "tracks"
 
 BASE_TAGS = [
     "slb",
+    "slb-workshops",
     "elastic",
     "serverless",
     "observability",
     "co.elastic.workshops",
 ]
+
+# Legacy/noisy tags to strip when syncing
+STRIP_TAGS = {
+    "sme-track--aiops-&-alerting",
+    "sme-track--developers",
+    "sme-track--sre-&-infra-ops",
+    "sme-track--bi-&-data-analysts",
+    "all",
+    "aiops",
+    "developers",
+    "sre",
+    "bi",
+}
 
 
 def slug_to_section() -> dict[str, str]:
@@ -49,12 +63,13 @@ def parse_track_yml(text: str) -> tuple[dict, str]:
 
 def update_tags(existing: list[str], section_tag: str) -> list[str]:
     tags = [t for t in existing if not t.startswith("slb-section-")]
-    tags = [t for t in tags if t not in {"sme-track--aiops-&-alerting", "all", "aiops", "developers", "sre", "bi"}]
-    combined = BASE_TAGS + [section_tag]
-    for t in tags:
+    tags = [t for t in tags if t not in STRIP_TAGS]
+    # slb + slb-workshops first, then section, then base, then any extras (e.g. database-monitoring)
+    combined = ["slb", "slb-workshops", section_tag]
+    for t in BASE_TAGS + tags:
         if t not in combined:
             combined.append(t)
-    return sorted(set(combined))
+    return combined
 
 
 def patch_track(path: Path, section_tag: str, workshop: dict | None) -> bool:
@@ -65,7 +80,7 @@ def patch_track(path: Path, section_tag: str, workshop: dict | None) -> bool:
 
     changed = False
     new_tags = update_tags(data.get("tags") or [], section_tag)
-    if new_tags != sorted(set(data.get("tags") or [])):
+    if new_tags != (data.get("tags") or []):
         data["tags"] = new_tags
         changed = True
 

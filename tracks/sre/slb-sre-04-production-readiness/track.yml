@@ -1,28 +1,37 @@
 slug: slb-sre-04-production-readiness
 id: 0dxra1en5nel
 title: SLB SRE 04 — Production Readiness Workshop
-teaser: |
-  Validation checklists, runbook documentation, and ingestion health checks.
-description: |-
-  **SRE 04 — Production Readiness Workshop**
+teaser: 'Validation checklists, runbook documentation, and ingestion health checks.
+
+  '
+description: '**SRE 04 — Production Readiness Workshop**
+
 
   Validation checklists, runbook documentation, and ingestion health checks.
+
 
   **Series:** SME Track — SRE & Infra Ops
+
   **Audience:** sre
+
   **Presenter:** Specialist (DSR)
+
   **Live date:** 2026-10-28
 
+
   ## Session topics
+
   - Validation checklists and runbook documentation
+
   - Ingestion health checks
-  - Building confidence operating Elastic in production
+
+  - Building confidence operating Elastic in production'
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-- elastic
 - slb
+- slb-workshops
 - slb-section-sre
-- sme-track--sre-&-infra-ops
+- elastic
 - serverless
 - observability
 - co.elastic.workshops
@@ -42,5 +51,5 @@ lab_config:
   hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-checksum: "12419437765650587553"
+checksum: '12419437765650587553'
 enhanced_loading: false

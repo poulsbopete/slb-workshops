@@ -1,29 +1,40 @@
 slug: slb-dev-01-ui-dashboards
 id: 4fubsrpjvvhq
 title: SLB Dev 01 — Elastic UI & Dashboard Workflows
-teaser: |
-  Fast track to Kibana — Discover, dashboards, filters, and drilldowns with direct comparisons to Grafana workflows.
-description: |-
-  **Dev 01 — Elastic UI & Dashboard Workflows**
+teaser: 'Fast track to Kibana — Discover, dashboards, filters, and drilldowns with
+  direct comparisons to Grafana workflows.
 
-  Fast track to Kibana — Discover, dashboards, filters, and drilldowns with direct comparisons to Grafana workflows.
+  '
+description: '**Dev 01 — Elastic UI & Dashboard Workflows**
+
+
+  Fast track to Kibana — Discover, dashboards, filters, and drilldowns with direct
+  comparisons to Grafana workflows.
+
 
   **Series:** SME Track — Developers
+
   **Audience:** developers
+
   **Presenter:** Roberto Pantoja
+
   **Live date:** 2026-08-12
 
+
   ## Session topics
+
   - Navigating Discover, filtering, drilldowns
+
   - Grafana-to-Elastic translation for dashboard users
-  - Dashboard navigation and customization
+
+  - Dashboard navigation and customization'
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
+- slb
+- slb-workshops
 - slb-section-developers
 - elastic
-- slb
 - serverless
-- sme-track--developers
 - observability
 - co.elastic.workshops
 owner: elastic
@@ -42,5 +53,5 @@ lab_config:
   hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-checksum: "10997482832877050205"
+checksum: '10997482832877050205'
 enhanced_loading: false

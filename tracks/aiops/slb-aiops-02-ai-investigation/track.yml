@@ -1,29 +1,40 @@
 slug: slb-aiops-02-ai-investigation
 id: xxtlh0ojutiy
 title: SLB AIOps 02 — AI-Assisted Investigation & Automated Response
-teaser: |
-  AI-assisted investigation and automated remediation workflows.
-description: |-
-  **AIOps 02 — AI-Assisted Investigation & Automated Response**
+teaser: 'AI-assisted investigation and automated remediation workflows.
+
+  '
+description: '**AIOps 02 — AI-Assisted Investigation & Automated Response**
+
 
   AI-assisted investigation and automated remediation workflows.
+
 
   **Series:** SME Track — AIOps & Alerting
+
   **Audience:** aiops
+
   **Presenter:** Specialist (DSR) — AIOps
+
   **Live date:** 2026-11-18
 
+
   ## Session topics
+
   - Intelligent alert investigation with AI Assistant for Observability
+
   - Root cause analysis — correlating logs, metrics, traces
+
   - Log pattern analysis and anomaly detection
-  - Automated remediation workflows with Elastic Workflows
+
+  - Automated remediation workflows with Elastic Workflows'
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-- elastic
 - slb
-- serverless
+- slb-workshops
 - slb-section-aiops
+- elastic
+- serverless
 - observability
 - co.elastic.workshops
 owner: elastic
@@ -42,5 +53,5 @@ lab_config:
   hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-checksum: "14097313865656158525"
+checksum: '14097313865656158525'
 enhanced_loading: false

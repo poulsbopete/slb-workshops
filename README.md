@@ -8,12 +8,13 @@ Hands-on Instruqt tracks for the **SLB SRE × Elastic** enablement program. **On
 | Instruqt | [play.instruqt.com/manage/elastic/tracks](https://play.instruqt.com/manage/elastic/tracks) |
 | Source repo | [github.com/poulsbopete/slb-workshops](https://github.com/poulsbopete/slb-workshops) |
 
-Filter tracks in Instruqt by section tag, e.g. **`slb-section-aiops`**, **`slb-section-developers`**.
+Filter tracks in Instruqt by tag **`slb-workshops`** or **`slb`** (all program tracks), or by section e.g. **`slb-section-aiops`**.
 
 ## Sections
 
 | Section | Tag | Tracks |
 |---------|-----|--------|
+| **All SLB tracks** | `slb-workshops`, `slb` | every track below |
 | **Foundations** | `slb-section-foundations` | F-02, F-03 |
 | **Developers** | `slb-section-developers` | Dev 01–03 |
 | **SRE & Infra Ops** | `slb-section-sre` | SRE 01–04 |
