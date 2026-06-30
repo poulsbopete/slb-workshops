@@ -61,9 +61,3 @@ series:
     tag: slb-series-sme-all-teams
     instruqt_collection: "SLB — SME Track: All Teams"
     workshop_ids: [cross-team]
-
-  - id: reference
-    name: Reference
-    tag: slb-series-reference
-    instruqt_collection: null
-    workshop_ids: [bonus-dbmon]

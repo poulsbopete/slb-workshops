@@ -1,5 +1,6 @@
 slug: slb-oneoff-hybrid-search
-title: "SLB One-off — Hybrid Search"
+id: szpydshnhujn
+title: SLB One-off — Hybrid Search
 teaser: |
   Explore hybrid search — BM25 plus vector similarity — in Elasticsearch.
 description: |-
@@ -18,13 +19,13 @@ description: |-
   - Relevance tuning for observability and log search
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-  - slb
-  - slb-workshops
-  - slb-series-oneoff-hybrid-search
-  - elastic
-  - serverless
-  - observability
-  - co.elastic.workshops
+- elastic
+- slb
+- slb-workshops
+- serverless
+- slb-series-oneoff-hybrid-search
+- observability
+- co.elastic.workshops
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -37,6 +38,9 @@ lab_config:
   loadingMessages: true
   theme:
     name: modern-dark
+  override_challenge_layout: false
+  hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-  override_challenge_layout: false
+checksum: "543495917790950120"
+enhanced_loading: false

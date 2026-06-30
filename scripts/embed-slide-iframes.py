@@ -77,28 +77,6 @@ def patch_simple_assignment(path: Path, workshop: dict) -> bool:
     return True
 
 
-def patch_db_monitoring(path: Path, workshop: dict) -> bool:
-    """Regex patch for complex assignment with many notes (avoid full YAML rewrite)."""
-    text = path.read_text()
-    url = f"{PAGES_BASE}/slides/{workshop['id']}/"
-    new_iframe = (
-        f'contents: "## While you wait…\\n\\n<iframe src=\\"{url}\\"\\n'
-        f'  width=\\"100%\\" height=\\"800\\" frameborder=\\"0\\"\\n'
-        f'  style=\\"border-radius:8px;display:block\\">\\n</iframe>\\n\\n'
-        f'*Your Elastic environment and database telemetry are generating in the background.*\\n"'
-    )
-    new_text, n = re.subn(
-        r'contents: "## While you wait…[^"]*"',
-        new_iframe,
-        text,
-        count=1,
-    )
-    if n and new_text != text:
-        path.write_text(new_text)
-        return True
-    return False
-
-
 def find_assignments() -> list[tuple[Path, str]]:
     out: list[tuple[Path, str]] = []
     for track_yml in TRACKS.rglob("track.yml"):
@@ -117,11 +95,7 @@ def main() -> None:
         if not ws:
             print(f"  ? skip {path.relative_to(ROOT)} (no catalog entry)")
             continue
-        if slug == "slb-workshops":
-            ok = patch_db_monitoring(path, ws)
-        else:
-            ok = patch_simple_assignment(path, ws)
-        if ok:
+        if patch_simple_assignment(path, ws):
             print(f"  ✓ embedded slides in {path.relative_to(ROOT)}")
         else:
             print(f"  · unchanged {path.relative_to(ROOT)}")

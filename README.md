@@ -26,7 +26,6 @@ Filter tracks in Instruqt by tag **`slb-workshops`** or **`slb`** (all program t
 | **One-off: RAG & MCP** | `slb-series-oneoff-rag-mcp` | RAG & MCP |
 | **One-off: Hybrid Search** | `slb-series-oneoff-hybrid-search` | Hybrid Search |
 | **SME Track: All Teams** | `slb-series-sme-all-teams` | Cross-team review |
-| **Reference** | `slb-series-reference` | DB monitoring lab |
 
 Full mapping: [`catalog/sections.yaml`](catalog/sections.yaml) · [`catalog/series.yaml`](catalog/series.yaml) · Session metadata: [`catalog/workshops.yaml`](catalog/workshops.yaml)
 
@@ -59,7 +58,6 @@ tracks/
   oneoff-rag-mcp/             # RAG & MCP
   oneoff-hybrid-search/       # Hybrid Search
   sme-all-teams/              # Cross-team review
-  reference/                  # slb-workshops (OTel DB monitoring)
 shared/                       # Serverless bootstrap scripts
 scripts/
   generate-tracks.py          # Scaffold new series tracks
@@ -96,7 +94,7 @@ make push-section SECTION=sme-aiops-alerting   # push one series only
 make publish               # git push + push all Instruqt tracks
 ```
 
-Each track provisions a fresh **Elastic Observability Serverless** project per participant via `elastic/es3-api-v2`. Labs are **Kibana-only** — copy/paste in the UI (ES|QL, Dev Tools, Lens). The Terminal tab is omitted from session tracks; the reference DB monitoring track keeps it for optional advanced steps.
+Each track provisions a fresh **Elastic Observability Serverless** project per participant via `elastic/es3-api-v2`. Labs are **Kibana-only** — copy/paste in the UI (ES|QL, Dev Tools, Lens). No Terminal tab is required.
 
 ## Instruqt collections
 

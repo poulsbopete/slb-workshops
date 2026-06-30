@@ -1,5 +1,6 @@
 slug: slb-arch-01-architecture-migration
-title: "SLB Arch 01 — Architecture & Migration Strategy"
+id: mcewykaupyor
+title: SLB Arch 01 — Architecture & Migration Strategy
 teaser: |
   Target-state ingestion design and coexistence planning during migration.
 description: |-
@@ -18,13 +19,13 @@ description: |-
   - Multi-team deployment and access patterns
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-  - slb
-  - slb-workshops
-  - slb-series-sme-architects
-  - elastic
-  - serverless
-  - observability
-  - co.elastic.workshops
+- elastic
+- slb
+- slb-workshops
+- serverless
+- slb-series-sme-architects
+- observability
+- co.elastic.workshops
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -37,6 +38,9 @@ lab_config:
   loadingMessages: true
   theme:
     name: modern-dark
+  override_challenge_layout: false
+  hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-  override_challenge_layout: false
+checksum: "5401181469589875852"
+enhanced_loading: false

@@ -1,5 +1,6 @@
 ---
 slug: f-01-lab
+id: xdnm8caekuwr
 type: challenge
 title: F-01 — Your Elastic Team, Support & Best Practices
 teaser: Start here. This session introduces your Elastic team, shows you how to get
@@ -7,26 +8,26 @@ teaser: Start here. This session introduces your Elastic team, shows you how to 
   possible experience with Elastic.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/f-01/\"\
-    \n  width=\"100%\" height=\"800\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block\"\
-    >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
-    \ **F-01** (usually 2–3 minutes).*"
+  contents: |-
+    ## While you wait…
+
+    <iframe src="https://poulsbopete.github.io/slb-workshops/slides/f-01/"
+      width="100%" height="800" frameborder="0"
+      style="border-radius:8px;display:block">
+    </iframe>
+
+    *Provisioning your Elastic **Observability Serverless** lab for **F-01** (usually 2–3 minutes).*
 - type: text
-  contents: '## Session topics
-
+  contents: |
+    ## Session topics
     - Meet your Elastic team — who does what and when to reach out
-
     - How to open an effective support ticket and what to expect
-
     - Escalation paths — when and how to escalate a case
-
     - Best practices for faster responses
-
     - Introduction to the enablement program
-
-    '
 tabs:
-- title: Elastic Serverless
+- id: dqoxmuhhyhoc
+  title: Elastic Serverless
   type: service
   hostname: es3-api
   path: /app/home
@@ -39,7 +40,9 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
+difficulty: ""
 timelimit: 0
+enhanced_loading: null
 ---
 
 > **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.

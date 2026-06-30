@@ -1,4 +1,0 @@
-#!/bin/bash
-# Challenge setup — dashboards, alert rules, and the RCA workflow are all deployed
-# by the track-level setup-es3-api script. Nothing additional needed here.
-exit 0

@@ -410,20 +410,3 @@ workshops:
       - Next steps and program evolution
     description: >
       Cross-team session reviewing adoption progress and next steps.
-
-  # --- Bonus / reference track (existing POC) ---
-  - id: bonus-dbmon
-    code: Bonus
-    title: Database Monitoring Lab (reference)
-    date: null
-    presenter: Elastic
-    audience: sre
-    series: Reference
-    format: hands-on
-    instruqt_track: slb-workshops
-    skip_generate: true
-    topics:
-      - OpenTelemetry database monitoring for six engines
-      - Kibana dashboards and alerting
-    description: >
-      Reference track — live OTel for MySQL, PostgreSQL, SQL Server, MongoDB, Db2, Oracle.

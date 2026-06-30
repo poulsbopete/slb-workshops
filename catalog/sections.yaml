@@ -86,10 +86,3 @@ sections:
     instruqt_collection: "SLB — SME Track: All Teams"
     tracks:
       - slb-all-teams-platform-review
-
-  - id: reference
-    name: Reference
-    tag: slb-series-reference
-    instruqt_collection: null
-    tracks:
-      - slb-workshops

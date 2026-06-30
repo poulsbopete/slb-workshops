@@ -1,7 +1,7 @@
 .PHONY: list push-all pull-all generate publish git-push push-section list-sections sync-sections slides embed-slides
 
 TRACKS := $(shell find tracks -mindepth 2 -maxdepth 2 -type d -name 'slb-*' | sort)
-SECTIONS := shared-foundations sme-developers sme-sre-infra-ops sme-architects sme-bi-analysts sme-aiops-alerting oneoff-ai-ml oneoff-rag-mcp oneoff-hybrid-search sme-all-teams reference
+SECTIONS := shared-foundations sme-developers sme-sre-infra-ops sme-architects sme-bi-analysts sme-aiops-alerting oneoff-ai-ml oneoff-rag-mcp oneoff-hybrid-search sme-all-teams
 
 list:
 	@echo "SLB Instruqt tracks (by series):"

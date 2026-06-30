@@ -18,7 +18,7 @@ LAB_INTRO = """> **Serverless lab:** use the **Elastic Serverless** tab only. Ev
 
 """
 
-KEEP_TERMINAL_SLUGS = {"slb-workshops"}
+KEEP_TERMINAL_SLUGS: set[str] = set()
 
 
 def load_labs() -> dict[str, str]:

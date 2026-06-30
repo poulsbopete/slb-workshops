@@ -1,5 +1,6 @@
 slug: slb-f-01-support-best-practices
-title: "SLB F-01 — Your Elastic Team, Support & Best Practices"
+id: fv76thygczsi
+title: SLB F-01 — Your Elastic Team, Support & Best Practices
 teaser: |
   Start here. This session introduces your Elastic team, shows you how to get the fastest and most effective support responses, and sets you up to have the best possible experience with Elastic.
 description: |-
@@ -20,13 +21,13 @@ description: |-
   - Introduction to the enablement program
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-  - slb
-  - slb-workshops
-  - slb-series-shared-foundations
-  - elastic
-  - serverless
-  - observability
-  - co.elastic.workshops
+- slb-series-shared-foundations
+- elastic
+- slb
+- slb-workshops
+- serverless
+- observability
+- co.elastic.workshops
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -39,6 +40,9 @@ lab_config:
   loadingMessages: true
   theme:
     name: modern-dark
+  override_challenge_layout: false
+  hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-  override_challenge_layout: false
+checksum: "3213231117527402667"
+enhanced_loading: false

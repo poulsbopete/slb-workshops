@@ -1,5 +1,6 @@
 slug: slb-arch-02-lifecycle-governance
-title: "SLB Arch 02 — Lifecycle, Governance & Standards"
+id: vevwzoy2xqty
+title: SLB Arch 02 — Lifecycle, Governance & Standards
 teaser: |
   ILM and retention strategy, Fleet tradeoffs, and ECS vs OTel conventions.
 description: |-
@@ -19,13 +20,13 @@ description: |-
   - Ownership boundaries and reusable standards across teams
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-  - slb
-  - slb-workshops
-  - slb-series-sme-architects
-  - elastic
-  - serverless
-  - observability
-  - co.elastic.workshops
+- elastic
+- slb
+- slb-workshops
+- serverless
+- slb-series-sme-architects
+- observability
+- co.elastic.workshops
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -38,6 +39,9 @@ lab_config:
   loadingMessages: true
   theme:
     name: modern-dark
+  override_challenge_layout: false
+  hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-  override_challenge_layout: false
+checksum: "16955818970173055106"
+enhanced_loading: false

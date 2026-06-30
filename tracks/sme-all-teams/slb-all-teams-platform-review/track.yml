@@ -1,5 +1,6 @@
 slug: slb-all-teams-platform-review
-title: "SLB Cross-team — Cross-team Platform Review"
+id: s2ieejuxh8pu
+title: SLB Cross-team — Cross-team Platform Review
 teaser: |
   Cross-team session reviewing adoption progress and next steps.
 description: |-
@@ -18,13 +19,13 @@ description: |-
   - Next steps and program evolution
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-  - slb
-  - slb-workshops
-  - slb-series-sme-all-teams
-  - elastic
-  - serverless
-  - observability
-  - co.elastic.workshops
+- elastic
+- slb
+- slb-workshops
+- serverless
+- slb-series-sme-all-teams
+- observability
+- co.elastic.workshops
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -37,6 +38,9 @@ lab_config:
   loadingMessages: true
   theme:
     name: modern-dark
+  override_challenge_layout: false
+  hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-  override_challenge_layout: false
+checksum: "5875174334682068952"
+enhanced_loading: false

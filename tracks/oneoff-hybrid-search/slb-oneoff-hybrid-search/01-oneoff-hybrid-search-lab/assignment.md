@@ -1,26 +1,29 @@
 ---
 slug: oneoff-hybrid-search-lab
+id: xe1yolkjyyqp
 type: challenge
 title: One-off — Hybrid Search
 teaser: Explore hybrid search — BM25 plus vector similarity — in Elasticsearch.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/oneoff-hybrid-search/\"\
-    \n  width=\"100%\" height=\"800\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block\"\
-    >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
-    \ **One-off** (usually 2–3 minutes).*"
+  contents: |-
+    ## While you wait…
+
+    <iframe src="https://poulsbopete.github.io/slb-workshops/slides/oneoff-hybrid-search/"
+      width="100%" height="800" frameborder="0"
+      style="border-radius:8px;display:block">
+    </iframe>
+
+    *Provisioning your Elastic **Observability Serverless** lab for **One-off** (usually 2–3 minutes).*
 - type: text
-  contents: '## Session topics
-
+  contents: |
+    ## Session topics
     - Combining lexical and semantic search
-
     - Hybrid search in Elasticsearch
-
     - Relevance tuning for observability and log search
-
-    '
 tabs:
-- title: Elastic Serverless
+- id: mtoqtwqh0jlm
+  title: Elastic Serverless
   type: service
   hostname: es3-api
   path: /app/home
@@ -33,7 +36,9 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
+difficulty: ""
 timelimit: 0
+enhanced_loading: null
 ---
 
 > **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.

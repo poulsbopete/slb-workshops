@@ -1,5 +1,6 @@
 slug: slb-aiops-03-workflows-remediation
-title: "SLB AIOps 03 — Workflows & Automated Remediation"
+id: hogdkssbxr0x
+title: SLB AIOps 03 — Workflows & Automated Remediation
 teaser: |
   Build and test automated remediation workflows triggered from observability alerts.
 description: |-
@@ -18,13 +19,13 @@ description: |-
   - Safe remediation guardrails and approval steps
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-  - slb
-  - slb-workshops
-  - slb-series-sme-aiops
-  - elastic
-  - serverless
-  - observability
-  - co.elastic.workshops
+- elastic
+- slb
+- slb-workshops
+- serverless
+- observability
+- slb-series-sme-aiops
+- co.elastic.workshops
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -37,6 +38,9 @@ lab_config:
   loadingMessages: true
   theme:
     name: modern-dark
+  override_challenge_layout: false
+  hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-  override_challenge_layout: false
+checksum: "3292306178206448126"
+enhanced_loading: false

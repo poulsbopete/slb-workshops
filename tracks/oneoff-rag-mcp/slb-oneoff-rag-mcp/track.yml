@@ -1,5 +1,6 @@
 slug: slb-oneoff-rag-mcp
-title: "SLB One-off — RAG & MCP"
+id: geuhbilympwb
+title: SLB One-off — RAG & MCP
 teaser: |
   Hands-on overview of RAG patterns and MCP tooling with Elasticsearch.
 description: |-
@@ -18,13 +19,13 @@ description: |-
   - Building agent workflows on Elastic data
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-  - slb
-  - slb-workshops
-  - slb-series-oneoff-rag-mcp
-  - elastic
-  - serverless
-  - observability
-  - co.elastic.workshops
+- elastic
+- slb
+- slb-workshops
+- serverless
+- slb-series-oneoff-rag-mcp
+- observability
+- co.elastic.workshops
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -37,6 +38,9 @@ lab_config:
   loadingMessages: true
   theme:
     name: modern-dark
+  override_challenge_layout: false
+  hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-  override_challenge_layout: false
+checksum: "7312516409018421852"
+enhanced_loading: false

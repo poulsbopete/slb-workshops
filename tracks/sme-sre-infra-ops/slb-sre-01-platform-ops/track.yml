@@ -1,37 +1,28 @@
 slug: slb-sre-01-platform-ops
 id: ngbwze0bbfn7
 title: SLB SRE 01 — Platform Operations Fundamentals
-teaser: 'Core building blocks — data streams, indices, tiers, templates, and pipelines.
-
-  '
-description: '**SRE 01 — Platform Operations Fundamentals**
-
+teaser: |
+  Core building blocks — data streams, indices, tiers, templates, and pipelines.
+description: |-
+  **SRE 01 — Platform Operations Fundamentals**
 
   Core building blocks — data streams, indices, tiers, templates, and pipelines.
 
-
   **Series:** SME Track — SRE & Infra Ops
-
   **Audience:** sre
-
   **Presenter:** Pramod Saripalli
-
   **Live date:** 2026-08-19
 
-
   ## Session topics
-
   - Data streams, indices, tiers, templates, pipelines
-
   - Elastic Agent default integrations vs OTel-native receiver patterns
-
-  - Fleet-managed vs standalone deployment models'
+  - Fleet-managed vs standalone deployment models
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-- slb
-- slb-workshops
 - slb-series-sme-sre
 - elastic
+- slb
+- slb-workshops
 - serverless
 - observability
 - co.elastic.workshops
@@ -51,5 +42,5 @@ lab_config:
   hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-checksum: '3090725733687308003'
+checksum: "1954485073511283609"
 enhanced_loading: false

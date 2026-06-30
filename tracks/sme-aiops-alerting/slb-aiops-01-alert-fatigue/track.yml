@@ -1,41 +1,31 @@
 slug: slb-aiops-01-alert-fatigue
 id: fxsmopzs6ww7
 title: SLB AIOps 01 — Alert Fatigue & Noise Reduction
-teaser: 'Reduce alert volume through rule tuning, deduplication, and suppression.
-
-  '
-description: '**AIOps 01 — Alert Fatigue & Noise Reduction**
-
+teaser: |
+  Reduce alert volume through rule tuning, deduplication, and suppression.
+description: |-
+  **AIOps 01 — Alert Fatigue & Noise Reduction**
 
   Reduce alert volume through rule tuning, deduplication, and suppression.
 
-
   **Series:** SME Track — AIOps & Alerting
-
   **Audience:** aiops
-
   **Presenter:** Specialist (DSR) — AIOps
-
   **Live date:** 2026-11-11
 
-
   ## Session topics
-
   - Understanding why alert fatigue happens in Elastic
-
   - Rule tuning — thresholds and conditions
-
   - Alert deduplication, suppression, and exceptions
-
-  - Day-to-day alert triage and diagnosis workflows'
+  - Day-to-day alert triage and diagnosis workflows
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
+- elastic
 - slb
 - slb-workshops
-- slb-series-sme-aiops
-- elastic
 - serverless
 - observability
+- slb-series-sme-aiops
 - co.elastic.workshops
 owner: elastic
 developers:
@@ -53,5 +43,5 @@ lab_config:
   hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-checksum: '1498395993754322779'
+checksum: "16500887650427784015"
 enhanced_loading: false

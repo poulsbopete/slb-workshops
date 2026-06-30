@@ -1,28 +1,30 @@
 ---
 slug: arch-02-lab
+id: 7nztrnxaplbr
 type: challenge
 title: Arch 02 — Lifecycle, Governance & Standards
 teaser: ILM and retention strategy, Fleet tradeoffs, and ECS vs OTel conventions.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/arch-02/\"\
-    \n  width=\"100%\" height=\"800\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block\"\
-    >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
-    \ **Arch 02** (usually 2–3 minutes).*"
+  contents: |-
+    ## While you wait…
+
+    <iframe src="https://poulsbopete.github.io/slb-workshops/slides/arch-02/"
+      width="100%" height="800" frameborder="0"
+      style="border-radius:8px;display:block">
+    </iframe>
+
+    *Provisioning your Elastic **Observability Serverless** lab for **Arch 02** (usually 2–3 minutes).*
 - type: text
-  contents: '## Session topics
-
+  contents: |
+    ## Session topics
     - ILM/retention strategy and long-term platform design
-
     - Fleet-managed vs standalone tradeoffs
-
     - ECS vs OTel semantic conventions
-
     - Ownership boundaries and reusable standards across teams
-
-    '
 tabs:
-- title: Elastic Serverless
+- id: 9wav7j05bml5
+  title: Elastic Serverless
   type: service
   hostname: es3-api
   path: /app/home
@@ -35,7 +37,9 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
+difficulty: ""
 timelimit: 0
+enhanced_loading: null
 ---
 
 > **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
