@@ -8,23 +8,24 @@ teaser: Start here. This session introduces your Elastic team, shows you how to 
   possible experience with Elastic.
 notes:
 - type: text
-  contents: |-
-    ## While you wait…
-
-    <iframe src="https://poulsbopete.github.io/slb-workshops/slides/f-01/"
-      width="100%" height="1400" frameborder="0"
-      style="border-radius:8px;display:block;width:100%;min-height:900px">
-    </iframe>
-
-    *Provisioning your Elastic **Observability Serverless** lab for **F-01** (usually 2–3 minutes).*
+  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/f-01/\"\
+    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
+    >\n</iframe>\n\n*Provisioning your **Observability Serverless** lab for **F-01**\
+    \ (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
 - type: text
-  contents: |
-    ## Session topics
+  contents: '## Session topics
+
     - Meet your Elastic team — who does what and when to reach out
+
     - How to open an effective support ticket and what to expect
+
     - Escalation paths — when and how to escalate a case
+
     - Best practices for faster responses
+
     - Introduction to the enablement program
+
+    '
 tabs:
 - id: ymzcz4ahn8fi
   title: Elastic Serverless
@@ -40,28 +41,28 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-difficulty: ""
+difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
+> **Lab environment:** Use the **Elastic Serverless** tab only. Hands-on steps run on **Observability Serverless** for a zero-ops learning experience. The **same observability capabilities** — ES|QL, Streams, AI Assistant, Agent Builder, Workflows, SLOs — apply on **ECH** and **self-managed**; Serverless mainly saves platform management (cluster sizing, ILM, Fleet, upgrades). Steps are copy/paste in Kibana — no terminal required.
 
-# Your Elastic Team, Support & Best Practices (Serverless)
+# Your Elastic Team, Support & Best Practices
 
-## Part 1 — Your Serverless project
+## Part 1 — Your lab project
 
 1. Open the **Elastic Serverless** tab (Kibana Home).
-2. Note the project type: **Observability Serverless** — fully managed, no cluster to operate.
-3. Click **Help** (?) — bookmark **Documentation** and support paths for Serverless.
+2. Note the project type: **Observability Serverless** — our hands-on environment; the same Kibana apps apply on **ECH** and **self-managed**.
+3. Click **Help** (?) — bookmark **Documentation** and support paths.
 
 ## Part 2 — Support readiness
 
-Draft a support ticket template for Serverless:
+Draft a support ticket template (works for any deployment):
 
 | Field | Your answer |
 |-------|-------------|
-| Project type | Observability Serverless |
-| Region / project ID | (from project settings if visible) |
+| Deployment | Serverless / ECH / self-managed |
+| Project or cluster ID | |
 | Symptom | |
 | Time range | |
 | ES|QL or query tried | |

@@ -3,27 +3,27 @@ slug: f-02-lab
 id: i1ldxnpkdu75
 type: challenge
 title: F-02 — Intro to Elastic
-teaser: Overview of the Elastic platform and how it fits into SLB SRE's observability
-  journey — ingestion, storage, query, and visualization.
+teaser: Platform overview — labs use Serverless; the same observability capabilities
+  apply on ECH and self-managed deployments.
 notes:
 - type: text
-  contents: |-
-    ## While you wait…
-
-    <iframe src="https://poulsbopete.github.io/slb-workshops/slides/f-02/"
-      width="100%" height="1400" frameborder="0"
-      style="border-radius:8px;display:block;width:100%;min-height:900px">
-    </iframe>
-
-    *Provisioning your Elastic **Observability Serverless** lab for **F-02** (usually 2–3 minutes).*
+  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/f-02/\"\
+    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
+    >\n</iframe>\n\n*Provisioning your **Observability Serverless** lab for **F-02**\
+    \ (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
 - type: text
-  contents: |
-    ## Session topics
+  contents: '## Session topics
 
-    - Elastic Observability Serverless overview
+
+    - Elastic Observability — Serverless, ECH, and self-managed (same Kibana value)
+
     - Streams, ES|QL, and unified Observability
-    - SLB SRE's journey with Elastic — current state
+
+    - SLB SRE''s journey with Elastic — current state
+
     - AI Assistant and Agent Builder introduction
+
+    '
 tabs:
 - id: psprkcbh11mx
   title: Elastic Serverless
@@ -39,31 +39,36 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-difficulty: ""
+difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
+> **Lab environment:** Use the **Elastic Serverless** tab only. Hands-on steps run on **Observability Serverless** for a zero-ops learning experience. The **same observability capabilities** — ES|QL, Streams, AI Assistant, Agent Builder, Workflows, SLOs — apply on **ECH** and **self-managed**; Serverless mainly saves platform management (cluster sizing, ILM, Fleet, upgrades). Steps are copy/paste in Kibana — no terminal required.
 
-# Intro to Elastic Serverless
+# Intro to Elastic Observability
 
 ## Part 1 — Platform tour
 
 1. **Observability → Overview** — unified logs, metrics, traces, and SLOs.
-2. **Observability → Streams** — managed routing and processing for telemetry (Serverless-native).
-3. **Agents** (sidebar) — explore **Agent Builder** and AI capabilities available in your project.
+2. **Observability → Streams** — routing and processing for telemetry (same concept on ECH and on-prem).
+3. **Agents** (sidebar) — explore **Agent Builder** and **AI Assistant**.
 
-## Part 2 — Persona lenses (Serverless)
+## Part 2 — Persona lenses
 
 | Persona | Start here |
 |---------|------------|
 | Developer | **Observability → APM → Services** |
 | SRE / Infra | **Streams** and **Observability → Alerts** |
 | Analyst | **Analytics → Discover** or **Logs → Explorer** |
-| Architect | **Stack Management → API keys** and project access patterns |
+| Architect | **Stack Management → API keys** and access patterns |
 
-## Part 3 — What Serverless manages for you
+## Part 3 — Deployment models (same value, different ops)
 
-Discuss with facilitator: ingestion endpoints, scaling, and retention are managed — your focus is **telemetry quality, ES|QL, Streams, and AI-assisted ops**.
+| | Serverless (this lab) | ECH | Self-managed |
+|--|----------------------|-----|--------------|
+| You focus on | Telemetry, alerts, SLOs | Same + cluster policy | Same + full stack ops |
+| Elastic manages | Scaling, upgrades, ILM/Fleet | Hosted infrastructure | Software only |
+
+Discuss with facilitator: which model fits each SLB use case.
 
 Click **Check**.

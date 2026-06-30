@@ -107,8 +107,8 @@ def iframe_note(workshop: dict) -> str:
         f'      width="100%" height="{IFRAME_HEIGHT}" frameborder="0"\n'
         '      style="border-radius:8px;display:block;width:100%;min-height:900px">\n'
         "    </iframe>\n\n"
-        f"    *Provisioning your Elastic **Observability Serverless** lab for **{code}** "
-        "(usually 2–3 minutes).*"
+        f"    *Provisioning your **Observability Serverless** lab for **{code}** "
+        "(usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
     )
 
 
@@ -176,9 +176,9 @@ description: |-
   **SLB — {name}**
 
   This track contains **{len(workshops)}** hands-on {lab_word} — one per live session in the series.
-  Each lab runs on **Elastic Observability Serverless** (managed project — no cluster ops).
+  Each lab runs on **Elastic Observability Serverless** for hands-on practice — the **same Kibana workflows** apply on **ECH** and **self-managed** deployments.
 
-  **Serverless focus:** ES|QL, Streams, AI Assistant, Agent Builder, Workflows, SLOs, and unified Observability.
+  **What you learn:** ES|QL, Streams, AI Assistant, Agent Builder, Workflows, SLOs, and unified Observability. **What Serverless skips:** day-to-day cluster, ILM, and Fleet operations.
 
   ## Sessions in this track
 {session_lines}

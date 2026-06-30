@@ -36,8 +36,8 @@ def iframe_note(workshop: dict) -> str:
         f"  width=\"100%\" height=\"{IFRAME_HEIGHT}\" frameborder=\"0\"\n"
         f"  style=\"border-radius:8px;display:block;width:100%;min-height:900px\">\n"
         f"</iframe>\n\n"
-        f"*Provisioning your Elastic **Observability Serverless** lab for **{code}** "
-        f"(usually 2–3 minutes).*"
+        f"*Provisioning your **Observability Serverless** lab for **{code}** "
+        f"(usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
     )
 
 

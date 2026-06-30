@@ -3,27 +3,27 @@ slug: arch-02-lab
 id: xmiktsb1pr6x
 type: challenge
 title: Arch 02 — Governance, Streams & Standards
-teaser: Governance for Serverless — Streams standards, schema conventions, and AI
-  agent policies.
+teaser: Governance — Streams standards, schema conventions, and AI agent policies
+  across deployments.
 notes:
 - type: text
-  contents: |-
-    ## While you wait…
-
-    <iframe src="https://poulsbopete.github.io/slb-workshops/slides/arch-02/"
-      width="100%" height="1400" frameborder="0"
-      style="border-radius:8px;display:block;width:100%;min-height:900px">
-    </iframe>
-
-    *Provisioning your Elastic **Observability Serverless** lab for **Arch 02** (usually 2–3 minutes).*
+  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/arch-02/\"\
+    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
+    >\n</iframe>\n\n*Provisioning your **Observability Serverless** lab for **Arch\
+    \ 02** (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
 - type: text
-  contents: |
-    ## Session topics
+  contents: '## Session topics
+
 
     - Streams naming and ownership standards
+
     - Managed retention on Serverless vs self-managed ILM
+
     - ECS vs OTel semantic conventions
+
     - Agent Builder and AI governance
+
+    '
 tabs:
 - id: z2y9yjgurhfy
   title: Elastic Serverless
@@ -39,15 +39,15 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-difficulty: ""
+difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
+> **Lab environment:** Use the **Elastic Serverless** tab only. Hands-on steps run on **Observability Serverless** for a zero-ops learning experience. The **same observability capabilities** — ES|QL, Streams, AI Assistant, Agent Builder, Workflows, SLOs — apply on **ECH** and **self-managed**; Serverless mainly saves platform management (cluster sizing, ILM, Fleet, upgrades). Steps are copy/paste in Kibana — no terminal required.
 
-# Governance & Standards on Serverless
+# Governance, Streams & Standards
 
-> No ILM policies on Serverless — focus on **Streams**, **schema**, and **access** standards.
+> **Retention:** This lab uses project-managed retention. On **ECH/on-prem**, pair **Streams** standards with your **ILM** policies — routing and lifecycle are separate concerns.
 
 ## Part 1 — Streams naming & ownership
 
@@ -69,6 +69,6 @@ Pick one convention for SLB and stick to it in OTel resource attributes.
 ## Part 3 — Agent Builder governance
 
 1. Open **Agents** — review who can create agents and connect tools.
-2. Draft a policy: when to use **AI Assistant** vs automated **Workflows**.
+2. Draft a policy: when to use **AI Assistant** vs automated **Workflows** (same rules on any deployment).
 
 Click **Check**.

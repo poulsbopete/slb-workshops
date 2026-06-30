@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parent.parent
 TRACKS = ROOT / "tracks"
 CATALOG = ROOT / "catalog" / "workshops.yaml"
 
-LAB_INTRO = """> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
+LAB_INTRO = """> **Lab environment:** Use the **Elastic Serverless** tab only. Hands-on steps run on **Observability Serverless** for a zero-ops learning experience. The **same observability capabilities** — ES|QL, Streams, AI Assistant, Agent Builder, Workflows, SLOs — apply on **ECH** and **self-managed**; Serverless mainly saves platform management (cluster sizing, ILM, Fleet, upgrades). Steps are copy/paste in Kibana — no terminal required.
 
 """
 

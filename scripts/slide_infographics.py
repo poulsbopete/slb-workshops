@@ -20,17 +20,17 @@ class Feature(TypedDict):
 FEATURES: dict[str, Feature] = {
     "observability-serverless": {
         "id": "observability-serverless",
-        "title": "Observability Serverless",
+        "title": "Observability everywhere",
         "icon": "☁",
-        "tagline": "Full observability without operating a cluster",
-        "without": "You patch nodes, tune ILM, scale shards, and babysit upgrades — SRE time goes to the platform, not the product.",
-        "with_feature": "Elastic runs ingestion, storage, scaling, and upgrades. Your team focuses on telemetry quality, alerts, and incident response.",
+        "tagline": "Same value on Serverless, ECH, and self-managed",
+        "without": "Teams treat deployment choice as a feature fork — assuming Serverless skills won't transfer to ECH or on-prem, or that only one model fits SLB.",
+        "with_feature": "Serverless, Elastic Cloud Hosted, and self-managed share the same Observability UX. Labs use Serverless to skip cluster toil; you apply the same ES|QL, Streams, and AI workflows wherever Elastic runs.",
         "benefits": [
-            "No Fleet agents, data tiers, or ILM policies to maintain",
-            "Same Kibana UX — logs, metrics, traces, SLOs in one project",
-            "Faster time-to-value for SLB teams migrating off Grafana-only stacks",
+            "Serverless: Elastic manages scaling, upgrades, ILM, and Fleet overhead",
+            "ECH / on-prem: same capabilities when you need full infrastructure control",
+            "Choose deployment for ops burden — not for observability feature access",
         ],
-        "flow": ["OTel collectors", "Managed project", "Kibana ops"],
+        "flow": ["Your deployment", "Same Kibana", "Same skills"],
     },
     "elastic-streams": {
         "id": "elastic-streams",
@@ -38,11 +38,11 @@ FEATURES: dict[str, Feature] = {
         "icon": "⎇",
         "tagline": "Managed routing and processing for telemetry",
         "without": "Custom ingest pipelines, index templates, and rollover policies per team — fragile, hard to govern, and different on every cluster.",
-        "with_feature": "Streams define how logs, metrics, and traces are routed, processed, and retained — natively on Serverless, with a single UI.",
+        "with_feature": "Streams define how logs, metrics, and traces are routed, processed, and retained — on Serverless, ECH, and self-managed, with a unified UI.",
         "benefits": [
-            "Replace DIY pipeline + ILM work with declarative stream rules",
+            "Reduce DIY pipeline + ILM work with declarative stream rules",
             "Consistent ownership and naming across SLB domains",
-            "Easier troubleshooting when ingest volume or schema changes",
+            "On self-managed/ECH you may still use ILM — Streams simplify routing either way",
         ],
         "flow": ["Ingest", "Streams", "Search & alerts"],
     },
@@ -52,7 +52,7 @@ FEATURES: dict[str, Feature] = {
         "icon": "📡",
         "tagline": "Send OTLP once — Elastic handles the rest",
         "without": "Multiple exporters, bespoke endpoints, and glue code to normalize Prometheus, Loki, and Jaeger into one query model.",
-        "with_feature": "Point OpenTelemetry collectors at managed OTLP endpoints — unified logs, metrics, and traces in Observability Serverless.",
+        "with_feature": "Point OpenTelemetry collectors at Elastic OTLP endpoints — unified logs, metrics, and traces in any deployment model.",
         "benefits": [
             "One semantic model (OTel) across services and hosts",
             "Side-by-side migration: Grafana today, Elastic Streams tomorrow",
@@ -69,7 +69,7 @@ FEATURES: dict[str, Feature] = {
         "with_feature": "ES|QL pipes data through filters, stats, and joins across observability datasets in Logs Explorer and Dev Tools.",
         "benefits": [
             "Faster investigations with reusable query patterns",
-            "Works the same on Serverless — no cluster URLs to manage",
+            "Same syntax in Logs Explorer on Serverless, ECH, and self-managed",
             "AI Assistant can draft and explain ES|QL for your team",
         ],
         "flow": ["FROM logs-*", "STATS / WHERE", "Answer"],
@@ -140,7 +140,7 @@ FEATURES: dict[str, Feature] = {
         "benefits": [
             "Align SRE and product on measurable reliability",
             "Prioritize fixes when error budget is draining",
-            "Works natively in Observability Serverless — no custom PromQL recording rules",
+            "Native in Observability on every deployment — no custom PromQL recording rules required",
         ],
         "flow": ["SLI signal", "SLO target", "Burn alert"],
     },
@@ -232,9 +232,9 @@ FEATURES: dict[str, Feature] = {
         "id": "api-keys-governance",
         "title": "API keys & access",
         "icon": "🔐",
-        "tagline": "Secure multi-team automation on Serverless",
+        "tagline": "Secure multi-team automation on any deployment",
         "without": "Shared credentials, over-privileged scripts, and no clear ownership per integration.",
-        "with_feature": "Project-scoped API keys and role patterns replace cluster superuser — each team gets least privilege.",
+        "with_feature": "Scoped API keys and role patterns — project keys on Serverless, deployment keys on ECH, native users on self-managed.",
         "benefits": [
             "Automate dashboards and CI checks without shared passwords",
             "Audit who can query vs who can configure Streams",
@@ -248,7 +248,7 @@ FEATURES: dict[str, Feature] = {
         "icon": "🛟",
         "tagline": "Faster answers when production is on the line",
         "without": "Vague tickets, missing project context, and unclear escalation — cases bounce and MTTR grows.",
-        "with_feature": "Know your Elastic team, ticket template, and escalation path before day-two incidents hit Serverless.",
+        "with_feature": "Know your Elastic team, ticket template, and escalation path — include deployment type (Serverless, ECH, or self-managed) in every case.",
         "benefits": [
             "Include project type, time range, and ES|QL tried in every case",
             "Use this workshop program for role-based depth (SRE, Dev, BI, AIOps)",

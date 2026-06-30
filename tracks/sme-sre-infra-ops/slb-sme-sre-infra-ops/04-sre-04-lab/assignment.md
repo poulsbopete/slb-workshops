@@ -3,26 +3,25 @@ slug: sre-04-lab
 id: qclvb0rzrc9w
 type: challenge
 title: SRE 04 — Production Readiness Workshop
-teaser: Production readiness for Elastic Observability Serverless — SLOs, alerts,
-  Streams, and AI ops.
+teaser: Production readiness for Elastic Observability — SLOs, alerts, Streams, and
+  AI ops on any deployment.
 notes:
 - type: text
-  contents: |-
-    ## While you wait…
-
-    <iframe src="https://poulsbopete.github.io/slb-workshops/slides/sre-04/"
-      width="100%" height="1400" frameborder="0"
-      style="border-radius:8px;display:block;width:100%;min-height:900px">
-    </iframe>
-
-    *Provisioning your Elastic **Observability Serverless** lab for **SRE 04** (usually 2–3 minutes).*
+  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/sre-04/\"\
+    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
+    >\n</iframe>\n\n*Provisioning your **Observability Serverless** lab for **SRE\
+    \ 04** (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
 - type: text
-  contents: |
-    ## Session topics
+  contents: '## Session topics
 
-    - SLOs, alerts, and Streams readiness on Serverless
+
+    - SLOs, alerts, and Streams readiness
+
     - AI Assistant and Workflows in production runbooks
-    - Serverless validation checklist (no ILM/Fleet)
+
+    - Production checklist — plus ILM/Fleet on ECH and self-managed
+
+    '
 tabs:
 - id: lqsvkreyeozl
   title: Elastic Serverless
@@ -38,15 +37,15 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-difficulty: ""
+difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
+> **Lab environment:** Use the **Elastic Serverless** tab only. Hands-on steps run on **Observability Serverless** for a zero-ops learning experience. The **same observability capabilities** — ES|QL, Streams, AI Assistant, Agent Builder, Workflows, SLOs — apply on **ECH** and **self-managed**; Serverless mainly saves platform management (cluster sizing, ILM, Fleet, upgrades). Steps are copy/paste in Kibana — no terminal required.
 
-# Production Readiness on Serverless
+# Production Readiness Workshop
 
-## Part 1 — Serverless readiness checklist
+## Part 1 — Readiness checklist (any deployment)
 
 - [ ] OTel data flowing (Logs / Metrics / Traces explorers)
 - [ ] **Streams** configured for key telemetry types
@@ -54,6 +53,7 @@ enhanced_loading: null
 - [ ] **SLOs** defined for top services
 - [ ] Dashboards for daily review
 - [ ] **AI Assistant** / runbooks documented
+- [ ] (ECH/on-prem) ILM / Fleet / capacity reviewed
 
 ## Part 2 — SLOs & alerts
 

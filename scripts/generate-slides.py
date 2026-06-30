@@ -49,6 +49,20 @@ def section_slides(workshop: dict) -> list[tuple[str, str]]:
     if desc:
         slides.append(("Overview", f"<p>{html.escape(desc)}</p>"))
 
+    slides.append(
+        (
+            "Where this applies",
+            "<p>These labs run on <strong>Observability Serverless</strong> — a fully managed "
+            "project so you can practice without cluster operations.</p>"
+            "<p>The <strong>same capabilities</strong> you explore here — "
+            "<strong>ES|QL, Streams, AI Assistant, Agent Builder, Workflows, and SLOs</strong> — "
+            "are available on <strong>Elastic Cloud Hosted (ECH)</strong> and "
+            "<strong>self-managed</strong> deployments.</p>"
+            "<p><strong>Serverless</strong> mainly saves operational toil (sizing, ILM, Fleet, upgrades). "
+            "Your observability skills transfer directly.</p>",
+        )
+    )
+
     topics = workshop.get("topics") or []
     if topics:
         items = "".join(f"<li>{html.escape(t)}</li>" for t in topics)
@@ -64,9 +78,10 @@ def section_slides(workshop: dict) -> list[tuple[str, str]]:
         slides.append(
             (
                 "Hands-on lab",
-                "<p>Your <strong>Elastic Observability Serverless</strong> "
-                "environment is provisioning in the background.</p>"
-                "<p>When Kibana opens, follow the lab steps in the assignment panel.</p>"
+                "<p>Your lab uses <strong>Elastic Observability Serverless</strong> "
+                "for a zero-ops learning environment.</p>"
+                "<p>The steps and features are the same on <strong>ECH</strong> and "
+                "<strong>on-prem</strong> — follow the assignment panel when Kibana opens.</p>"
                 f"<p class=\"mono\">Instruqt track: {html.escape(track)}</p>",
             )
         )

@@ -43,11 +43,11 @@ workshops:
   format: hybrid
   instruqt_track: slb-shared-foundations
   topics:
-  - Elastic Observability Serverless overview
+  - Elastic Observability — Serverless, ECH, and self-managed (same Kibana value)
   - Streams, ES|QL, and unified Observability
   - SLB SRE's journey with Elastic — current state
   - AI Assistant and Agent Builder introduction
-  description: 'Overview of the Elastic platform and how it fits into SLB SRE''s observability journey — ingestion, storage, query, and visualization.
+  description: 'Platform overview — labs use Serverless; the same observability capabilities apply on ECH and self-managed deployments.
 
     '
 - id: f-03
@@ -62,7 +62,7 @@ workshops:
   topics:
   - ES|QL and Streams in daily workflows
   - Where dashboards and AI Assistant fit
-  - Managed OTel ingestion on Serverless
+  - OTel ingestion patterns (lab runs on Serverless)
   - Grafana → Elastic mental model translation
   description: 'Practical examples of data ingestion, querying with ES|QL, and using Kibana dashboards — with a focus on what Grafana users need to know.
 
@@ -142,10 +142,10 @@ workshops:
   format: hands-on
   instruqt_track: slb-sme-sre-infra-ops
   topics:
-  - Managed OTel ingestion and Elastic Streams
-  - Streams routing vs self-managed pipelines
-  - Serverless operations model (no Fleet / ILM)
-  description: 'Core Serverless building blocks — managed ingestion, Streams, ES|QL, and observability signals.
+  - OTel ingestion and Elastic Streams
+  - Streams routing vs traditional ingest pipelines
+  - Deployment models — Serverless vs ECH vs self-managed (what you manage)
+  description: 'Core observability building blocks — labs use Serverless; skills transfer to ECH and on-prem.
 
     '
 - id: sre-02
@@ -158,10 +158,10 @@ workshops:
   format: hands-on
   instruqt_track: slb-sme-sre-infra-ops
   topics:
-  - Elastic Streams on Observability Serverless
-  - Routing, processing, and managed retention
+  - Elastic Streams — routing and processing
+  - Retention on Serverless vs ILM on ECH/on-prem
   - Troubleshooting stream health with ES|QL and AI Assistant
-  description: 'Elastic Streams on Serverless — routing and processing without ILM or data tiers.
+  description: 'Elastic Streams deep dive — routing and processing; retention differs by deployment, capabilities do not.
 
     '
 - id: sre-03
@@ -174,11 +174,11 @@ workshops:
   format: hands-on
   instruqt_track: slb-sme-sre-infra-ops
   topics:
-  - OTel → managed OTLP on Serverless
+  - OTel → Elastic OTLP (same pattern on all deployments)
   - Streams troubleshooting and ingest gap detection
   - ES|QL patterns for ingestion health
   - AI-assisted diagnosis of telemetry gaps
-  description: 'Serverless ingestion troubleshooting with Streams, ES|QL, and AI Assistant.
+  description: 'Ingestion troubleshooting with Streams, ES|QL, and AI Assistant — lab on Serverless, patterns apply everywhere.
 
     '
 - id: sre-04
@@ -191,10 +191,10 @@ workshops:
   format: hands-on
   instruqt_track: slb-sme-sre-infra-ops
   topics:
-  - SLOs, alerts, and Streams readiness on Serverless
+  - SLOs, alerts, and Streams readiness
   - AI Assistant and Workflows in production runbooks
-  - Serverless validation checklist (no ILM/Fleet)
-  description: 'Production readiness for Elastic Observability Serverless — SLOs, alerts, Streams, and AI ops.
+  - Production checklist — plus ILM/Fleet on ECH and self-managed
+  description: 'Production readiness for Elastic Observability — SLOs, alerts, Streams, and AI ops on any deployment.
 
     '
 - id: arch-01
@@ -207,7 +207,7 @@ workshops:
   format: hybrid
   instruqt_track: slb-sme-architects
   topics:
-  - Streams and OTel target-state on Serverless
+  - Streams and OTel target-state (Serverless, ECH, or on-prem)
   - Coexistence planning during migration (Grafana + Elastic side by side)
   - Multi-team project access and API keys
   description: 'Target-state ingestion design and coexistence planning during migration.
@@ -227,7 +227,7 @@ workshops:
   - Managed retention on Serverless vs self-managed ILM
   - ECS vs OTel semantic conventions
   - Agent Builder and AI governance
-  description: 'Governance for Serverless — Streams standards, schema conventions, and AI agent policies.
+  description: 'Governance — Streams standards, schema conventions, and AI agent policies across deployments.
 
     '
 - id: bi-01

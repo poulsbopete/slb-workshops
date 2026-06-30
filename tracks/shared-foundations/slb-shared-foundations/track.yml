@@ -1,30 +1,44 @@
 slug: slb-shared-foundations
 id: i811eppkxvtq
 title: SLB — Shared Foundations
-teaser: |
-  Consolidated Instruqt track for the SLB × Elastic **Shared Foundations** series.
+teaser: 'Consolidated Instruqt track for the SLB × Elastic **Shared Foundations**
+  series.
+
   Complete the labs in order, or jump to the session matching your live workshop.
-description: |-
-  **SLB — Shared Foundations**
+
+  '
+description: '**SLB — Shared Foundations**
+
 
   This track contains **4** hands-on labs — one per live session in the series.
-  Each lab runs on **Elastic Observability Serverless** (managed project — no cluster ops).
 
-  **Serverless focus:** ES|QL, Streams, AI Assistant, Agent Builder, Workflows, SLOs, and unified Observability.
+  Each lab runs on **Elastic Observability Serverless** for hands-on practice — the
+  **same Kibana workflows** apply on **ECH** and **self-managed** deployments.
+
+
+  **What you learn:** ES|QL, Streams, AI Assistant, Agent Builder, Workflows, SLOs,
+  and unified Observability. **What Serverless skips:** day-to-day cluster, ILM, and
+  Fleet operations.
+
 
   ## Sessions in this track
+
   - **F-01** — Your Elastic Team, Support & Best Practices
+
   - **F-02** — Intro to Elastic
+
   - **F-03** — Elastic Day to Day
+
   - **F-04** — Looking Forward with Elastic
 
-  Register for live sessions: [events.elastic.co/slbworkshops](https://events.elastic.co/slbworkshops)
+
+  Register for live sessions: [events.elastic.co/slbworkshops](https://events.elastic.co/slbworkshops)'
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-- slb-series-shared-foundations
-- elastic
 - slb
 - slb-workshops
+- slb-series-shared-foundations
+- elastic
 - serverless
 - observability
 - co.elastic.workshops
@@ -44,5 +58,5 @@ lab_config:
   hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-checksum: "14033789168160644881"
+checksum: '14033789168160644881'
 enhanced_loading: false
