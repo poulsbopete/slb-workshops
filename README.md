@@ -54,6 +54,26 @@ scripts/
   sync-section-tags.py          # Patch section tags on track.yml
 ```
 
+## GitHub Pages slides
+
+Slide decks live in [`docs/slides/`](docs/slides/) (Reveal.js) and embed in Instruqt while labs provision.
+
+**One-time setup:** Repo → **Settings → Pages** → Source: **Deploy from a branch** → `main` → `/docs`  
+(or enable **GitHub Actions** as source to use `.github/workflows/pages.yml`).
+
+| URL | Content |
+|-----|---------|
+| [poulsbopete.github.io/slb-workshops](https://poulsbopete.github.io/slb-workshops) | Slide index |
+| `.../slides/f-02/` | F-02 deck (example) |
+| `.../slides/aiops-01/` | AIOps 01 deck |
+
+Regenerate after catalog changes:
+
+```bash
+make slides-all    # rebuild decks + update Instruqt iframes
+make publish
+```
+
 ## Workflow
 
 ```bash
