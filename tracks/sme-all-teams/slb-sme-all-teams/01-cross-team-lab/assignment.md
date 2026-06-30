@@ -6,20 +6,21 @@ title: Cross-team — Cross-team Platform Review
 teaser: Cross-team session reviewing adoption progress and next steps.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/docs/slides/cross-team/\"\
-    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
-    >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
-    \ **Cross-team** (usually 2–3 minutes).*"
+  contents: |-
+    ## While you wait…
+
+    <iframe src="https://poulsbopete.github.io/slb-workshops/docs/slides/cross-team/"
+      width="100%" height="1400" frameborder="0"
+      style="border-radius:8px;display:block;width:100%;min-height:900px">
+    </iframe>
+
+    *Provisioning your Elastic **Observability Serverless** lab for **Cross-team** (usually 2–3 minutes).*
 - type: text
-  contents: '## Session topics
-
+  contents: |
+    ## Session topics
     - Elastic adoption progress across all teams
-
     - Open Q&A and live troubleshooting
-
     - Next steps and program evolution
-
-    '
 tabs:
 - id: ahuakfmqw6b5
   title: Elastic Serverless
@@ -35,7 +36,7 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-difficulty: ''
+difficulty: ""
 timelimit: 0
 enhanced_loading: null
 ---
