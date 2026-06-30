@@ -6,23 +6,23 @@ title: SRE 03 — Ingestion Architecture & Troubleshooting
 teaser: Serverless ingestion troubleshooting with Streams, ES|QL, and AI Assistant.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/sre-03/\"\
-    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
-    >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
-    \ **SRE 03** (usually 2–3 minutes).*"
-- type: text
-  contents: '## Session topics
+  contents: |-
+    ## While you wait…
 
+    <iframe src="https://poulsbopete.github.io/slb-workshops/slides/sre-03/"
+      width="100%" height="1400" frameborder="0"
+      style="border-radius:8px;display:block;width:100%;min-height:900px">
+    </iframe>
+
+    *Provisioning your Elastic **Observability Serverless** lab for **SRE 03** (usually 2–3 minutes).*
+- type: text
+  contents: |
+    ## Session topics
 
     - OTel → managed OTLP on Serverless
-
     - Streams troubleshooting and ingest gap detection
-
     - ES|QL patterns for ingestion health
-
     - AI-assisted diagnosis of telemetry gaps
-
-    '
 tabs:
 - id: jru4krdqiog7
   title: Elastic Serverless
@@ -38,7 +38,7 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-difficulty: ''
+difficulty: ""
 timelimit: 0
 enhanced_loading: null
 ---

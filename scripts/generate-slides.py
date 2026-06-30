@@ -5,11 +5,17 @@ from __future__ import annotations
 
 import html
 import re
+import sys
 from pathlib import Path
 
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
+SCRIPTS = Path(__file__).resolve().parent
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS))
+
+from slide_infographics import infographic_slides
 CATALOG = ROOT / "catalog" / "workshops.yaml"
 DOCS = ROOT / "docs"
 SLIDES = DOCS / "slides"
@@ -47,6 +53,10 @@ def section_slides(workshop: dict) -> list[tuple[str, str]]:
     if topics:
         items = "".join(f"<li>{html.escape(t)}</li>" for t in topics)
         slides.append(("Session topics", f"<ul>{items}</ul>"))
+
+    wid = workshop["id"]
+    for heading, body in infographic_slides(wid):
+        slides.append((heading, body))
 
     fmt = workshop.get("format", "")
     track = workshop.get("instruqt_track")
@@ -89,8 +99,9 @@ def render_deck(workshop: dict) -> str:
     sections = section_slides(workshop)
     section_html = []
     for heading, body in sections:
+        ig_class = ' class="ig-slide"' if heading.startswith("Why ") else ""
         section_html.append(
-            f"<section><h2>{html.escape(heading)}</h2>{body}</section>"
+            f"<section{ig_class}><h2>{html.escape(heading)}</h2>{body}</section>"
         )
 
     return f"""<!DOCTYPE html>

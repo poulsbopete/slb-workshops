@@ -7,21 +7,22 @@ teaser: Production readiness for Elastic Observability Serverless — SLOs, aler
   Streams, and AI ops.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/sre-04/\"\
-    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
-    >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
-    \ **SRE 04** (usually 2–3 minutes).*"
-- type: text
-  contents: '## Session topics
+  contents: |-
+    ## While you wait…
 
+    <iframe src="https://poulsbopete.github.io/slb-workshops/slides/sre-04/"
+      width="100%" height="1400" frameborder="0"
+      style="border-radius:8px;display:block;width:100%;min-height:900px">
+    </iframe>
+
+    *Provisioning your Elastic **Observability Serverless** lab for **SRE 04** (usually 2–3 minutes).*
+- type: text
+  contents: |
+    ## Session topics
 
     - SLOs, alerts, and Streams readiness on Serverless
-
     - AI Assistant and Workflows in production runbooks
-
     - Serverless validation checklist (no ILM/Fleet)
-
-    '
 tabs:
 - id: lqsvkreyeozl
   title: Elastic Serverless
@@ -37,7 +38,7 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-difficulty: ''
+difficulty: ""
 timelimit: 0
 enhanced_loading: null
 ---

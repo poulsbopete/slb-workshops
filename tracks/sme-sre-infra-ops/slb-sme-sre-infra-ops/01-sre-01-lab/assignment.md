@@ -7,21 +7,22 @@ teaser: Core Serverless building blocks — managed ingestion, Streams, ES|QL, a
   signals.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/sre-01/\"\
-    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
-    >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
-    \ **SRE 01** (usually 2–3 minutes).*"
-- type: text
-  contents: '## Session topics
+  contents: |-
+    ## While you wait…
 
+    <iframe src="https://poulsbopete.github.io/slb-workshops/slides/sre-01/"
+      width="100%" height="1400" frameborder="0"
+      style="border-radius:8px;display:block;width:100%;min-height:900px">
+    </iframe>
+
+    *Provisioning your Elastic **Observability Serverless** lab for **SRE 01** (usually 2–3 minutes).*
+- type: text
+  contents: |
+    ## Session topics
 
     - Managed OTel ingestion and Elastic Streams
-
     - Streams routing vs self-managed pipelines
-
     - Serverless operations model (no Fleet / ILM)
-
-    '
 tabs:
 - id: hcdahyovlngd
   title: Elastic Serverless
@@ -37,7 +38,7 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-difficulty: ''
+difficulty: ""
 timelimit: 0
 enhanced_loading: null
 ---

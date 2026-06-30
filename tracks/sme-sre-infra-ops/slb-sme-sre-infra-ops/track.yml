@@ -1,43 +1,30 @@
 slug: slb-sme-sre-infra-ops
 id: 4xbeaysicl0d
 title: 'SLB — SME Track: SRE & Infra Ops'
-teaser: 'Consolidated Instruqt track for the SLB × Elastic **SME Track: SRE & Infra
-  Ops** series.
-
+teaser: |
+  Consolidated Instruqt track for the SLB × Elastic **SME Track: SRE & Infra Ops** series.
   Complete the labs in order, or jump to the session matching your live workshop.
-
-  '
-description: '**SLB — SME Track: SRE & Infra Ops**
-
+description: |-
+  **SLB — SME Track: SRE & Infra Ops**
 
   This track contains **4** hands-on labs — one per live session in the series.
+  Each lab runs on **Elastic Observability Serverless** (managed project — no cluster ops).
 
-  Each lab runs on **Elastic Observability Serverless** (managed project — no cluster
-  ops).
-
-
-  **Serverless focus:** ES|QL, Streams, AI Assistant, Agent Builder, Workflows, SLOs,
-  and unified Observability.
-
+  **Serverless focus:** ES|QL, Streams, AI Assistant, Agent Builder, Workflows, SLOs, and unified Observability.
 
   ## Sessions in this track
-
   - **SRE 01** — Platform Operations Fundamentals
-
   - **SRE 02** — Elastic Streams & Data Routing
-
   - **SRE 03** — Ingestion Architecture & Troubleshooting
-
   - **SRE 04** — Production Readiness Workshop
 
-
-  Register for live sessions: [events.elastic.co/slbworkshops](https://events.elastic.co/slbworkshops)'
+  Register for live sessions: [events.elastic.co/slbworkshops](https://events.elastic.co/slbworkshops)
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-- slb
-- slb-workshops
 - slb-series-sme-sre
 - elastic
+- slb
+- slb-workshops
 - serverless
 - observability
 - co.elastic.workshops
@@ -57,5 +44,5 @@ lab_config:
   hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-checksum: '9858852340374485854'
+checksum: "10928637355918502542"
 enhanced_loading: false

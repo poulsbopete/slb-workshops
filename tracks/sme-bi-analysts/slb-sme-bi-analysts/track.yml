@@ -1,41 +1,29 @@
 slug: slb-sme-bi-analysts
 id: mnklqevc7gk9
 title: 'SLB — SME Track: BI & Data Analysts'
-teaser: 'Consolidated Instruqt track for the SLB × Elastic **SME Track: BI & Data
-  Analysts** series.
-
+teaser: |
+  Consolidated Instruqt track for the SLB × Elastic **SME Track: BI & Data Analysts** series.
   Complete the labs in order, or jump to the session matching your live workshop.
-
-  '
-description: '**SLB — SME Track: BI & Data Analysts**
-
+description: |-
+  **SLB — SME Track: BI & Data Analysts**
 
   This track contains **3** hands-on labs — one per live session in the series.
+  Each lab runs on **Elastic Observability Serverless** (managed project — no cluster ops).
 
-  Each lab runs on **Elastic Observability Serverless** (managed project — no cluster
-  ops).
-
-
-  **Serverless focus:** ES|QL, Streams, AI Assistant, Agent Builder, Workflows, SLOs,
-  and unified Observability.
-
+  **Serverless focus:** ES|QL, Streams, AI Assistant, Agent Builder, Workflows, SLOs, and unified Observability.
 
   ## Sessions in this track
-
   - **BI 01** — Dashboard & Data Exploration Basics
-
   - **BI 02** — ES|QL for Analysts
-
   - **BI 03** — APIs, Integrations & Dashboard Building
 
-
-  Register for live sessions: [events.elastic.co/slbworkshops](https://events.elastic.co/slbworkshops)'
+  Register for live sessions: [events.elastic.co/slbworkshops](https://events.elastic.co/slbworkshops)
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
+- elastic
 - slb
 - slb-workshops
 - slb-series-sme-bi
-- elastic
 - serverless
 - observability
 - co.elastic.workshops
@@ -55,5 +43,5 @@ lab_config:
   hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-checksum: '88010551639970841'
+checksum: "4657776267601504806"
 enhanced_loading: false

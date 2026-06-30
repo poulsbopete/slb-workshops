@@ -1,38 +1,28 @@
 slug: slb-sme-all-teams
 id: k7cajkyokfsx
 title: 'SLB — SME Track: All Teams'
-teaser: 'Consolidated Instruqt track for the SLB × Elastic **SME Track: All Teams**
-  series.
-
+teaser: |
+  Consolidated Instruqt track for the SLB × Elastic **SME Track: All Teams** series.
   Complete the labs in order, or jump to the session matching your live workshop.
-
-  '
-description: '**SLB — SME Track: All Teams**
-
+description: |-
+  **SLB — SME Track: All Teams**
 
   This track contains **1** hands-on lab — one per live session in the series.
+  Each lab runs on **Elastic Observability Serverless** (managed project — no cluster ops).
 
-  Each lab runs on **Elastic Observability Serverless** (managed project — no cluster
-  ops).
-
-
-  **Serverless focus:** ES|QL, Streams, AI Assistant, Agent Builder, Workflows, SLOs,
-  and unified Observability.
-
+  **Serverless focus:** ES|QL, Streams, AI Assistant, Agent Builder, Workflows, SLOs, and unified Observability.
 
   ## Sessions in this track
-
   - **Cross-team** — Cross-team Platform Review
 
-
-  Register for live sessions: [events.elastic.co/slbworkshops](https://events.elastic.co/slbworkshops)'
+  Register for live sessions: [events.elastic.co/slbworkshops](https://events.elastic.co/slbworkshops)
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
+- elastic
 - slb
 - slb-workshops
-- slb-series-sme-all-teams
-- elastic
 - serverless
+- slb-series-sme-all-teams
 - observability
 - co.elastic.workshops
 owner: elastic
@@ -51,5 +41,5 @@ lab_config:
   hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-checksum: '9107834316166726790'
+checksum: "10556150548323262424"
 enhanced_loading: false
