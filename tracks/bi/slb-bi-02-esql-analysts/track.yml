@@ -1,40 +1,31 @@
 slug: slb-bi-02-esql-analysts
 id: nue1d1azglcg
 title: SLB BI 02 — ES|QL for Analysts
-teaser: 'ES|QL query patterns, aggregations, and time-series analysis for analysts.
-
-  '
-description: '**BI 02 — ES|QL for Analysts**
-
+teaser: |
+  ES|QL query patterns, aggregations, and time-series analysis for analysts.
+description: |-
+  **BI 02 — ES|QL for Analysts**
 
   ES|QL query patterns, aggregations, and time-series analysis for analysts.
 
-
   **Series:** SME Track — BI & Data Analysts
-
   **Audience:** bi
-
   **Presenter:** Pramod Saripalli
-
   **Live date:** 2026-09-30
 
-
   ## Session topics
-
   - Simple query patterns and aggregations
-
   - Time-based analysis
-
-  - Correlating observability data with cost and utilization context'
+  - Correlating observability data with cost and utilization context
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-- co.elastic.workshops
-- elastic
-- observability
-- serverless
-- slb
 - slb-section-bi
+- elastic
+- slb
+- serverless
 - sme-track--bi-&-data-analysts
+- observability
+- co.elastic.workshops
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -51,5 +42,5 @@ lab_config:
   hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-checksum: '15740658772504883354'
+checksum: "9916661702158649750"
 enhanced_loading: false

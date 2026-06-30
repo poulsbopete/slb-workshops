@@ -1,44 +1,32 @@
 slug: slb-f-03-elastic-day-to-day
 id: bb8nfyhx0pay
 title: SLB F-03 — Elastic Day to Day
-teaser: 'Practical examples of data ingestion, querying with ES|QL, and using Kibana
-  dashboards — with a focus on what Grafana users need to know.
+teaser: |
+  Practical examples of data ingestion, querying with ES|QL, and using Kibana dashboards — with a focus on what Grafana users need to know.
+description: |-
+  **F-03 — Elastic Day to Day**
 
-  '
-description: '**F-03 — Elastic Day to Day**
-
-
-  Practical examples of data ingestion, querying with ES|QL, and using Kibana dashboards
-  — with a focus on what Grafana users need to know.
-
+  Practical examples of data ingestion, querying with ES|QL, and using Kibana dashboards — with a focus on what Grafana users need to know.
 
   **Series:** Shared Foundations
-
   **Audience:** all
-
   **Presenter:** Enrique
-
   **Live date:** 2026-07-29
 
-
   ## Session topics
-
   - Data lifecycle in practice
-
   - Where ES|QL, dashboards and APIs fit into daily workflows
-
   - Ingestion fundamentals
-
-  - Grafana → Elastic mental model translation'
+  - Grafana → Elastic mental model translation
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-- co.elastic.workshops
 - elastic
-- observability
-- serverless
-- shared-foundations
 - slb
 - slb-section-foundations
+- serverless
+- shared-foundations
+- observability
+- co.elastic.workshops
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -55,5 +43,5 @@ lab_config:
   hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-checksum: '14667918095538650318'
+checksum: "7112920790314996321"
 enhanced_loading: false
