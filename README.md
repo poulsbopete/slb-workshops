@@ -5,7 +5,7 @@ Hands-on Instruqt tracks for the **SLB SRE × Elastic** enablement program (June
 | Resource | Link |
 |----------|------|
 | Live registration | [events.elastic.co/slbworkshops](https://events.elastic.co/slbworkshops) |
-| Instruqt (elastic team) | [play.instruqt.com/manage/elastic/tracks](https://play.instruqt.com/manage/elastic/tracks) |
+| Instruqt (elastic team) | [play.instruqt.com/manage/elastic/tracks/slb-workshops](https://play.instruqt.com/manage/elastic/tracks/slb-workshops) |
 | Source repo | [github.com/poulsbopete/slb-workshops](https://github.com/poulsbopete/slb-workshops) |
 
 ## Overview
@@ -51,11 +51,11 @@ This repository contains **Infrastructure-as-Code** definitions for SLB workshop
 | AIOps 01 | Alert Fatigue & Noise Reduction | [`slb-aiops-01-alert-fatigue`](tracks/slb-aiops-01-alert-fatigue) | SRE / Developers |
 | AIOps 02 | AI-Assisted Investigation & Automated Response | [`slb-aiops-02-ai-investigation`](tracks/slb-aiops-02-ai-investigation) | SRE / Developers |
 
-### Reference
+### Reference / program hub
 
 | Track | Description |
 |-------|-------------|
-| [`slb-workshops`](tracks/slb-workshops) | Full OTel database monitoring POC (6 engines, dashboards, alerts) |
+| [`slb-workshops`](tracks/slb-workshops) | **Primary Instruqt track** — program overview + OTel database monitoring reference lab |
 
 ## Repository layout
 

@@ -1,0 +1,9 @@
+#!/bin/bash
+set -euo pipefail
+source /root/.bashrc 2>/dev/null || true
+if [ -n "${KIBANA_URL:-}" ] || [ -n "${ES_URL:-}" ]; then
+  echo "CHECK PASS — environment ready"
+  exit 0
+fi
+echo "CHECK FAIL — wait for track bootstrap"
+exit 1

@@ -1,8 +1,9 @@
 ---
 slug: aiops-02-lab
+id: lensuyy3ex7v
 type: challenge
-title: "AIOps 02 — AI-Assisted Investigation & Automated Response"
-teaser: "AI-assisted investigation and automated remediation workflows."
+title: AIOps 02 — AI-Assisted Investigation & Automated Response
+teaser: AI-assisted investigation and automated remediation workflows.
 notes:
 - type: text
   contents: |
@@ -17,7 +18,8 @@ notes:
     - Log pattern analysis and anomaly detection
     - Automated remediation workflows with Elastic Workflows
 tabs:
-- title: Elastic Serverless
+- id: hnyw92buxccz
+  title: Elastic Serverless
   type: service
   hostname: es3-api
   path: /app/home
@@ -30,10 +32,13 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-- title: Terminal
+- id: yj7xkz1ssshz
+  title: Terminal
   type: terminal
   hostname: es3-api
+difficulty: ""
 timelimit: 0
+enhanced_loading: null
 ---
 
 # AI-Assisted Investigation & Automated Response

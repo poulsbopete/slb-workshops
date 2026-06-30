@@ -1,8 +1,9 @@
 ---
 slug: aiops-01-lab
+id: u6fgh0la3iz6
 type: challenge
-title: "AIOps 01 — Alert Fatigue & Noise Reduction"
-teaser: "Reduce alert volume through rule tuning, deduplication, and suppression."
+title: AIOps 01 — Alert Fatigue & Noise Reduction
+teaser: Reduce alert volume through rule tuning, deduplication, and suppression.
 notes:
 - type: text
   contents: |
@@ -17,7 +18,8 @@ notes:
     - Alert deduplication, suppression, and exceptions
     - Day-to-day alert triage and diagnosis workflows
 tabs:
-- title: Elastic Serverless
+- id: ybt7dfjwgokl
+  title: Elastic Serverless
   type: service
   hostname: es3-api
   path: /app/home
@@ -30,10 +32,13 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-- title: Terminal
+- id: 2nxybtjiy90g
+  title: Terminal
   type: terminal
   hostname: es3-api
+difficulty: ""
 timelimit: 0
+enhanced_loading: null
 ---
 
 # Alert Fatigue & Noise Reduction

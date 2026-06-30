@@ -1,5 +1,6 @@
 slug: slb-aiops-01-alert-fatigue
-title: "SLB AIOps 01 — Alert Fatigue & Noise Reduction"
+id: fxsmopzs6ww7
+title: SLB AIOps 01 — Alert Fatigue & Noise Reduction
 teaser: |
   Reduce alert volume through rule tuning, deduplication, and suppression.
 description: |-
@@ -19,13 +20,13 @@ description: |-
   - Day-to-day alert triage and diagnosis workflows
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-  - aiops
-  - co.elastic.workshops
-  - elastic
-  - observability
-  - serverless
-  - slb
-  - sme-track--aiops-&-alerting
+- elastic
+- slb
+- aiops
+- serverless
+- observability
+- sme-track--aiops-&-alerting
+- co.elastic.workshops
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -38,6 +39,9 @@ lab_config:
   loadingMessages: true
   theme:
     name: modern-dark
+  override_challenge_layout: false
+  hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-  override_challenge_layout: false
+checksum: "17132985471200669646"
+enhanced_loading: false

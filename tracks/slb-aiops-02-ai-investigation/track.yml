@@ -1,5 +1,6 @@
 slug: slb-aiops-02-ai-investigation
-title: "SLB AIOps 02 — AI-Assisted Investigation & Automated Response"
+id: xxtlh0ojutiy
+title: SLB AIOps 02 — AI-Assisted Investigation & Automated Response
 teaser: |
   AI-assisted investigation and automated remediation workflows.
 description: |-
@@ -19,13 +20,13 @@ description: |-
   - Automated remediation workflows with Elastic Workflows
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-  - aiops
-  - co.elastic.workshops
-  - elastic
-  - observability
-  - serverless
-  - slb
-  - sme-track--aiops-&-alerting
+- elastic
+- slb
+- aiops
+- serverless
+- observability
+- sme-track--aiops-&-alerting
+- co.elastic.workshops
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -38,6 +39,9 @@ lab_config:
   loadingMessages: true
   theme:
     name: modern-dark
+  override_challenge_layout: false
+  hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-  override_challenge_layout: false
+checksum: "14119476332167225550"
+enhanced_loading: false
