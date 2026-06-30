@@ -1,0 +1,60 @@
+# Instruqt section groupings — one track per workshop session.
+# Filter in Instruqt UI by tag: slb-section-<id>
+
+sections:
+  - id: foundations
+    name: Shared Foundations
+    phase: 1
+    instruqt_collection: SLB — Foundations
+    tag: slb-section-foundations
+    tracks:
+      - slb-f-02-intro-to-elastic
+      - slb-f-03-elastic-day-to-day
+
+  - id: developers
+    name: Developers
+    phase: 2
+    instruqt_collection: SLB — Developer Track
+    tag: slb-section-developers
+    tracks:
+      - slb-dev-01-ui-dashboards
+      - slb-dev-02-esql-essentials
+      - slb-dev-03-deployment-validation
+
+  - id: sre
+    name: SRE & Infrastructure Ops
+    phase: 2
+    instruqt_collection: SLB — SRE Track
+    tag: slb-section-sre
+    tracks:
+      - slb-sre-01-platform-ops
+      - slb-sre-02-ilm-data-tier
+      - slb-sre-03-ingestion-architecture
+      - slb-sre-04-production-readiness
+
+  - id: bi
+    name: BI & Data Analysts
+    phase: 2
+    instruqt_collection: SLB — BI & Analyst Track
+    tag: slb-section-bi
+    tracks:
+      - slb-bi-01-dashboard-basics
+      - slb-bi-02-esql-analysts
+      - slb-bi-03-apis-dashboards
+
+  - id: aiops
+    name: AIOps & Alerting
+    phase: 2
+    instruqt_collection: SLB — AIOps Track
+    tag: slb-section-aiops
+    tracks:
+      - slb-aiops-01-alert-fatigue
+      - slb-aiops-02-ai-investigation
+
+  - id: reference
+    name: Reference
+    phase: 0
+    instruqt_collection: null
+    tag: slb-section-reference
+    tracks:
+      - slb-workshops

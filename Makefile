@@ -1,16 +1,34 @@
-.PHONY: list push-all pull-all generate publish git-push
+.PHONY: list push-all pull-all generate publish git-push push-section list-sections sync-sections
 
-TRACKS := $(wildcard tracks/slb-*)
+TRACKS := $(shell find tracks -mindepth 2 -maxdepth 2 -type d -name 'slb-*' | sort)
+SECTIONS := foundations developers sre bi aiops reference
 
 list:
-	@echo "SLB Instruqt tracks:"
-	@for t in $(TRACKS); do echo "  $$t"; done
+	@echo "SLB Instruqt tracks (by section):"
+	@for s in $(SECTIONS); do \
+		echo "  $$s:"; \
+		for t in tracks/$$s/slb-*; do [ -d "$$t" ] && echo "    $$t"; done; \
+	done
+
+list-sections:
+	@python3 -c "import yaml; d=yaml.safe_load(open('catalog/sections.yaml')); \
+	  [print(f\"{s['id']:12} {s['tag']:28} {s['instruqt_collection'] or '(none)'}\") for s in d['sections']]"
 
 generate:
 	python3 scripts/generate-tracks.py
 
-push-all:
+sync-sections:
+	python3 scripts/sync-section-tags.py
+
+push-all: sync-sections
 	@for t in $(TRACKS); do \
+		echo "==> Pushing $$t"; \
+		(cd "$$t" && instruqt track push) || exit 1; \
+	done
+
+push-section: sync-sections
+	@test -n "$(SECTION)" || (echo "Usage: make push-section SECTION=aiops" && exit 1)
+	@for t in tracks/$(SECTION)/slb-*; do \
 		echo "==> Pushing $$t"; \
 		(cd "$$t" && instruqt track push) || exit 1; \
 	done
@@ -29,6 +47,5 @@ git-push:
 	@echo "==> Pushing to origin"
 	@git push origin HEAD
 
-# Default workflow after any track change: commit/push git, then publish all tracks to Instruqt.
 publish: git-push push-all
 	@echo "Published to GitHub and Instruqt."

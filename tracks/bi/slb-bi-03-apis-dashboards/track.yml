@@ -1,0 +1,55 @@
+slug: slb-bi-03-apis-dashboards
+id: y000tk5j19qa
+title: SLB BI 03 — APIs, Integrations & Dashboard Building
+teaser: 'Elasticsearch API basics and building dashboards for operational reporting.
+
+  '
+description: '**BI 03 — APIs, Integrations & Dashboard Building**
+
+
+  Elasticsearch API basics and building dashboards for operational reporting.
+
+
+  **Series:** SME Track — BI & Data Analysts
+
+  **Audience:** bi
+
+  **Presenter:** Pramod Saripalli
+
+  **Live date:** 2026-10-21
+
+
+  ## Session topics
+
+  - API calls and pulling data into external tools
+
+  - Building dashboards for operational and business review
+
+  - Data schema considerations'
+icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
+tags:
+- co.elastic.workshops
+- elastic
+- observability
+- serverless
+- slb
+- slb-section-bi
+- sme-track--bi-&-data-analysts
+owner: elastic
+developers:
+- peter.simkins@elastic.co
+idle_timeout: 3600
+timelimit: 10800
+lab_config:
+  sidebar_enabled: true
+  feedback_recap_enabled: true
+  feedback_tab_enabled: false
+  loadingMessages: true
+  theme:
+    name: modern-dark
+  override_challenge_layout: false
+  hideStopButton: false
+  default_layout: AssignmentRight
+  default_layout_sidebar_size: 35
+checksum: '7630708401935426813'
+enhanced_loading: false

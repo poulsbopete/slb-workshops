@@ -10,6 +10,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog" / "workshops.yaml"
+SECTIONS = ROOT / "catalog" / "sections.yaml"
 TRACKS_DIR = ROOT / "tracks"
 
 KIBANA_TAB = """\
@@ -487,17 +488,37 @@ Click **Check**.
 }
 
 
-def tags_for(workshop: dict) -> list[str]:
-    tags = [
-        "slb",
-        "elastic",
-        "serverless",
-        "observability",
-        "co.elastic.workshops",
-        workshop["audience"],
-        workshop["series"].lower().replace(" ", "-").replace("—", ""),
-    ]
-    return sorted(set(t for t in tags if t))
+def slug_section_map() -> dict[str, str]:
+    with SECTIONS.open() as f:
+        data = yaml.safe_load(f)
+    out: dict[str, str] = {}
+    for section in data["sections"]:
+        sid = section["id"]
+        for slug in section["tracks"]:
+            out[slug] = sid
+    return out
+
+
+def section_tag(section_id: str) -> str:
+    with SECTIONS.open() as f:
+        data = yaml.safe_load(f)
+    for section in data["sections"]:
+        if section["id"] == section_id:
+            return section["tag"]
+    return f"slb-section-{section_id}"
+
+
+def tags_for(workshop: dict, section_id: str) -> list[str]:
+    tags = BASE_TAGS + [section_tag(section_id)]
+    return sorted(set(tags))
+
+BASE_TAGS = [
+    "slb",
+    "elastic",
+    "serverless",
+    "observability",
+    "co.elastic.workshops",
+]
 
 
 def assignment_md(workshop: dict) -> str:
@@ -529,8 +550,11 @@ timelimit: 0
     return front
 
 
-def track_yml(workshop: dict, slug: str) -> str:
+def track_yml(workshop: dict, slug: str, section_id: str) -> str:
     desc = workshop["description"].strip()
+    with SECTIONS.open() as f:
+        sections = {s["id"]: s["name"] for s in yaml.safe_load(f)["sections"]}
+    section_name = sections.get(section_id, section_id)
     return f"""slug: {slug}
 title: "SLB {workshop['code']} — {workshop['title']}"
 teaser: |
@@ -540,6 +564,7 @@ description: |-
 
   {desc}
 
+  **Section:** {section_name}
   **Series:** {workshop['series']}
   **Audience:** {workshop['audience']}
   **Presenter:** {workshop['presenter']}
@@ -549,7 +574,7 @@ description: |-
 {chr(10).join('  - ' + t for t in workshop.get('topics', []))}
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-{chr(10).join('  - ' + t for t in tags_for(workshop))}
+{chr(10).join('  - ' + t for t in tags_for(workshop, section_id))}
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -568,15 +593,15 @@ lab_config:
 """
 
 
-def write_track(workshop: dict, slug: str) -> None:
-    track_dir = TRACKS_DIR / slug
+def write_track(workshop: dict, slug: str, section_id: str) -> None:
+    track_dir = TRACKS_DIR / section_id / slug
     challenge_dir = track_dir / f"01-{workshop['id']}-lab"
     scripts_dir = track_dir / "track_scripts"
 
     for d in (challenge_dir, scripts_dir):
         d.mkdir(parents=True, exist_ok=True)
 
-    (track_dir / "track.yml").write_text(track_yml(workshop, slug))
+    (track_dir / "track.yml").write_text(track_yml(workshop, slug, section_id))
     (track_dir / "config.yml").write_text((ROOT / "shared" / "config.yml").read_text())
 
     for name, content in [
@@ -591,14 +616,14 @@ def write_track(workshop: dict, slug: str) -> None:
         if name.name != "assignment.md":
             name.chmod(0o755)
 
-    print(f"  ✓ tracks/{slug}")
+    print(f"  ✓ tracks/{section_id}/{slug}")
 
 
 def main() -> None:
     with CATALOG.open() as f:
         catalog = yaml.safe_load(f)
 
-    TRACKS_DIR.mkdir(exist_ok=True)
+    sections = slug_section_map()
 
     for ws in catalog["workshops"]:
         if ws.get("skip_generate"):
@@ -607,7 +632,11 @@ def main() -> None:
         slug = ws.get("instruqt_track")
         if not slug:
             continue
-        write_track(ws, slug)
+        section_id = sections.get(slug)
+        if not section_id:
+            print(f"  ? skip {slug} (not in catalog/sections.yaml)")
+            continue
+        write_track(ws, slug, section_id)
 
     print(f"\nGenerated tracks in {TRACKS_DIR}")
 
