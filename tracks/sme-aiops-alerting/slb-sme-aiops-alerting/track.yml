@@ -1,29 +1,38 @@
 slug: slb-sme-aiops-alerting
 id: ogdhzgiimmrr
 title: 'SLB — SME Track: AIOps & Alerting'
-teaser: |
-  Consolidated Instruqt track for the SLB × Elastic **SME Track: AIOps & Alerting** series.
+teaser: 'Consolidated Instruqt track for the SLB × Elastic **SME Track: AIOps & Alerting**
+  series.
+
   Complete the labs in order, or jump to the session matching your live workshop.
-description: |-
-  **SLB — SME Track: AIOps & Alerting**
+
+  '
+description: '**SLB — SME Track: AIOps & Alerting**
+
 
   This track contains **3** hands-on labs — one per live session in the series.
+
   Each lab provisions a personal **Elastic Observability Serverless** project.
 
+
   ## Sessions in this track
+
   - **AIOps 01** — Alert Fatigue & Noise Reduction
+
   - **AIOps 02** — AI-Assisted Investigation & Automated Response
+
   - **AIOps 03** — Workflows & Automated Remediation
 
-  Register for live sessions: [events.elastic.co/slbworkshops](https://events.elastic.co/slbworkshops)
+
+  Register for live sessions: [events.elastic.co/slbworkshops](https://events.elastic.co/slbworkshops)'
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-- elastic
 - slb
 - slb-workshops
+- slb-series-sme-aiops
+- elastic
 - serverless
 - observability
-- slb-series-sme-aiops
 - co.elastic.workshops
 owner: elastic
 developers:
@@ -41,5 +50,5 @@ lab_config:
   hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-checksum: "1090590298925334350"
+checksum: '1090590298925334350'
 enhanced_loading: false
