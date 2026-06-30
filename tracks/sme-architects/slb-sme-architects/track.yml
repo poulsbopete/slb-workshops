@@ -1,5 +1,6 @@
 slug: slb-sme-architects
-title: "SLB — SME Track: Architects"
+id: 2a6i0nfwkpgw
+title: 'SLB — SME Track: Architects'
 teaser: |
   Consolidated Instruqt track for the SLB × Elastic **SME Track: Architects** series.
   Complete the labs in order, or jump to the session matching your live workshop.
@@ -16,13 +17,13 @@ description: |-
   Register for live sessions: [events.elastic.co/slbworkshops](https://events.elastic.co/slbworkshops)
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-  - slb
-  - slb-workshops
-  - slb-series-sme-architects
-  - elastic
-  - serverless
-  - observability
-  - co.elastic.workshops
+- elastic
+- slb
+- slb-workshops
+- serverless
+- slb-series-sme-architects
+- observability
+- co.elastic.workshops
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -35,6 +36,9 @@ lab_config:
   loadingMessages: true
   theme:
     name: modern-dark
+  override_challenge_layout: false
+  hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-  override_challenge_layout: false
+checksum: "14206117081330825299"
+enhanced_loading: false

@@ -1,12 +1,13 @@
 ---
 slug: arch-01-lab
+id: x9ovfzhtar6n
 type: challenge
 title: Arch 01 — Architecture & Migration Strategy
 teaser: Target-state ingestion design and coexistence planning during migration.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/arch-01/\"\
-    \n  width=\"100%\" height=\"800\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block\"\
+  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/docs/slides/arch-01/\"\
+    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
     >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
     \ **Arch 01** (usually 2–3 minutes).*"
 - type: text
@@ -20,7 +21,8 @@ notes:
 
     '
 tabs:
-- title: Elastic Serverless
+- id: 9vejoukhuxkm
+  title: Elastic Serverless
   type: service
   hostname: es3-api
   path: /app/home
@@ -33,7 +35,9 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
+difficulty: ''
 timelimit: 0
+enhanced_loading: null
 ---
 > **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
 

@@ -1,5 +1,6 @@
 slug: slb-sme-bi-analysts
-title: "SLB — SME Track: BI & Data Analysts"
+id: mnklqevc7gk9
+title: 'SLB — SME Track: BI & Data Analysts'
 teaser: |
   Consolidated Instruqt track for the SLB × Elastic **SME Track: BI & Data Analysts** series.
   Complete the labs in order, or jump to the session matching your live workshop.
@@ -17,13 +18,13 @@ description: |-
   Register for live sessions: [events.elastic.co/slbworkshops](https://events.elastic.co/slbworkshops)
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-  - slb
-  - slb-workshops
-  - slb-series-sme-bi
-  - elastic
-  - serverless
-  - observability
-  - co.elastic.workshops
+- elastic
+- slb
+- slb-workshops
+- slb-series-sme-bi
+- serverless
+- observability
+- co.elastic.workshops
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -36,6 +37,9 @@ lab_config:
   loadingMessages: true
   theme:
     name: modern-dark
+  override_challenge_layout: false
+  hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-  override_challenge_layout: false
+checksum: "6031548517600213745"
+enhanced_loading: false

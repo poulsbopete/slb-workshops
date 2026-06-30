@@ -1,12 +1,13 @@
 ---
 slug: aiops-02-lab
+id: pcdlxe6qc1yd
 type: challenge
 title: AIOps 02 — AI-Assisted Investigation & Automated Response
 teaser: AI-assisted investigation and automated remediation workflows.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/aiops-02/\"\
-    \n  width=\"100%\" height=\"800\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block\"\
+  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/docs/slides/aiops-02/\"\
+    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
     >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
     \ **AIOps 02** (usually 2–3 minutes).*"
 - type: text
@@ -22,7 +23,8 @@ notes:
 
     '
 tabs:
-- title: Elastic Serverless
+- id: jut8ttqqn8c4
+  title: Elastic Serverless
   type: service
   hostname: es3-api
   path: /app/home
@@ -35,7 +37,9 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
+difficulty: ''
 timelimit: 0
+enhanced_loading: null
 ---
 > **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
 

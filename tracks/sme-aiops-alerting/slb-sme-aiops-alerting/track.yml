@@ -1,5 +1,6 @@
 slug: slb-sme-aiops-alerting
-title: "SLB — SME Track: AIOps & Alerting"
+id: ogdhzgiimmrr
+title: 'SLB — SME Track: AIOps & Alerting'
 teaser: |
   Consolidated Instruqt track for the SLB × Elastic **SME Track: AIOps & Alerting** series.
   Complete the labs in order, or jump to the session matching your live workshop.
@@ -17,13 +18,13 @@ description: |-
   Register for live sessions: [events.elastic.co/slbworkshops](https://events.elastic.co/slbworkshops)
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-  - slb
-  - slb-workshops
-  - slb-series-sme-aiops
-  - elastic
-  - serverless
-  - observability
-  - co.elastic.workshops
+- elastic
+- slb
+- slb-workshops
+- serverless
+- observability
+- slb-series-sme-aiops
+- co.elastic.workshops
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -36,6 +37,9 @@ lab_config:
   loadingMessages: true
   theme:
     name: modern-dark
+  override_challenge_layout: false
+  hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-  override_challenge_layout: false
+checksum: "12429411917819133917"
+enhanced_loading: false

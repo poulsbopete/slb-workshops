@@ -11,7 +11,8 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog" / "workshops.yaml"
 TRACKS = ROOT / "tracks"
-PAGES_BASE = "https://poulsbopete.github.io/slb-workshops"
+PAGES_BASE = "https://poulsbopete.github.io/slb-workshops/docs"
+IFRAME_HEIGHT = 1400
 
 
 def workshops_by_id() -> dict[str, dict]:
@@ -32,8 +33,8 @@ def iframe_note(workshop: dict) -> str:
     return (
         f"## While you wait…\n\n"
         f"<iframe src=\"{url}\"\n"
-        f"  width=\"100%\" height=\"800\" frameborder=\"0\"\n"
-        f"  style=\"border-radius:8px;display:block\">\n"
+        f"  width=\"100%\" height=\"{IFRAME_HEIGHT}\" frameborder=\"0\"\n"
+        f"  style=\"border-radius:8px;display:block;width:100%;min-height:900px\">\n"
         f"</iframe>\n\n"
         f"*Provisioning your Elastic **Observability Serverless** lab for **{code}** "
         f"(usually 2–3 minutes).*"

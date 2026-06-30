@@ -712,7 +712,8 @@ BASE_TAGS = [
     "co.elastic.workshops",
 ]
 
-PAGES_BASE = "https://poulsbopete.github.io/slb-workshops"
+PAGES_BASE = "https://poulsbopete.github.io/slb-workshops/docs"
+IFRAME_HEIGHT = 1400
 
 
 def iframe_note(workshop: dict) -> str:
@@ -722,8 +723,8 @@ def iframe_note(workshop: dict) -> str:
     return (
         "    ## While you wait…\n\n"
         f'    <iframe src="{url}"\n'
-        '      width="100%" height="800" frameborder="0"\n'
-        '      style="border-radius:8px;display:block">\n'
+        f'      width="100%" height="{IFRAME_HEIGHT}" frameborder="0"\n'
+        '      style="border-radius:8px;display:block;width:100%;min-height:900px">\n'
         "    </iframe>\n\n"
         f"    *Provisioning your Elastic **Observability Serverless** lab for **{code}** "
         "(usually 2–3 minutes).*"
