@@ -11,8 +11,9 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 TRACKS = ROOT / "tracks"
+CATALOG = ROOT / "catalog" / "workshops.yaml"
 
-LAB_INTRO = """> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+LAB_INTRO = """> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
 
 """
 
@@ -78,7 +79,49 @@ def dedupe_notes(front: dict) -> bool:
     return True
 
 
-def patch_assignment(path: Path, workshop_id: str, labs: dict[str, str]) -> bool:
+def workshops_by_id() -> dict[str, dict]:
+    with CATALOG.open() as f:
+        data = yaml.safe_load(f)
+    return {ws["id"]: ws for ws in data["workshops"]}
+
+
+def session_topics_note(workshop: dict) -> str:
+    lines = ["## Session topics", ""]
+    for topic in workshop.get("topics", []):
+        lines.append(f"- {topic}")
+    lines.append("")
+    return "\n".join(lines)
+
+
+def topics_from_note(contents: str) -> list[str]:
+    topics: list[str] = []
+    for line in contents.splitlines():
+        line = line.strip()
+        if line.startswith("- "):
+            topics.append(line[2:].strip())
+    return topics
+
+
+def update_session_topics(front: dict, workshop: dict) -> bool:
+    expected_topics = list(workshop.get("topics", []))
+    expected = session_topics_note(workshop)
+    notes = front.get("notes") or []
+    for i, note in enumerate(notes):
+        contents = str(note.get("contents", ""))
+        if "## Session topics" in contents or "Live session topics" in contents:
+            if topics_from_note(contents) == expected_topics:
+                return False
+            notes[i]["contents"] = expected
+            front["notes"] = notes
+            return True
+    notes.append({"type": "text", "contents": expected})
+    front["notes"] = notes
+    return True
+
+
+def patch_assignment(
+    path: Path, workshop_id: str, workshop: dict, labs: dict[str, str]
+) -> bool:
     text = path.read_text()
     split = split_assignment(text)
     if not split:
@@ -92,9 +135,20 @@ def patch_assignment(path: Path, workshop_id: str, labs: dict[str, str]) -> bool
         if new_body != old_body:
             changed = True
 
+    expected_title = f"{workshop['code']} — {workshop['title']}"
+    if front.get("title") != expected_title:
+        front["title"] = expected_title
+        changed = True
+    teaser = workshop.get("description", "").strip().replace("\n", " ")[:200]
+    if front.get("teaser") != teaser:
+        front["teaser"] = teaser
+        changed = True
+
     if strip_terminal_tab(front):
         changed = True
     if dedupe_notes(front):
+        changed = True
+    if update_session_topics(front, workshop):
         changed = True
 
     if not changed:
@@ -107,12 +161,13 @@ def patch_assignment(path: Path, workshop_id: str, labs: dict[str, str]) -> bool
 
 def main() -> None:
     labs = load_labs()
+    by_id = workshops_by_id()
     for track_yml in sorted(TRACKS.rglob("track.yml")):
         for assignment in sorted(track_yml.parent.glob("*-lab/assignment.md")):
             wid = workshop_id_from_path(assignment)
-            if not wid:
+            if not wid or wid not in by_id:
                 continue
-            if patch_assignment(assignment, wid, labs):
+            if patch_assignment(assignment, wid, by_id[wid], labs):
                 print(f"  ✓ {assignment.relative_to(ROOT)}")
 
 

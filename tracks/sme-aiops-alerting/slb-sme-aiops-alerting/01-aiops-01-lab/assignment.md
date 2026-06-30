@@ -41,27 +41,22 @@ difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
 
-# Alert Fatigue & Noise Reduction
+# Alert Fatigue on Serverless
 
-## Part 1 — Review existing rules
+## Part 1 — Review rules
 
-1. **Observability → Alerts → Rules**.
-2. Sort by **active alerts** or **recent executions**.
+1. **Observability → Alerts → Rules** — sort by recent activity.
+2. Identify noisy rules.
 
 ## Part 2 — Tune a rule
 
-1. Open a threshold rule — adjust window, threshold, or grouping.
-2. Enable **deduplication** or **suppress duplicates** where available.
+Adjust threshold, window, or grouping. Enable deduplication / suppression if available.
 
-## Part 3 — Triage workflow
+## Part 3 — Triage
 
-1. **Observability → Alerts** — practice acknowledging and adding notes.
-2. Create a **maintenance window** (if applicable).
-
-## Part 4 — Goal
-
-Document one rule change that would reduce noise for SLB's alert volume.
+1. **Observability → Alerts** — acknowledge and annotate an alert.
+2. Use **AI Assistant**: *Why might this alert be firing repeatedly?*
 
 Click **Check**.

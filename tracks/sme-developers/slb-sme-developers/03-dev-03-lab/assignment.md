@@ -39,33 +39,27 @@ difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
 
-# Deployment Validation & Incident Workflows
+# Deployment Validation on Serverless
 
-## Part 1 — Service health after deploy
+## Part 1 — APM service health
 
-1. **Observability → APM → Services** — pick a service (or use sample data).
-2. Compare error rate and latency for **last 15 minutes** vs **previous day**.
+1. **Observability → APM → Services** — select a service.
+2. Compare error rate and latency: **last 15 minutes** vs **previous day**.
 
-## Part 2 — Correlate logs, metrics, traces
+## Part 2 — Correlate signals
 
-1. From a service view, pivot to **Logs** and **Metrics** for the same time range.
-2. Use **Unified view** or split tabs to correlate signals.
+1. From the service, open **Logs** and **Metrics** for the same time range.
+2. Use **Unified view** where available.
 
-## Part 3 — Saved views
+## Part 3 — Saved validation kit
 
-1. Save an ES|QL query as a **saved search** (**Save** in the ES|QL editor).
-2. Pin a dashboard panel for post-deploy validation.
+1. Save your ES|QL query in Logs Explorer (**Save**).
+2. Add a **Markdown** panel on a dashboard with a post-deploy checklist.
 
-## Part 4 — Runbook in Kibana
+## Part 4 — Agent Builder (optional)
 
-1. Open your dashboard (or create one) and add a **Markdown** panel.
-2. Paste a short post-deploy checklist, for example:
-
-```
-Post-deploy check (ES|QL):
-FROM logs-* | WHERE service.environment == "production" | LIMIT 20
-```
+In **Agents**, create or run a simple agent prompt: *Summarize deploy health for my top 3 services.*
 
 Click **Check**.

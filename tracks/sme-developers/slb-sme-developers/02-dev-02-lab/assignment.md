@@ -40,38 +40,34 @@ difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
 
-# ES|QL Essentials for Troubleshooting
+# ES|QL Essentials on Serverless
 
-## Part 1 — Syntax basics
-
-Open **Discover** or **Observability → Logs → Explorer**, switch to **ES|QL**, and paste each query below (one at a time):
+## Part 1 — Syntax (Logs Explorer → ES|QL)
 
 ```esql
 FROM logs-* | WHERE @timestamp > NOW() - 1 hour | LIMIT 20
 ```
 
 ```esql
-FROM logs-* | STATS count = COUNT(*) BY service.name | SORT count DESC | LIMIT 10
+FROM logs-* | STATS errors = COUNT(*) BY service.name | SORT errors DESC | LIMIT 10
 ```
 
-## Part 2 — Logs / metrics / traces
+## Part 2 — Metrics & traces
 
 ```esql
-FROM metrics-* | STATS avg(cpu) = AVG(system.cpu.total.pct) BY host.name | LIMIT 10
+FROM metrics-* | STATS avg_cpu = AVG(system.cpu.total.pct) BY host.name | LIMIT 10
 ```
 
 ```esql
-FROM traces-* | LIMIT 10
+FROM traces-* | WHERE @timestamp > NOW() - 30 minutes | LIMIT 10
 ```
 
 ## Part 3 — Incident workflow
 
-Simulate an investigation:
+1. Find the noisiest service in the last hour.
+2. Filter ERROR logs for that service.
+3. Ask **AI Assistant**: *What changed for this service recently?*
 
-1. Find the noisiest `service.name` in the last hour.
-2. Filter logs for ERROR level for that service.
-3. Save the query for daily use.
-
-Click **Check** when done.
+Click **Check**.

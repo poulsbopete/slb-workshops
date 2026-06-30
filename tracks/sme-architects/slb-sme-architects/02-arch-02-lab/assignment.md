@@ -2,8 +2,9 @@
 slug: arch-02-lab
 id: xmiktsb1pr6x
 type: challenge
-title: Arch 02 — Lifecycle, Governance & Standards
-teaser: ILM and retention strategy, Fleet tradeoffs, and ECS vs OTel conventions.
+title: Arch 02 — Governance, Streams & Standards
+teaser: Governance for Serverless — Streams standards, schema conventions, and AI
+  agent policies.
 notes:
 - type: text
   contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/arch-02/\"\
@@ -13,13 +14,14 @@ notes:
 - type: text
   contents: '## Session topics
 
-    - ILM/retention strategy and long-term platform design
 
-    - Fleet-managed vs standalone tradeoffs
+    - Streams naming and ownership standards
+
+    - Managed retention on Serverless vs self-managed ILM
 
     - ECS vs OTel semantic conventions
 
-    - Ownership boundaries and reusable standards across teams
+    - Agent Builder and AI governance
 
     '
 tabs:
@@ -41,21 +43,32 @@ difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
 
-# Lifecycle, Governance & Standards
+# Governance & Standards on Serverless
 
-## Part 1 — ILM policies
+> No ILM policies on Serverless — focus on **Streams**, **schema**, and **access** standards.
 
-1. **Stack Management → Index Lifecycle Policies**.
-2. Review hot/warm/cold/frozen phases for a sample policy.
+## Part 1 — Streams naming & ownership
 
-## Part 2 — Standards
+1. **Observability → Streams** — document naming conventions for SLB teams.
+2. Define owners per stream / dataset.
 
-Compare **ECS** vs **OTel semantic conventions** for one log type.
+## Part 2 — ECS vs OTel semantics
 
-## Part 3 — Ownership
+Compare field naming for one log type:
 
-Draft reusable standards: naming, retention, and who owns each data stream tier.
+| ECS field | OTel equivalent |
+|-----------|-----------------|
+| `service.name` | `service.name` |
+| `host.name` | `host.name` |
+| `log.level` | `severity_text` |
+
+Pick one convention for SLB and stick to it in OTel resource attributes.
+
+## Part 3 — Agent Builder governance
+
+1. Open **Agents** — review who can create agents and connect tools.
+2. Draft a policy: when to use **AI Assistant** vs automated **Workflows**.
 
 Click **Check**.

@@ -40,30 +40,24 @@ difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
 
-# Elastic UI & Dashboard Workflows
+# Elastic UI & Dashboard Workflows (Serverless)
 
-**Audience:** Developers coming from Grafana.
+## Part 1 — Discover & Explorer
 
-## Part 1 — Discover
+1. **Analytics → Discover** or **Logs → Explorer** — explore available data.
+2. Add a filter on `service.name` or `log.level`.
+3. Save the search for reuse.
 
-1. **Analytics → Discover** — select a logs data stream.
-2. Add a KQL filter (e.g. `service.name : *`).
-3. Save the search.
-
-## Part 2 — Dashboards
+## Part 2 — Lens dashboards
 
 1. **Analytics → Dashboards → Create dashboard**.
-2. Add a **Lens** visualization — time series of log volume by service.
-3. Add a **Drilldown** from the chart to Discover (filter on clicked series).
+2. Add a **Lens** time series — event volume over time.
+3. Add a **Drilldown** to open filtered logs on click.
 
-## Part 3 — Grafana translation exercise
+## Part 3 — AI shortcut
 
-| Your Grafana habit | Do this in Kibana |
-|--------------------|-------------------|
-| Dashboard variables | **Controls** on dashboard |
-| Panel links | **Drilldowns** |
-| Explore from panel | **Open in Discover** |
+Open **AI Assistant** and ask: *Show me error logs in the last hour by service.*
 
-Customize one panel title and layout. Click **Check**.
+Click **Check**.

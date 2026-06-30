@@ -39,21 +39,28 @@ difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
 
-# Cross-team Platform Review
+# Cross-team Serverless Review
 
 ## Part 1 — Adoption snapshot
 
-1. **Observability → Overview** — note active data sources.
-2. **Analytics → Dashboards** — browse shared dashboards.
+1. **Observability → Overview** — active signals across logs, metrics, traces.
+2. **Streams** — how many routes are in production use?
+3. **Agents** — any team agents deployed?
 
-## Part 2 — Open Q&A prep
+## Part 2 — Maturity checklist
 
-List three questions for the live session (ingestion, alerts, ES|QL, migration).
+| Capability | Team using it? |
+|------------|----------------|
+| ES|QL daily | |
+| Streams | |
+| SLOs | |
+| AI Assistant | |
+| Workflows | |
 
 ## Part 3 — Next steps
 
-Identify one action item for your team before the next SME session.
+List one action item per persona track before the next live session.
 
 Click **Check**.

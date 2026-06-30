@@ -39,14 +39,11 @@ difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
 
-# APIs, Integrations & Dashboard Building
+# APIs & Dashboards on Serverless
 
 ## Part 1 — Search API (Dev Tools)
-
-1. Open **Management → Dev Tools**.
-2. Paste and click **Run**:
 
 ```
 GET logs-*/_search
@@ -56,19 +53,14 @@ GET logs-*/_search
 }
 ```
 
-3. In the response, expand a hit and note field names under `_source`.
-
-**Tip:** The same data appears in **Discover** — Dev Tools shows the raw API shape analysts integrate against.
-
-## Part 2 — Dashboard for business review
+## Part 2 — Business dashboard
 
 1. **Analytics → Dashboards → Create dashboard**.
-2. Add at least two **Lens** panels.
-3. Add a **Markdown** panel with session context / KPI definitions.
+2. Add two **Lens** panels + one **Markdown** KPI panel.
 
-## Part 3 — Schema considerations
+## Part 3 — Field types
 
-1. **Stack Management → Data views** — open a data view.
-2. Note field types: **keyword** vs **text** vs **date**.
+1. **Stack Management → Data views** — inspect keyword vs text vs date fields.
+2. Note Serverless uses the same query APIs — no cluster URL management.
 
 Click **Check**.

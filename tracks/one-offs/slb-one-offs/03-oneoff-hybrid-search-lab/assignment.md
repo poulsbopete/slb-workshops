@@ -39,29 +39,27 @@ difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
 
-# Hybrid Search — Hands-on Lab
+# Hybrid Search for Observability
 
-## Part 1 — Lexical search
-
-1. **Dev Tools** — run a BM25 search:
+## Part 1 — Keyword search (Dev Tools)
 
 ```
 GET logs-*/_search
 {
-  "query": { "match": { "message": "error timeout" } },
+  "query": { "match": { "message": "timeout connection refused" } },
   "size": 5
 }
 ```
 
-## Part 2 — Hybrid relevance
+## Part 2 — ES|QL + AI
 
-1. Discuss combining keyword + vector scores (RRF / hybrid query).
-2. Review Elastic docs on hybrid search in your facilitator's walkthrough.
+1. Run an ES|QL query for errors in **Logs → Explorer**.
+2. Ask **AI Assistant**: *Find logs semantically similar to this error pattern.*
 
-## Part 3 — Observability use case
+## Part 3 — When to use hybrid search
 
-Identify one log search scenario where hybrid search beats keyword-only.
+List one scenario where semantic + keyword beats either alone (e.g. varied error messages for the same root cause).
 
 Click **Check**.

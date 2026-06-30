@@ -12,14 +12,19 @@ description: '**SLB — SME Track: SRE & Infra Ops**
 
   This track contains **4** hands-on labs — one per live session in the series.
 
-  Each lab provisions a personal **Elastic Observability Serverless** project.
+  Each lab runs on **Elastic Observability Serverless** (managed project — no cluster
+  ops).
+
+
+  **Serverless focus:** ES|QL, Streams, AI Assistant, Agent Builder, Workflows, SLOs,
+  and unified Observability.
 
 
   ## Sessions in this track
 
   - **SRE 01** — Platform Operations Fundamentals
 
-  - **SRE 02** — ILM & Data Tier Deep Dive
+  - **SRE 02** — Elastic Streams & Data Routing
 
   - **SRE 03** — Ingestion Architecture & Troubleshooting
 
@@ -52,5 +57,5 @@ lab_config:
   hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-checksum: '17426507919515445689'
+checksum: '9858852340374485854'
 enhanced_loading: false

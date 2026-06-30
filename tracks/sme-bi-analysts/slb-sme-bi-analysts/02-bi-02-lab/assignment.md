@@ -39,33 +39,28 @@ difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
 
-# ES|QL for Analysts
+# ES|QL for Analysts (Serverless)
 
 ## Part 1 — Aggregations
-
-In **Discover** or **Logs → Explorer** (ES|QL mode), paste:
 
 ```esql
 FROM logs-* | STATS events = COUNT(*) BY service.name | SORT events DESC | LIMIT 10
 ```
 
-## Part 2 — Time-based analysis
-
-Paste in the same ES|QL editor:
+## Part 2 — Time series
 
 ```esql
 FROM logs-* | STATS count = COUNT(*) BY bucket = BUCKET(@timestamp, 1 hour) | SORT bucket
 ```
 
-## Part 3 — Cost / utilization correlation
-
-Discuss with facilitator how to join observability metrics with cost data
-(lookup join or separate index). Paste:
+## Part 3 — Metrics correlation
 
 ```esql
 FROM metrics-* | STATS avg_cpu = AVG(system.cpu.total.pct) BY host.name | LIMIT 10
 ```
+
+Ask **AI Assistant** to explain a spike in plain language.
 
 Click **Check**.

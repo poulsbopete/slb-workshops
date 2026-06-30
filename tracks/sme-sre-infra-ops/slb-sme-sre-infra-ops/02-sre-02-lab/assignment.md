@@ -2,8 +2,9 @@
 slug: sre-02-lab
 id: jwqhu4mnysqr
 type: challenge
-title: SRE 02 — ILM & Data Tier Deep Dive
-teaser: ILM policy design, data tier allocation, and common misconfigurations.
+title: SRE 02 — Elastic Streams & Data Routing
+teaser: Elastic Streams on Serverless — routing and processing without ILM or data
+  tiers.
 notes:
 - type: text
   contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/sre-02/\"\
@@ -13,11 +14,12 @@ notes:
 - type: text
   contents: '## Session topics
 
-    - ILM policy design and data tier allocation
 
-    - ILM phase transitions and tier allocation behavior
+    - Elastic Streams on Observability Serverless
 
-    - Node roles and common misconfigurations
+    - Routing, processing, and managed retention
+
+    - Troubleshooting stream health with ES|QL and AI Assistant
 
     '
 tabs:
@@ -39,37 +41,42 @@ difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
 
-# ILM & Data Tier Deep Dive
+# Elastic Streams on Serverless
 
-## Part 1 — ILM policies
+> **Serverless note:** ILM and data tiers are not applicable — routing, processing, and retention are managed via **Streams** and project settings.
 
-1. **Stack Management → Index Lifecycle Policies**.
-2. Review phases: **hot → warm → cold → frozen → delete**.
-3. Note rollover conditions on the hot phase.
+## Part 1 — Streams tour
 
-## Part 2 — Tier allocation
+1. **Observability → Streams** — open the Streams management view.
+2. Review how logs, metrics, and traces flow through managed streams.
+3. Note any **processing** or **routing** rules visible in the UI.
 
-1. Open a policy and inspect **allocate** and **migrate** actions.
-2. Discuss SLB retention targets with your facilitator.
+## Part 2 — Query stream-backed data
 
-## Part 3 — Common misconfigurations
+In **Logs → Explorer** (ES|QL):
 
-Checklist to review:
-
-- Rollover max_size vs ingest rate
-- Warm phase shrink/replica settings
-- Frozen searchable snapshot prerequisites
-
-## Part 4 — Policy names (Dev Tools)
-
-After reviewing policies in the UI, paste in **Management → Dev Tools**:
-
-```
-GET _ilm/policy
+```esql
+FROM logs-* | STATS volume = COUNT(*) BY bucket = BUCKET(@timestamp, 1 hour) | SORT bucket DESC | LIMIT 24
 ```
 
-Note the policy names in the response (keys of the JSON object).
+Identify peak ingest windows to discuss capacity (managed by Elastic).
+
+## Part 3 — Retention & governance (Serverless)
+
+1. **Stack Management → Project settings** (or **Management** overview) — note retention is managed for Serverless.
+2. With facilitator, document **what you control** vs **what Elastic manages**:
+
+| You control | Elastic manages |
+|-------------|-----------------|
+| OTel schema & labels | Scaling & storage tiers |
+| Streams routing rules | Platform upgrades |
+| Alerts & SLOs | Base retention policy |
+
+## Part 4 — Troubleshooting routing
+
+1. In **Streams**, check for failed or lagging streams (if indicators are shown).
+2. Use **AI Assistant**: *Are any streams dropping data in the last hour?*
 
 Click **Check**.

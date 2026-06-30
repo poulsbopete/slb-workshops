@@ -3,7 +3,8 @@ slug: sre-04-lab
 id: qclvb0rzrc9w
 type: challenge
 title: SRE 04 — Production Readiness Workshop
-teaser: Validation checklists, runbook documentation, and ingestion health checks.
+teaser: Production readiness for Elastic Observability Serverless — SLOs, alerts,
+  Streams, and AI ops.
 notes:
 - type: text
   contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/sre-04/\"\
@@ -13,11 +14,12 @@ notes:
 - type: text
   contents: '## Session topics
 
-    - Validation checklists and runbook documentation
 
-    - Ingestion health checks
+    - SLOs, alerts, and Streams readiness on Serverless
 
-    - Building confidence operating Elastic in production
+    - AI Assistant and Workflows in production runbooks
+
+    - Serverless validation checklist (no ILM/Fleet)
 
     '
 tabs:
@@ -39,37 +41,27 @@ difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
 
-# Production Readiness Workshop
+# Production Readiness on Serverless
 
-## Part 1 — Validation checklist
+## Part 1 — Serverless readiness checklist
 
-Work through this checklist in Kibana:
+- [ ] OTel data flowing (Logs / Metrics / Traces explorers)
+- [ ] **Streams** configured for key telemetry types
+- [ ] Critical **alert rules** enabled
+- [ ] **SLOs** defined for top services
+- [ ] Dashboards for daily review
+- [ ] **AI Assistant** / runbooks documented
 
-- [ ] Data streams receiving data (Index Management)
-- [ ] ILM policies attached
-- [ ] Fleet agents healthy (if applicable)
-- [ ] Critical alert rules enabled
-- [ ] Dashboards loading for SLO review
+## Part 2 — SLOs & alerts
 
-## Part 2 — Ingestion health
+1. **Observability → SLOs** — browse or create an SLO for a key service.
+2. **Observability → Alerts → Rules** — confirm rules are not flapping.
 
-1. **Observability → Logs → Anomalies** (if enabled).
-2. **Fleet → Agent details** — last check-in times.
+## Part 3 — Workflows preview
 
-## Part 3 — Runbook draft
-
-1. **Analytics → Dashboards** — open or create a dashboard.
-2. Add a **Markdown** panel with your production readiness outline, for example:
-
-```
-# SLB Elastic Production Readiness
-- Ingestion health checks
-- Escalation contacts
-- Rollback criteria
-```
-
-3. Save the dashboard.
+1. **Management → Workflows** — review templates for alert notification.
+2. Add a **Markdown** dashboard panel with escalation contacts.
 
 Click **Check**.

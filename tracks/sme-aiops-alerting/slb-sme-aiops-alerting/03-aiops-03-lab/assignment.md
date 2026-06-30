@@ -40,28 +40,26 @@ difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
 
 # Workflows & Automated Remediation
 
-## Part 1 — Explore Workflows
+## Part 1 — Workflows
 
-1. Open **Management → Workflows** (or **Stack Management → Connectors and Actions**).
-2. Review available workflow templates and connectors.
+1. **Management → Workflows** — browse templates.
+2. Review connectors (Slack, email, webhook).
 
 ## Part 2 — Alert-driven automation
 
-1. **Observability → Alerts → Rules** — open a rule.
-2. Note **Actions** / **Connectors** that could trigger a workflow.
+1. **Observability → Alerts → Rules** — open a rule's **Actions**.
+2. Map which workflow could run on trigger.
 
-## Part 3 — Design a safe remediation
-
-Document a workflow with:
+## Part 3 — Safe automation design
 
 | Step | Guardrail |
 |------|-----------|
-| Trigger | Alert threshold |
-| Action | Notify / runbook link |
-| Approval | Human in the loop |
+| Trigger | Alert threshold + SLO breach |
+| Action | Notify + runbook link |
+| Approval | Human in the loop before remediation |
 
 Click **Check**.

@@ -3,12 +3,15 @@
 
 from __future__ import annotations
 
+import importlib.util
+import sys
 from pathlib import Path
 
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 SECTIONS = ROOT / "catalog" / "sections.yaml"
+CATALOG = ROOT / "catalog" / "workshops.yaml"
 TRACKS_DIR = ROOT / "tracks"
 
 BASE_TAGS = [
@@ -49,7 +52,22 @@ def update_tags(existing: list[str], section_tag: str) -> list[str]:
     return combined
 
 
-def patch_track(path: Path, section: dict) -> bool:
+def load_generate_tracks():
+    spec = importlib.util.spec_from_file_location(
+        "generate_tracks", ROOT / "scripts" / "generate-tracks.py"
+    )
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def workshops_for_section(section: dict) -> list[dict]:
+    with CATALOG.open() as f:
+        by_id = {ws["id"]: ws for ws in yaml.safe_load(f)["workshops"]}
+    return [by_id[wid] for wid in section["workshop_ids"]]
+
+
+def patch_track(path: Path, section: dict, gen) -> bool:
     text = path.read_text()
     data = yaml.safe_load(text)
     if not isinstance(data, dict):
@@ -67,6 +85,13 @@ def patch_track(path: Path, section: dict) -> bool:
         data["title"] = expected_title
         changed = True
 
+    workshops = workshops_for_section(section)
+    fresh = yaml.safe_load(gen.track_yml(section, workshops))
+    for key in ("teaser", "description"):
+        if data.get(key) != fresh.get(key):
+            data[key] = fresh[key]
+            changed = True
+
     if not changed:
         return False
 
@@ -76,13 +101,14 @@ def patch_track(path: Path, section: dict) -> bool:
 
 
 def main() -> None:
+    gen = load_generate_tracks()
     for section in load_sections():
         track_dir = TRACKS_DIR / section["id"] / section["track"]
         track_yml = track_dir / "track.yml"
         if not track_yml.exists():
             print(f"  ? missing {track_yml.relative_to(ROOT)}")
             continue
-        if patch_track(track_yml, section):
+        if patch_track(track_yml, section, gen):
             print(f"  ✓ patched {track_dir.relative_to(ROOT)}")
         else:
             print(f"  · unchanged {track_dir.relative_to(ROOT)}")

@@ -12,7 +12,12 @@ description: '**SLB — Shared Foundations**
 
   This track contains **4** hands-on labs — one per live session in the series.
 
-  Each lab provisions a personal **Elastic Observability Serverless** project.
+  Each lab runs on **Elastic Observability Serverless** (managed project — no cluster
+  ops).
+
+
+  **Serverless focus:** ES|QL, Streams, AI Assistant, Agent Builder, Workflows, SLOs,
+  and unified Observability.
 
 
   ## Sessions in this track
@@ -52,5 +57,5 @@ lab_config:
   hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-checksum: '6820929440317129378'
+checksum: '10745759560582763595'
 enhanced_loading: false

@@ -40,22 +40,26 @@ difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
 
-# AI/ML Overview — Hands-on Lab
+# AI/ML on Observability Serverless
 
-## Part 1 — AI Assistant
+## Part 1 — AI Assistant deep dive
 
-1. Open **AI Assistant** from Observability.
-2. Ask: "Summarize error patterns in the last hour."
+Ask three questions in **AI Assistant**:
 
-## Part 2 — ML features
+1. *Summarize error patterns in the last hour.*
+2. *Which services have latency anomalies?*
+3. *Draft an ES|QL query for OOM errors.*
 
-1. **Machine Learning → Anomaly Detection** — browse job templates.
-2. **Logs → Log patterns** (if available) — review pattern grouping.
+## Part 2 — Agent Builder
 
-## Part 3 — Use cases for SLB
+1. **Agents → Agent Builder** — create or explore an agent.
+2. Attach observability tools / context (as shown by facilitator).
 
-Discuss with facilitator: anomaly detection vs AI Assistant vs alerting — when to use each.
+## Part 3 — Anomalies
+
+1. **Observability → Logs → Anomalies** or **Machine Learning** (if available).
+2. Compare ML anomalies vs AI Assistant investigation — when to use each.
 
 Click **Check**.

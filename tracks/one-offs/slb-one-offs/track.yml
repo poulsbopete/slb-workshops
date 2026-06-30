@@ -11,7 +11,12 @@ description: '**SLB — One-off Sessions**
 
   This track contains **3** hands-on labs — one per live session in the series.
 
-  Each lab provisions a personal **Elastic Observability Serverless** project.
+  Each lab runs on **Elastic Observability Serverless** (managed project — no cluster
+  ops).
+
+
+  **Serverless focus:** ES|QL, Streams, AI Assistant, Agent Builder, Workflows, SLOs,
+  and unified Observability.
 
 
   ## Sessions in this track
@@ -49,5 +54,5 @@ lab_config:
   hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-checksum: '3729515987318387353'
+checksum: '10021561993035667921'
 enhanced_loading: false

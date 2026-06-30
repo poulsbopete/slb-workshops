@@ -41,22 +41,22 @@ difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
 
-# Looking Forward with Elastic — Hands-on Lab
+# Looking Forward — Serverless & AI
 
-## Part 1 — What's new in 9.x
+## Part 1 — What's new
 
-1. Open **Elastic Serverless** → **What's new** (release highlights).
-2. Browse **Stack Management → Upgrade Assistant** or release notes links.
+1. From Kibana Home, open **What's new** / release highlights.
+2. Note Serverless-first features: **Streams**, **Agent Builder**, **Workflows**, enhanced **AI Assistant**.
 
-## Part 2 — Migration preview
+## Part 2 — Hands-on preview
 
-1. **Observability → Overview** — note unified navigation changes.
-2. **Stack Management → Index Management** — review data stream defaults.
+1. **Observability → Streams** — future of managed ingestion routing.
+2. **Agents** — open **Agent Builder** (or AI Assistant) and ask: *What observability data do I have?*
 
-## Part 3 — SLB roadmap discussion
+## Part 3 — SLB roadmap
 
-With facilitator, identify one Elastic 9.x feature relevant to your team's migration.
+With facilitator, identify one Serverless capability to pilot (Streams, SLOs, AI investigation, or Workflows).
 
 Click **Check**.

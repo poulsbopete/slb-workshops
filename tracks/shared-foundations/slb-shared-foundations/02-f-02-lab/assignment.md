@@ -14,13 +14,14 @@ notes:
 - type: text
   contents: '## Session topics
 
-    - Elastic Platform Overview
 
-    - How each persona uses Elastic
+    - Elastic Observability Serverless overview
+
+    - Streams, ES|QL, and unified Observability
 
     - SLB SRE''s journey with Elastic — current state
 
-    - Data lifecycle and tiers — hot, warm, cold, frozen, delete
+    - AI Assistant and Agent Builder introduction
 
     '
 tabs:
@@ -42,35 +43,27 @@ difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
 
-# Intro to Elastic — Hands-on Lab
-
-Welcome to your personal **Elastic Observability Serverless** project. This lab
-supports the **F-02 — Intro to Elastic** live session.
+# Intro to Elastic Serverless
 
 ## Part 1 — Platform tour
 
-1. Open the **Elastic Serverless** tab (Kibana Home).
-2. Navigate **Observability → Overview**. Note the unified view of logs, metrics, and traces.
-3. Open **Stack Management → Index Management**. Observe data streams created by the platform.
-4. Open **Stack Management → Data tiers**. Review hot / warm / cold / frozen / delete concepts
-   from the session.
+1. **Observability → Overview** — unified logs, metrics, traces, and SLOs.
+2. **Observability → Streams** — managed routing and processing for telemetry (Serverless-native).
+3. **Agents** (sidebar) — explore **Agent Builder** and AI capabilities available in your project.
 
-## Part 2 — Persona lenses
-
-Pick the lens closest to your role:
+## Part 2 — Persona lenses (Serverless)
 
 | Persona | Start here |
 |---------|------------|
 | Developer | **Observability → APM → Services** |
-| SRE / Infra | **Observability → Hosts** and **Fleet** |
-| Analyst | **Analytics → Discover** |
-| Architect | **Stack Management → Index Lifecycle Policies** |
+| SRE / Infra | **Streams** and **Observability → Alerts** |
+| Analyst | **Analytics → Discover** or **Logs → Explorer** |
+| Architect | **Stack Management → API keys** and project access patterns |
 
-## Part 3 — SLB context
+## Part 3 — What Serverless manages for you
 
-Discuss with your facilitator: which of these building blocks map to your current
-Grafana / Prometheus / OTel workflows today?
+Discuss with facilitator: ingestion endpoints, scaling, and retention are managed — your focus is **telemetry quality, ES|QL, Streams, and AI-assisted ops**.
 
-When finished, click **Check**.
+Click **Check**.

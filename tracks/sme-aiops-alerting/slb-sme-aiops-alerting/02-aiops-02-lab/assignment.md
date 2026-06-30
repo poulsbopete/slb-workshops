@@ -41,23 +41,25 @@ difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
 
-# AI-Assisted Investigation & Automated Response
+# AI-Assisted Investigation (Serverless)
 
 ## Part 1 — AI Assistant
 
-1. Open **AI Assistant** from Observability (Observability AI Assistant).
-2. Ask: "What services had the highest error rate in the last hour?"
+1. Open **AI Assistant** from Observability.
+2. Ask: *What services had the highest error rate in the last hour?*
+3. Follow up: *Show correlated logs and traces.*
 
-## Part 2 — Correlation
+## Part 2 — Agent Builder
 
-1. From an alert, open **Investigate in APM / Logs**.
+1. Open **Agents** in the sidebar.
+2. Explore prebuilt agents or create a simple investigation agent.
+3. Connect it to observability context (facilitator demo).
+
+## Part 3 — From alert to root cause
+
+1. Open an active alert → **Investigate in APM / Logs**.
 2. Correlate logs, metrics, and traces for one incident.
-
-## Part 3 — Workflows (if enabled)
-
-1. **Management → Workflows** — review available workflow templates.
-2. Discuss automated remediation patterns with facilitator.
 
 Click **Check**.

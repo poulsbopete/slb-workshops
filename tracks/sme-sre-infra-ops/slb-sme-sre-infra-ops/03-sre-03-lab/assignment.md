@@ -3,7 +3,7 @@ slug: sre-03-lab
 id: de3rkl9k77xe
 type: challenge
 title: SRE 03 — Ingestion Architecture & Troubleshooting
-teaser: Elastic Agent vs OTel tradeoffs, Prometheus ingestion, and failure store handling.
+teaser: Serverless ingestion troubleshooting with Streams, ES|QL, and AI Assistant.
 notes:
 - type: text
   contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/sre-03/\"\
@@ -13,13 +13,14 @@ notes:
 - type: text
   contents: '## Session topics
 
-    - Elastic Agent integrations vs OTel-native collection tradeoffs
 
-    - Prometheus scrape and remote_write ingestion patterns
+    - OTel → managed OTLP on Serverless
 
-    - Failure store and ingest error handling
+    - Streams troubleshooting and ingest gap detection
 
-    - Diagnosing dashboard instability when switching Prometheus environments
+    - ES|QL patterns for ingestion health
+
+    - AI-assisted diagnosis of telemetry gaps
 
     '
 tabs:
@@ -41,34 +42,32 @@ difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
 
-# Ingestion Architecture & Troubleshooting
+# Ingestion & Streams Troubleshooting (Serverless)
 
-## Part 1 — Integration comparison
+## Part 1 — OTel → managed OTLP
 
-1. **Integrations** — compare **Elastic Agent** vs **OpenTelemetry** integrations.
-2. Note data stream outputs for each.
+1. **Observability → Add data → OpenTelemetry** — review the managed endpoint pattern.
+2. Compare with your current Grafana/Prometheus export path (facilitator-led).
 
-## Part 2 — Prometheus patterns
+## Part 2 — Diagnose gaps in ES|QL
 
-1. Search integrations for **Prometheus**.
-2. Review **remote_write** vs **receiver scrape** options.
-
-## Part 3 — Failure store
-
-1. **Stack Management → Index Management** — look for failure store indices.
-2. **Ingest Pipelines** — review on_failure handlers.
-
-## Part 4 — Index health
-
-1. **Stack Management → Index Management** — check for **red** or **yellow** health badges.
-2. Optional — **Management → Dev Tools**, paste:
-
-```
-GET _cat/indices?v&health=red
+```esql
+FROM logs-* | STATS count = COUNT(*) BY bucket = BUCKET(@timestamp, 5 minutes) | SORT bucket DESC
 ```
 
-An empty response means no red indices (good).
+Look for missing buckets = possible ingest gaps.
+
+## Part 3 — Streams health
+
+1. **Observability → Streams** — check stream status indicators.
+2. **Observability → Logs → Anomalies** (if enabled) — review unusual patterns.
+
+## Part 4 — Error logs
+
+```esql
+FROM logs-* | WHERE message LIKE "*error*" OR log.level == "error" | LIMIT 20
+```
 
 Click **Check**.

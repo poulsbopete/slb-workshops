@@ -45,29 +45,30 @@ difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
 
-# Your Elastic Team, Support & Best Practices
+# Your Elastic Team, Support & Best Practices (Serverless)
 
-## Part 1 — Navigate Kibana help resources
+## Part 1 — Your Serverless project
 
-1. Open **Elastic Serverless** (Kibana Home).
-2. Click **Help** (?) — note **Documentation**, **Support**, and **Give feedback**.
-3. Open **Stack Management → Stack Monitoring** (if visible) — observe health signals.
+1. Open the **Elastic Serverless** tab (Kibana Home).
+2. Note the project type: **Observability Serverless** — fully managed, no cluster to operate.
+3. Click **Help** (?) — bookmark **Documentation** and support paths for Serverless.
 
-## Part 2 — Support readiness checklist
+## Part 2 — Support readiness
 
-In a Markdown panel or your notes, draft a support ticket template:
+Draft a support ticket template for Serverless:
 
 | Field | Your answer |
 |-------|-------------|
-| Environment | Serverless Observability |
+| Project type | Observability Serverless |
+| Region / project ID | (from project settings if visible) |
 | Symptom | |
 | Time range | |
-| Steps tried | |
+| ES|QL or query tried | |
 
 ## Part 3 — Enablement program
 
-Discuss with facilitator: which SME track matches your role?
+With your facilitator, pick the SME track that matches your role.
 
 Click **Check**.

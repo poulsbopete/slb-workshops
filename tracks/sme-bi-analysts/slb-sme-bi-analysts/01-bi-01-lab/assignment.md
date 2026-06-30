@@ -39,28 +39,26 @@ difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
 
-# Dashboard & Data Exploration Basics
-
-**No prior Elastic experience required.**
+# Dashboard & Exploration on Serverless
 
 ## Part 1 — Discover
 
-1. **Analytics → Discover**.
-2. Select any available data view.
-3. Use the time picker — **Last 24 hours**.
-4. Add a field column and sort.
+1. **Analytics → Discover** — select observability data.
+2. Time picker: **Last 24 hours** — add columns and sort.
 
 ## Part 2 — Lens
 
-1. **Visualize Library → Create visualization → Lens**.
-2. Build a bar chart — count of events over time.
-3. Save to a new dashboard.
+1. **Visualize → Lens** — bar chart of events over time.
+2. Save to a new dashboard.
 
-## Part 3 — Export
+## Part 3 — ES|QL peek
 
-1. From Discover, export a CSV sample (Share → CSV Reports if available,
-   or copy table data).
+In **Logs → Explorer**:
+
+```esql
+FROM logs-* | STATS count = COUNT(*) BY service.name | SORT count DESC | LIMIT 10
+```
 
 Click **Check**.

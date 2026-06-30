@@ -43,10 +43,10 @@ workshops:
   format: hybrid
   instruqt_track: slb-shared-foundations
   topics:
-  - Elastic Platform Overview
-  - How each persona uses Elastic
+  - Elastic Observability Serverless overview
+  - Streams, ES|QL, and unified Observability
   - SLB SRE's journey with Elastic — current state
-  - Data lifecycle and tiers — hot, warm, cold, frozen, delete
+  - AI Assistant and Agent Builder introduction
   description: 'Overview of the Elastic platform and how it fits into SLB SRE''s observability journey — ingestion, storage, query, and visualization.
 
     '
@@ -60,9 +60,9 @@ workshops:
   format: hybrid
   instruqt_track: slb-shared-foundations
   topics:
-  - Data lifecycle in practice
-  - Where ES|QL, dashboards and APIs fit into daily workflows
-  - Ingestion fundamentals
+  - ES|QL and Streams in daily workflows
+  - Where dashboards and AI Assistant fit
+  - Managed OTel ingestion on Serverless
   - Grafana → Elastic mental model translation
   description: 'Practical examples of data ingestion, querying with ES|QL, and using Kibana dashboards — with a focus on what Grafana users need to know.
 
@@ -142,15 +142,15 @@ workshops:
   format: hands-on
   instruqt_track: slb-sme-sre-infra-ops
   topics:
-  - Data streams, indices, tiers, templates, pipelines
-  - Elastic Agent default integrations vs OTel-native receiver patterns
-  - Fleet-managed vs standalone deployment models
-  description: 'Core building blocks — data streams, indices, tiers, templates, and pipelines.
+  - Managed OTel ingestion and Elastic Streams
+  - Streams routing vs self-managed pipelines
+  - Serverless operations model (no Fleet / ILM)
+  description: 'Core Serverless building blocks — managed ingestion, Streams, ES|QL, and observability signals.
 
     '
 - id: sre-02
   code: SRE 02
-  title: ILM & Data Tier Deep Dive
+  title: Elastic Streams & Data Routing
   date: 2026-09-16
   presenter: Specialist (DSR)
   audience: sre
@@ -158,10 +158,10 @@ workshops:
   format: hands-on
   instruqt_track: slb-sme-sre-infra-ops
   topics:
-  - ILM policy design and data tier allocation
-  - ILM phase transitions and tier allocation behavior
-  - Node roles and common misconfigurations
-  description: 'ILM policy design, data tier allocation, and common misconfigurations.
+  - Elastic Streams on Observability Serverless
+  - Routing, processing, and managed retention
+  - Troubleshooting stream health with ES|QL and AI Assistant
+  description: 'Elastic Streams on Serverless — routing and processing without ILM or data tiers.
 
     '
 - id: sre-03
@@ -174,11 +174,11 @@ workshops:
   format: hands-on
   instruqt_track: slb-sme-sre-infra-ops
   topics:
-  - Elastic Agent integrations vs OTel-native collection tradeoffs
-  - Prometheus scrape and remote_write ingestion patterns
-  - Failure store and ingest error handling
-  - Diagnosing dashboard instability when switching Prometheus environments
-  description: 'Elastic Agent vs OTel tradeoffs, Prometheus ingestion, and failure store handling.
+  - OTel → managed OTLP on Serverless
+  - Streams troubleshooting and ingest gap detection
+  - ES|QL patterns for ingestion health
+  - AI-assisted diagnosis of telemetry gaps
+  description: 'Serverless ingestion troubleshooting with Streams, ES|QL, and AI Assistant.
 
     '
 - id: sre-04
@@ -191,10 +191,10 @@ workshops:
   format: hands-on
   instruqt_track: slb-sme-sre-infra-ops
   topics:
-  - Validation checklists and runbook documentation
-  - Ingestion health checks
-  - Building confidence operating Elastic in production
-  description: 'Validation checklists, runbook documentation, and ingestion health checks.
+  - SLOs, alerts, and Streams readiness on Serverless
+  - AI Assistant and Workflows in production runbooks
+  - Serverless validation checklist (no ILM/Fleet)
+  description: 'Production readiness for Elastic Observability Serverless — SLOs, alerts, Streams, and AI ops.
 
     '
 - id: arch-01
@@ -207,15 +207,15 @@ workshops:
   format: hybrid
   instruqt_track: slb-sme-architects
   topics:
-  - Target-state ingestion design
+  - Streams and OTel target-state on Serverless
   - Coexistence planning during migration (Grafana + Elastic side by side)
-  - Multi-team deployment and access patterns
+  - Multi-team project access and API keys
   description: 'Target-state ingestion design and coexistence planning during migration.
 
     '
 - id: arch-02
   code: Arch 02
-  title: Lifecycle, Governance & Standards
+  title: Governance, Streams & Standards
   date: 2026-09-23
   presenter: Specialist (DSR)
   audience: architects
@@ -223,11 +223,11 @@ workshops:
   format: hybrid
   instruqt_track: slb-sme-architects
   topics:
-  - ILM/retention strategy and long-term platform design
-  - Fleet-managed vs standalone tradeoffs
+  - Streams naming and ownership standards
+  - Managed retention on Serverless vs self-managed ILM
   - ECS vs OTel semantic conventions
-  - Ownership boundaries and reusable standards across teams
-  description: 'ILM and retention strategy, Fleet tradeoffs, and ECS vs OTel conventions.
+  - Agent Builder and AI governance
+  description: 'Governance for Serverless — Streams standards, schema conventions, and AI agent policies.
 
     '
 - id: bi-01

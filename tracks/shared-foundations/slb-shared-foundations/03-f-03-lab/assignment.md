@@ -14,11 +14,12 @@ notes:
 - type: text
   contents: '## Session topics
 
-    - Data lifecycle in practice
 
-    - Where ES|QL, dashboards and APIs fit into daily workflows
+    - ES|QL and Streams in daily workflows
 
-    - Ingestion fundamentals
+    - Where dashboards and AI Assistant fit
+
+    - Managed OTel ingestion on Serverless
 
     - Grafana → Elastic mental model translation
 
@@ -42,44 +43,37 @@ difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
 
-# Elastic Day to Day — Hands-on Lab
+# Elastic Day to Day on Serverless
 
-## Part 1 — Discover and ES|QL
+## Part 1 — ES|QL in Logs Explorer
 
-1. Go to **Analytics → Discover** (or **Observability → Logs → Explorer**).
-2. Open the ES|QL editor and run:
+1. **Observability → Logs → Explorer** — switch to **ES|QL**.
+2. Paste and run:
 
 ```esql
-FROM logs-* | LIMIT 10
+FROM logs-* | WHERE @timestamp > NOW() - 1 hour | LIMIT 20
 ```
 
-3. Add a filter on `@timestamp` for the last 15 minutes.
+3. Add a breakdown:
 
-## Part 2 — Grafana → Elastic translation
-
-| Grafana concept | Elastic equivalent |
-|-----------------|-------------------|
-| Explore | Discover / Logs Explorer |
-| Dashboard panel | Lens visualization |
-| Prometheus query | ES|QL or PromQL in Metrics |
-| Alert rule | **Observability → Alerts** |
-
-## Part 3 — Ingestion fundamentals
-
-1. Open **Integrations** and browse an OTel or Elastic Agent integration.
-2. Note the data stream naming pattern (`logs-*`, `metrics-*`, `traces-*`).
-
-## Part 4 — See your indices (Dev Tools)
-
-1. Open **Management → Dev Tools** (search “Dev Tools” in the Kibana header).
-2. Paste into the console and click the **play** button:
-
-```
-GET _cat/indices?v
+```esql
+FROM logs-* | STATS count = COUNT(*) BY service.name | SORT count DESC | LIMIT 10
 ```
 
-3. Scan the table for `logs-*`, `metrics-*`, and `traces-*` data streams.
+## Part 2 — Grafana → Serverless translation
 
-Click **Check** when complete.
+| Grafana habit | Elastic Serverless |
+|---------------|-------------------|
+| Explore | Logs Explorer / Discover |
+| Panel | Lens on Dashboards |
+| PromQL | ES|QL or **Metrics** explorer |
+| Alert | **Observability → Alerts → Rules** |
+
+## Part 3 — Streams quick look
+
+1. Open **Observability → Streams**.
+2. Browse how telemetry is organized — note stream names and routing (no manual index templates required).
+
+Click **Check**.

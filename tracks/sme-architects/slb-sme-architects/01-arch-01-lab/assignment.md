@@ -13,11 +13,12 @@ notes:
 - type: text
   contents: '## Session topics
 
-    - Target-state ingestion design
+
+    - Streams and OTel target-state on Serverless
 
     - Coexistence planning during migration (Grafana + Elastic side by side)
 
-    - Multi-team deployment and access patterns
+    - Multi-team project access and API keys
 
     '
 tabs:
@@ -39,27 +40,26 @@ difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
 
-# Architecture & Migration Strategy
+# Serverless Architecture & Migration
 
-## Part 1 — Current state inventory
+## Part 1 — Target state
 
-1. **Stack Management → Index Management** — list data streams and retention.
-2. **Fleet** (if visible) — note agent vs OTel collection patterns.
+1. **Observability → Add data** — map OTel collectors → **managed OTLP** (no self-managed Elasticsearch cluster).
+2. **Streams** — sketch routing for logs / metrics / traces by team or domain.
 
-## Part 2 — Target-state sketch
+## Part 2 — Coexistence plan
 
-Document coexistence plan:
+| Phase | Grafana / Prometheus | Elastic Serverless |
+|-------|---------------------|-------------------|
+| Now | Primary | Pilot project |
+| Migration | Side-by-side | Streams + ES|QL |
+| Target | Optional retained | Primary observability |
 
-| Phase | Grafana | Elastic |
-|-------|---------|---------|
-| Now | Primary | Pilot |
-| Migration | Side-by-side | Growing |
-| Target | Retained? | Primary |
+## Part 3 — Access & API keys
 
-## Part 3 — Multi-team access
-
-Review **Stack Management → Roles** — note space and index privileges patterns.
+1. **Stack Management → API keys** — note patterns for automation and multi-team access.
+2. Discuss project-level boundaries vs self-managed cluster RBAC.
 
 Click **Check**.

@@ -39,22 +39,25 @@ difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+> **Elastic Observability Serverless** — use the **Elastic Serverless** tab only. These labs focus on **managed Serverless** capabilities (no ILM, Fleet, or self-managed tiers). Steps are copy/paste in Kibana — no terminal required.
 
-# RAG & MCP — Hands-on Lab
+# RAG, Agents & MCP on Serverless
 
-## Part 1 — Semantic search basics
+## Part 1 — Agent Builder + retrieval
 
-1. Open **Search → Playground** or **Elasticsearch → Search** (if available).
-2. Run a natural-language query against sample documents.
+1. **Agents → Agent Builder** — open an agent with knowledge retrieval.
+2. Ask a question grounded in your observability documentation or runbooks.
 
-## Part 2 — RAG pattern
+## Part 2 — MCP concept
 
-1. Note how retrieved documents ground the model response.
-2. In **Dev Tools**, inspect an index with dense_vector or semantic fields (if present).
+With facilitator, discuss how **Model Context Protocol (MCP)** tools could expose:
 
-## Part 3 — MCP integration
+- ES|QL query results
+- Stream metadata
+- Alert history
 
-Discuss with facilitator: how MCP tools could expose Elasticsearch indices to agent workflows.
+## Part 3 — Practical pattern
+
+Document one SLB use case: *Agent answers "what changed?" using logs + traces via MCP tools.*
 
 Click **Check**.
