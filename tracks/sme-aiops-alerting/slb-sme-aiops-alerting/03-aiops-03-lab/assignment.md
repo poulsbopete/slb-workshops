@@ -7,20 +7,21 @@ teaser: Build and test automated remediation workflows triggered from observabil
   alerts.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://slb-workshops.vercel.app/slides/aiops-03/\"\
-    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
-    >\n</iframe>\n\n*Provisioning your **Observability Serverless** lab for **AIOps\
-    \ 03** (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
+  contents: |-
+    ## While you wait…
+
+    <iframe src="https://slb-workshops.vercel.app/slides/aiops-03/"
+      width="100%" height="1400" frameborder="0"
+      style="border-radius:8px;display:block;width:100%;min-height:900px">
+    </iframe>
+
+    *Provisioning your **Observability Serverless** lab for **AIOps 03** (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*
 - type: text
-  contents: '## Session topics
-
+  contents: |
+    ## Session topics
     - Elastic Workflows for alert-driven automation
-
     - Connector patterns — Slack, PagerDuty, webhooks
-
     - Safe remediation guardrails and approval steps
-
-    '
 tabs:
 - id: ca8xascmzi6n
   title: Elastic Serverless
@@ -36,7 +37,7 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-difficulty: ''
+difficulty: ""
 timelimit: 0
 enhanced_loading: null
 ---
