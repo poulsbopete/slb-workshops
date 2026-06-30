@@ -1,5 +1,6 @@
 slug: slb-f-02-intro-to-elastic
-title: "SLB F-02 — Intro to Elastic"
+id: p34qzgdmcueq
+title: SLB F-02 — Intro to Elastic
 teaser: |
   Overview of the Elastic platform and how it fits into SLB SRE's observability journey — ingestion, storage, query, and visualization.
 description: |-
@@ -19,13 +20,13 @@ description: |-
   - Data lifecycle and tiers — hot, warm, cold, frozen, delete
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-  - all
-  - co.elastic.workshops
-  - elastic
-  - observability
-  - serverless
-  - shared-foundations
-  - slb
+- elastic
+- slb
+- serverless
+- shared-foundations
+- all
+- observability
+- co.elastic.workshops
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -38,6 +39,9 @@ lab_config:
   loadingMessages: true
   theme:
     name: modern-dark
+  override_challenge_layout: false
+  hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-  override_challenge_layout: false
+checksum: "15272141694566746539"
+enhanced_loading: false

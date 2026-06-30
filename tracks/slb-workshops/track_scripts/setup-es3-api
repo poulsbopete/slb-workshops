@@ -1,10 +1,305 @@
 #!/bin/bash
-set -euo pipefail
-# Provision Observability Serverless + Kibana proxy (:8080)
-if [ -f /opt/slb-workshops/shared/scripts/setup-es3-api-base.sh ]; then
-  exec bash /opt/slb-workshops/shared/scripts/setup-es3-api-base.sh
+# Provision Observability Serverless, proxy Kibana on :8080, seed DB monitoring data.
+# Supports MySQL · PostgreSQL · SQL Server · MongoDB via OpenTelemetry OTLP.
+
+# ---------------------------------------------------------------------------
+# Resolve Cloud API key
+# ESS_CLOUD_API_KEY is injected directly by Instruqt (name matches secret name).
+# PME_CLOUD_INSTRUQT_API_KEY is the legacy name es3-api.py may also accept.
+# ---------------------------------------------------------------------------
+PME_CLOUD_INSTRUQT_API_KEY="${ESS_CLOUD_API_KEY:-}"
+if [ -z "${PME_CLOUD_INSTRUQT_API_KEY:-}" ]; then
+  PME_CLOUD_INSTRUQT_API_KEY="$(agent variable get ESS_CLOUD_API_KEY 2>/dev/null || echo "")"
 fi
-curl -fsSL "https://raw.githubusercontent.com/poulsbopete/slb-workshops/main/shared/scripts/setup-es3-api-base.sh" \
-  -o /tmp/setup-es3-api-base.sh
-chmod +x /tmp/setup-es3-api-base.sh
-exec bash /tmp/setup-es3-api-base.sh
+if [ -z "${PME_CLOUD_INSTRUQT_API_KEY:-}" ]; then
+  PME_CLOUD_INSTRUQT_API_KEY="$(agent variable get PME_CLOUD_INSTRUQT_API_KEY 2>/dev/null || echo "")"
+fi
+if [ -z "${PME_CLOUD_INSTRUQT_API_KEY:-}" ]; then
+  echo "ERROR: Cloud API key not set. Configure Instruqt secret ESS_CLOUD_API_KEY for this track." >&2
+  exit 1
+fi
+export PME_CLOUD_INSTRUQT_API_KEY
+
+set -euxo pipefail
+
+echo "=== DB Monitoring Track — bootstrap (es3-api) ==="
+
+# Debug: show both variable lengths to detect Instruqt literal-string injection bug
+echo "DEBUG: PME_CLOUD_INSTRUQT_API_KEY length=${#PME_CLOUD_INSTRUQT_API_KEY} first4=${PME_CLOUD_INSTRUQT_API_KEY:0:4}"
+echo "DEBUG: ESS_CLOUD_API_KEY          length=${#ESS_CLOUD_API_KEY} first4=${ESS_CLOUD_API_KEY:0:4}"
+
+# If PME_CLOUD_INSTRUQT_API_KEY looks like a literal unexpanded variable, use ESS_CLOUD_API_KEY directly
+if [[ "${PME_CLOUD_INSTRUQT_API_KEY}" == '$'* ]] || [[ "${#PME_CLOUD_INSTRUQT_API_KEY}" -lt 20 ]]; then
+  echo "DEBUG: PME_CLOUD_INSTRUQT_API_KEY appears unexpanded, switching to ESS_CLOUD_API_KEY"
+  PME_CLOUD_INSTRUQT_API_KEY="${ESS_CLOUD_API_KEY}"
+fi
+
+# Quick sanity-check against the Elastic Cloud API before attempting project creation
+_auth_check=$(curl -s -o /dev/null -w "%{http_code}" \
+  -H "Authorization: ApiKey ${PME_CLOUD_INSTRUQT_API_KEY}" \
+  "https://api.elastic-cloud.com/api/v1/serverless/projects/observability?page_size=1")
+echo "DEBUG: Elastic Cloud auth check → HTTP ${_auth_check}"
+if [ "$_auth_check" = "401" ] || [ "$_auth_check" = "403" ]; then
+  echo "ERROR: ESS_CLOUD_API_KEY is invalid or lacks permissions (HTTP ${_auth_check})." >&2
+  exit 1
+fi
+
+# Wait for Instruqt host bootstrap
+_n=0
+until [ -f /opt/instruqt/bootstrap/host-bootstrap-completed ]; do
+  sleep 1; _n=$((_n + 1))
+  [ "$_n" -ge 600 ] && { echo "ERROR: host-bootstrap timeout" >&2; exit 1; }
+done
+
+# ---------------------------------------------------------------------------
+# 1. Provision Elastic Observability Serverless project
+# ---------------------------------------------------------------------------
+PRODUCT_TIER="${PRODUCT_TIER:-complete}"
+python3 bin/es3-api.py \
+  --operation create \
+  --project-type "${PROJECT_TYPE:-observability}" \
+  --product-tier "$PRODUCT_TIER" \
+  --regions "${REGIONS:-aws-us-east-1}" \
+  --project-name "${INSTRUQT_TRACK_SLUG:-dbmonitoring}-$INSTRUQT_PARTICIPANT_ID-$(date '+%s')" \
+  --api-key "${PME_CLOUD_INSTRUQT_API_KEY}" \
+  --wait-for-ready
+
+timeout=120; counter=0
+while [ $counter -lt $timeout ]; do
+  [ -f /tmp/project_results.json ] && break
+  echo "Waiting for /tmp/project_results.json ($((counter + 1))/${timeout}s)"
+  sleep 1; counter=$((counter + 1))
+done
+[ -f /tmp/project_results.json ] || { echo "ERROR: /tmp/project_results.json not found" >&2; exit 1; }
+
+# ---------------------------------------------------------------------------
+# 2. Export endpoints & credentials
+# ---------------------------------------------------------------------------
+REG="${REGIONS:-aws-us-east-1}"
+KIBANA_URL="$(jq -r --arg r "$REG" '.[$r].endpoints.kibana' /tmp/project_results.json)"
+ES_URL="$(jq -r --arg r "$REG" '.[$r].endpoints.elasticsearch' /tmp/project_results.json)"
+ELASTICSEARCH_PASSWORD="$(jq -r --arg r "$REG" '.[$r].credentials.password' /tmp/project_results.json)"
+export KIBANA_URL ES_URL ELASTICSEARCH_PASSWORD
+
+agent variable set ES_KIBANA_URL "$KIBANA_URL"
+agent variable set ES_URL "$ES_URL"
+agent variable set ES_USERNAME "$(jq -r --arg r "$REG" '.[$r].credentials.username' /tmp/project_results.json)"
+agent variable set ES_PASSWORD "$ELASTICSEARCH_PASSWORD"
+agent variable set ES_DEPLOYMENT_ID "$(jq -r --arg r "$REG" '.[$r].id' /tmp/project_results.json)"
+
+# Create scoped API key
+WORKSHOP_ES_API_KEY=""
+output="$(curl -X POST -s -u "admin:${ELASTICSEARCH_PASSWORD}" \
+  -w "\n%{http_code}" "$ES_URL/_security/api_key" \
+  -H 'Content-Type: application/json' \
+  -d '{"name":"workshop-dbmonitoring"}' || true)"
+http_code="$(echo "$output" | tail -n1)"
+response_body="$(echo "$output" | sed '$d')"
+if [ "$http_code" = "200" ]; then
+  ELASTICSEARCH_API_KEY="$(echo "$response_body" | jq -r '.encoded // empty')"
+  if [ -n "$ELASTICSEARCH_API_KEY" ]; then
+    agent variable set ES_API_KEY "$ELASTICSEARCH_API_KEY"
+    agent variable set ELASTIC_API_KEY "$ELASTICSEARCH_API_KEY"
+    WORKSHOP_ES_API_KEY="$ELASTICSEARCH_API_KEY"
+  fi
+fi
+
+# ---------------------------------------------------------------------------
+# 3. Nginx reverse proxy → Kibana on :8080
+# ---------------------------------------------------------------------------
+BASE64="$(echo -n "admin:${ELASTICSEARCH_PASSWORD}" | base64 -w0 2>/dev/null || echo -n "admin:${ELASTICSEARCH_PASSWORD}" | base64)"
+KIBANA_URL_WITHOUT_PROTOCOL="$(echo "$KIBANA_URL" | sed -e 's#http[s]\?://##g')"
+
+cat > /etc/nginx/conf.d/default.conf <<NGX
+server {
+  listen 8080 default_server;
+  server_name kibana;
+  location /nginx_status { stub_status on; allow 127.0.0.1; deny all; }
+  location / {
+    proxy_set_header Host ${KIBANA_URL_WITHOUT_PROTOCOL};
+    proxy_pass ${KIBANA_URL};
+    proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
+    proxy_set_header Connection "keep-alive";
+    proxy_hide_header Content-Security-Policy;
+    proxy_hide_header X-Frame-Options;
+    proxy_hide_header X-Content-Type-Options;
+    proxy_hide_header Strict-Transport-Security;
+    proxy_set_header X-Scheme \$scheme;
+    proxy_set_header X-Forwarded-Proto https;
+    proxy_set_header X-Forwarded-Host \$host;
+    proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+    proxy_set_header X-Real-IP \$remote_addr;
+    proxy_set_header Authorization "Basic ${BASE64}";
+    proxy_set_header Accept-Encoding "gzip, deflate, br";
+    proxy_set_header Accept "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+    proxy_set_header Accept-Language "en-US,en;q=0.9";
+    proxy_set_header User-Agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131.0.0.0 Safari/537.36";
+    proxy_redirect off;
+    proxy_http_version 1.1;
+    client_max_body_size 20M;
+    proxy_read_timeout 600;
+    proxy_buffering off;
+    proxy_send_timeout 300;
+    send_timeout 300;
+    proxy_connect_timeout 300;
+  }
+}
+NGX
+
+systemctl restart nginx; sleep 2
+systemctl is-active --quiet nginx || { echo "ERROR: nginx failed to start"; systemctl status nginx || true; exit 1; }
+
+# ---------------------------------------------------------------------------
+# 4. Clone DB monitoring repo (tools + dashboards)
+# ---------------------------------------------------------------------------
+export DEBIAN_FRONTEND=noninteractive
+apt-get update -y
+apt-get install -y --no-install-recommends python3-pip python3-venv jq curl git ca-certificates nodejs npm
+
+DB_REPO_URL="${DB_MONITORING_GIT_URL:-https://github.com/poulsbopete/dbmonitoring.git}"
+DB_REPO_REF="${DB_MONITORING_GIT_REF:-main}"
+DB_REPO_DIR=/opt/dbmonitoring
+
+rm -rf "$DB_REPO_DIR"
+git clone --depth 1 --branch "$DB_REPO_REF" "$DB_REPO_URL" "$DB_REPO_DIR" 2>/dev/null \
+  || git clone --depth 1 "$DB_REPO_URL" "$DB_REPO_DIR"
+
+ln -sfn "$DB_REPO_DIR" /root/workshop
+
+# Install Python deps
+python3 -m venv /opt/workshop-venv
+/opt/workshop-venv/bin/pip install --upgrade pip
+/opt/workshop-venv/bin/pip install -r "$DB_REPO_DIR/tools/requirements.txt"
+
+# ---------------------------------------------------------------------------
+# 5. Resolve managed OTLP endpoint
+# ---------------------------------------------------------------------------
+MOTLP_FROM_API=""
+if [ -f /tmp/project_results.json ]; then
+  for _key in motlp otlp otel; do
+    _val="$(jq -r --arg r "$REG" --arg k "$_key" '.[$r].endpoints[$k] // empty' /tmp/project_results.json)"
+    [ -n "$_val" ] && [ "$_val" != "null" ] && { MOTLP_FROM_API="$_val"; break; }
+  done
+fi
+
+DERIVED_OTLP=""
+if [[ -n "${ES_URL:-}" ]] && [[ "$ES_URL" == *".es."* ]]; then
+  DERIVED_OTLP="${ES_URL%/}"; DERIVED_OTLP="${DERIVED_OTLP//.es./.ingest.}"
+elif [[ -n "${KIBANA_URL:-}" ]] && [[ "$KIBANA_URL" == *".kb."* ]]; then
+  DERIVED_OTLP="${KIBANA_URL%/}"; DERIVED_OTLP="${DERIVED_OTLP//.kb./.ingest.}"
+fi
+
+WORKSHOP_OTLP_BASE="${MOTLP_FROM_API:-$DERIVED_OTLP}"
+[ -n "$WORKSHOP_OTLP_BASE" ] && agent variable set ES_OTLP_ENDPOINT "$WORKSHOP_OTLP_BASE" || true
+
+# ---------------------------------------------------------------------------
+# 6. Launch DB monitoring data generator (historical + live)
+# ---------------------------------------------------------------------------
+mkdir -p /root/workshop/build/db-monitoring /tmp/db-monitoring-logs
+
+if [ -n "$WORKSHOP_OTLP_BASE" ] && [ -n "${WORKSHOP_ES_API_KEY:-}" ]; then
+  export WORKSHOP_OTLP_ENDPOINT="$WORKSHOP_OTLP_BASE"
+  export WORKSHOP_OTLP_AUTH_HEADER="ApiKey ${WORKSHOP_ES_API_KEY}"
+
+  echo "Starting DB monitoring data generator (historical + live)..."
+  nohup /opt/workshop-venv/bin/python3 "$DB_REPO_DIR/tools/db_otel_generator.py" \
+    --otlp-endpoint "${WORKSHOP_OTLP_ENDPOINT}" \
+    --otlp-auth "${WORKSHOP_OTLP_AUTH_HEADER}" \
+    --historical-days 4 \
+    --live \
+    >> /tmp/db-monitoring-logs/generator.log 2>&1 &
+  echo "Generator PID: $!"
+  echo "Log: /tmp/db-monitoring-logs/generator.log"
+else
+  echo "WARN: OTLP endpoint or API key missing — generator not started." >&2
+  echo "      After bootstrap: source ~/.bashrc && python3 /root/workshop/tools/db_otel_generator.py \\" >&2
+  echo "        --otlp-endpoint \"\$WORKSHOP_OTLP_ENDPOINT\" --otlp-auth \"\$WORKSHOP_OTLP_AUTH_HEADER\" --live" >&2
+fi
+
+# ---------------------------------------------------------------------------
+# 6b. Index for workflow “AI recommendations” (ES|QL panels on MySQL/Postgres/SQL Server/MongoDB/Db2/Oracle dashboards)
+# ---------------------------------------------------------------------------
+if [ -n "${ES_URL:-}" ] && [ -n "${ELASTICSEARCH_PASSWORD:-}" ]; then
+  echo "Ensuring Elasticsearch index db-monitoring-recommendations exists..."
+  _rec_ix=$(curl -sS -o /tmp/rec-index-body.json -w "%{http_code}" -X PUT "${ES_URL}/db-monitoring-recommendations" \
+    -u "admin:${ELASTICSEARCH_PASSWORD}" \
+    -H "Content-Type: application/json" \
+    -d '{"mappings":{"properties":{"@timestamp":{"type":"date"},"execution_id":{"type":"keyword"},"workflow_name":{"type":"keyword"},"source":{"type":"keyword"},"database_platform":{"type":"keyword"},"recommendation":{"type":"text"}}}}')
+  echo "DEBUG: PUT db-monitoring-recommendations HTTP ${_rec_ix}"
+fi
+
+# ---------------------------------------------------------------------------
+# 7. Deploy Kibana dashboards via import_dashboards.py (Saved Objects API)
+# ---------------------------------------------------------------------------
+if [ -n "${WORKSHOP_ES_API_KEY:-}" ]; then
+  export ES_API_KEY="$WORKSHOP_ES_API_KEY"
+  # Give the project 20 s to reach a fully ready state before pushing dashboards
+  sleep 20
+
+  # Enable Elastic Workflows (technical preview) — required for the RCA workflow.
+  # /api/kibana/settings returns 404 in Serverless; use the saved_objects config PUT instead.
+  echo "Enabling workflows:ui:enabled Kibana setting..."
+  _kibana_version=$(curl -s "${KIBANA_URL}/api/status" \
+    -H "Authorization: ApiKey ${WORKSHOP_ES_API_KEY}" | python3 -c "import sys,json; print(json.load(sys.stdin).get('version',{}).get('number','9.4.0'))" 2>/dev/null || echo "9.4.0")
+  _wf_http=$(curl -s -o /tmp/wf-setting.json -w "%{http_code}" \
+    -X PUT "${KIBANA_URL}/api/saved_objects/config/${_kibana_version}" \
+    -H "Content-Type: application/json" \
+    -H "kbn-xsrf: true" \
+    -H "x-elastic-internal-origin: kibana" \
+    -H "Authorization: ApiKey ${WORKSHOP_ES_API_KEY}" \
+    -d '{"attributes":{"workflows:ui:enabled":true}}')
+  echo "DEBUG: workflows setting → HTTP ${_wf_http} $(cat /tmp/wf-setting.json | head -c 120)"
+  echo "Deploying dashboards..."
+  set +e
+  deploy_out=$(KIBANA_URL="$KIBANA_URL" ES_API_KEY="$ES_API_KEY" \
+    /opt/workshop-venv/bin/python3 "$DB_REPO_DIR/scripts/import_dashboards.py" 2>&1)
+  _dash_rc=$?
+  set -e
+  echo "$deploy_out" | tee -a /tmp/db-monitoring-logs/dashboard-deploy.log
+  if [ "$_dash_rc" -ne 0 ] || ! echo "$deploy_out" | grep -q "All dashboards deployed successfully"; then
+    echo "ERROR: Dashboard deployment failed (exit ${_dash_rc}). See /tmp/db-monitoring-logs/dashboard-deploy.log" >&2
+    echo "Common causes: Elastic-Api-Version (use 2023-10-31), or vis panel config (data_source type esql; Serverless disallows type lens on POST /api/dashboards). See import_dashboards.py." >&2
+    exit 1
+  fi
+  echo "✓ All dashboards deployed"
+else
+  echo "WARN: ES_API_KEY not set — skipping dashboard deployment." >&2
+fi
+
+# ---------------------------------------------------------------------------
+# 8. Deploy alert rules + RCA workflow
+# ---------------------------------------------------------------------------
+if [ -n "${WORKSHOP_ES_API_KEY:-}" ]; then
+  echo "Deploying alert rules and RCA workflow..."
+  alert_out=$(KIBANA_URL="$KIBANA_URL" ES_API_KEY="$WORKSHOP_ES_API_KEY" \
+    /opt/workshop-venv/bin/python3 "$DB_REPO_DIR/alert-rules/deploy-alert-rules.py" 2>&1 || true)
+  echo "$alert_out" | tee -a /tmp/db-monitoring-logs/alert-rules-deploy.log
+  echo "✓ Alert rules deployment complete"
+else
+  echo "WARN: ES_API_KEY not set — skipping alert rules deployment." >&2
+fi
+
+# ---------------------------------------------------------------------------
+# 9. Write ~/.bashrc env for interactive terminal sessions
+# ---------------------------------------------------------------------------
+{
+  echo ""
+  echo "# === DB Monitoring Workshop ==="
+  printf 'export PATH=%q\n' "/opt/workshop-venv/bin:$PATH"
+  printf 'export KIBANA_URL=%q\n' "$KIBANA_URL"
+  printf 'export ES_URL=%q\n' "$ES_URL"
+  printf 'export ES_USERNAME=%q\n' "admin"
+  printf 'export ES_PASSWORD=%q\n' "$ELASTICSEARCH_PASSWORD"
+  [ -n "$WORKSHOP_ES_API_KEY" ] && printf 'export ES_API_KEY=%q\n' "$WORKSHOP_ES_API_KEY"
+  [ -n "$WORKSHOP_ES_API_KEY" ] && printf 'export ELASTIC_API_KEY=%q\n' "$WORKSHOP_ES_API_KEY"
+  _dep_id="$(jq -r --arg r "$REG" '.[$r].id // empty' /tmp/project_results.json)"
+  [ -n "$_dep_id" ] && [ "$_dep_id" != "null" ] && printf 'export ES_DEPLOYMENT_ID=%q\n' "$_dep_id"
+  [ -n "$WORKSHOP_OTLP_BASE" ] && printf 'export WORKSHOP_OTLP_ENDPOINT=%q\n' "$WORKSHOP_OTLP_BASE"
+  [ -n "${WORKSHOP_ES_API_KEY:-}" ] && printf 'export WORKSHOP_OTLP_AUTH_HEADER=%q\n' "ApiKey ${WORKSHOP_ES_API_KEY}"
+  echo "# Generator log: /tmp/db-monitoring-logs/generator.log"
+  echo "# Dashboard IDs: /root/workshop/build/db-monitoring/dashboard-ids.txt"
+} >> /root/.bashrc
+
+find "$DB_REPO_DIR" -type f \( -name 'setup-es3-api' -o -name 'check-es3-api' -o -name 'solve-es3-api' -o -name 'cleanup-es3-api' \) -exec chmod +x {} \; || true
+
+echo "=== Track bootstrap complete. Data generating, dashboards and alerts deployed. ==="

@@ -1,5 +1,6 @@
 slug: slb-bi-03-apis-dashboards
-title: "SLB BI 03 — APIs, Integrations & Dashboard Building"
+id: y000tk5j19qa
+title: SLB BI 03 — APIs, Integrations & Dashboard Building
 teaser: |
   Elasticsearch API basics and building dashboards for operational reporting.
 description: |-
@@ -18,13 +19,13 @@ description: |-
   - Data schema considerations
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-  - bi
-  - co.elastic.workshops
-  - elastic
-  - observability
-  - serverless
-  - slb
-  - sme-track--bi-&-data-analysts
+- elastic
+- slb
+- serverless
+- bi
+- sme-track--bi-&-data-analysts
+- observability
+- co.elastic.workshops
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -37,6 +38,9 @@ lab_config:
   loadingMessages: true
   theme:
     name: modern-dark
+  override_challenge_layout: false
+  hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-  override_challenge_layout: false
+checksum: "7630708401935426813"
+enhanced_loading: false

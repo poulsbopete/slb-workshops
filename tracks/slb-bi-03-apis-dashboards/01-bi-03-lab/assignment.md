@@ -1,8 +1,9 @@
 ---
 slug: bi-03-lab
+id: reccecsquqaj
 type: challenge
-title: "BI 03 — APIs, Integrations & Dashboard Building"
-teaser: "Elasticsearch API basics and building dashboards for operational reporting."
+title: BI 03 — APIs, Integrations & Dashboard Building
+teaser: Elasticsearch API basics and building dashboards for operational reporting.
 notes:
 - type: text
   contents: |
@@ -16,7 +17,8 @@ notes:
     - Building dashboards for operational and business review
     - Data schema considerations
 tabs:
-- title: Elastic Serverless
+- id: ivrpulj1xtrh
+  title: Elastic Serverless
   type: service
   hostname: es3-api
   path: /app/home
@@ -29,10 +31,13 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-- title: Terminal
+- id: xvewxworusva
+  title: Terminal
   type: terminal
   hostname: es3-api
+difficulty: ""
 timelimit: 0
+enhanced_loading: null
 ---
 
 # APIs, Integrations & Dashboard Building

@@ -1,8 +1,9 @@
 ---
 slug: sre-01-lab
+id: 3x5l70vojsvq
 type: challenge
-title: "SRE 01 — Platform Operations Fundamentals"
-teaser: "Core building blocks — data streams, indices, tiers, templates, and pipelines."
+title: SRE 01 — Platform Operations Fundamentals
+teaser: Core building blocks — data streams, indices, tiers, templates, and pipelines.
 notes:
 - type: text
   contents: |
@@ -16,7 +17,8 @@ notes:
     - Elastic Agent default integrations vs OTel-native receiver patterns
     - Fleet-managed vs standalone deployment models
 tabs:
-- title: Elastic Serverless
+- id: t4ybuasacvzc
+  title: Elastic Serverless
   type: service
   hostname: es3-api
   path: /app/home
@@ -29,10 +31,13 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-- title: Terminal
+- id: cjqegfv5mazw
+  title: Terminal
   type: terminal
   hostname: es3-api
+difficulty: ""
 timelimit: 0
+enhanced_loading: null
 ---
 
 # Platform Operations Fundamentals

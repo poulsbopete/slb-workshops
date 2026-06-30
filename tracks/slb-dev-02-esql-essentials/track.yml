@@ -1,5 +1,6 @@
 slug: slb-dev-02-esql-essentials
-title: "SLB Dev 02 — ES|QL Essentials for Troubleshooting"
+id: m7bzwhoqx73r
+title: SLB Dev 02 — ES|QL Essentials for Troubleshooting
 teaser: |
   Core ES|QL syntax, common patterns, and queries across logs, metrics, and traces.
 description: |-
@@ -18,13 +19,13 @@ description: |-
   - Incident investigation workflows
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-  - co.elastic.workshops
-  - developers
-  - elastic
-  - observability
-  - serverless
-  - slb
-  - sme-track--developers
+- elastic
+- slb
+- serverless
+- sme-track--developers
+- developers
+- observability
+- co.elastic.workshops
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -37,6 +38,9 @@ lab_config:
   loadingMessages: true
   theme:
     name: modern-dark
+  override_challenge_layout: false
+  hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-  override_challenge_layout: false
+checksum: "2684156604509528564"
+enhanced_loading: false

@@ -1,8 +1,10 @@
 ---
 slug: f-03-lab
+id: cq2uqdjy6zvy
 type: challenge
-title: "F-03 — Elastic Day to Day"
-teaser: "Practical examples of data ingestion, querying with ES|QL, and using Kibana dashboards — with a focus on what Grafana users need to know."
+title: F-03 — Elastic Day to Day
+teaser: Practical examples of data ingestion, querying with ES|QL, and using Kibana
+  dashboards — with a focus on what Grafana users need to know.
 notes:
 - type: text
   contents: |
@@ -17,7 +19,8 @@ notes:
     - Ingestion fundamentals
     - Grafana → Elastic mental model translation
 tabs:
-- title: Elastic Serverless
+- id: otnmdwf9b6d0
+  title: Elastic Serverless
   type: service
   hostname: es3-api
   path: /app/home
@@ -30,10 +33,13 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-- title: Terminal
+- id: 35pdiyavuwyw
+  title: Terminal
   type: terminal
   hostname: es3-api
+difficulty: ""
 timelimit: 0
+enhanced_loading: null
 ---
 
 # Elastic Day to Day — Hands-on Lab

@@ -1,8 +1,10 @@
 ---
 slug: f-02-lab
+id: 7axlyx5pq96w
 type: challenge
-title: "F-02 — Intro to Elastic"
-teaser: "Overview of the Elastic platform and how it fits into SLB SRE's observability journey — ingestion, storage, query, and visualization."
+title: F-02 — Intro to Elastic
+teaser: Overview of the Elastic platform and how it fits into SLB SRE's observability
+  journey — ingestion, storage, query, and visualization.
 notes:
 - type: text
   contents: |
@@ -17,7 +19,8 @@ notes:
     - SLB SRE's journey with Elastic — current state
     - Data lifecycle and tiers — hot, warm, cold, frozen, delete
 tabs:
-- title: Elastic Serverless
+- id: uk37unyh1jev
+  title: Elastic Serverless
   type: service
   hostname: es3-api
   path: /app/home
@@ -30,10 +33,13 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-- title: Terminal
+- id: xxiovo0nuxsc
+  title: Terminal
   type: terminal
   hostname: es3-api
+difficulty: ""
 timelimit: 0
+enhanced_loading: null
 ---
 
 # Intro to Elastic — Hands-on Lab

@@ -1,8 +1,10 @@
 ---
 slug: dev-01-lab
+id: ukvg5wt2qp5g
 type: challenge
-title: "Dev 01 — Elastic UI & Dashboard Workflows"
-teaser: "Fast track to Kibana — Discover, dashboards, filters, and drilldowns with direct comparisons to Grafana workflows."
+title: Dev 01 — Elastic UI & Dashboard Workflows
+teaser: Fast track to Kibana — Discover, dashboards, filters, and drilldowns with
+  direct comparisons to Grafana workflows.
 notes:
 - type: text
   contents: |
@@ -16,7 +18,8 @@ notes:
     - Grafana-to-Elastic translation for dashboard users
     - Dashboard navigation and customization
 tabs:
-- title: Elastic Serverless
+- id: dvt78huvv8ng
+  title: Elastic Serverless
   type: service
   hostname: es3-api
   path: /app/home
@@ -29,10 +32,13 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-- title: Terminal
+- id: 0henpfrjwxl3
+  title: Terminal
   type: terminal
   hostname: es3-api
+difficulty: ""
 timelimit: 0
+enhanced_loading: null
 ---
 
 # Elastic UI & Dashboard Workflows

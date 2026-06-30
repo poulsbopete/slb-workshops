@@ -1,8 +1,9 @@
 ---
 slug: sre-02-lab
+id: j4ayxfexqrrc
 type: challenge
-title: "SRE 02 — ILM & Data Tier Deep Dive"
-teaser: "ILM policy design, data tier allocation, and common misconfigurations."
+title: SRE 02 — ILM & Data Tier Deep Dive
+teaser: ILM policy design, data tier allocation, and common misconfigurations.
 notes:
 - type: text
   contents: |
@@ -16,7 +17,8 @@ notes:
     - ILM phase transitions and tier allocation behavior
     - Node roles and common misconfigurations
 tabs:
-- title: Elastic Serverless
+- id: mdakwvjarazc
+  title: Elastic Serverless
   type: service
   hostname: es3-api
   path: /app/home
@@ -29,10 +31,13 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-- title: Terminal
+- id: rmbjgbbaojz6
+  title: Terminal
   type: terminal
   hostname: es3-api
+difficulty: ""
 timelimit: 0
+enhanced_loading: null
 ---
 
 # ILM & Data Tier Deep Dive

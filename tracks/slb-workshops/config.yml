@@ -1,5 +1,3 @@
-# Shared Instruqt sandbox definition for SLB workshops.
-# Each track copies this file; customize memory/cpus per workshop if needed.
 version: "3"
 virtualmachines:
 - name: es3-api

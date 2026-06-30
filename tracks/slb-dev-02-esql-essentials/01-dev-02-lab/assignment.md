@@ -1,8 +1,10 @@
 ---
 slug: dev-02-lab
+id: ap6loltg3ylx
 type: challenge
-title: "Dev 02 — ES|QL Essentials for Troubleshooting"
-teaser: "Core ES|QL syntax, common patterns, and queries across logs, metrics, and traces."
+title: Dev 02 — ES|QL Essentials for Troubleshooting
+teaser: Core ES|QL syntax, common patterns, and queries across logs, metrics, and
+  traces.
 notes:
 - type: text
   contents: |
@@ -16,7 +18,8 @@ notes:
     - Logs/metrics/traces query patterns
     - Incident investigation workflows
 tabs:
-- title: Elastic Serverless
+- id: jzljtmzm5amx
+  title: Elastic Serverless
   type: service
   hostname: es3-api
   path: /app/home
@@ -29,10 +32,13 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-- title: Terminal
+- id: oqayvaidbcg0
+  title: Terminal
   type: terminal
   hostname: es3-api
+difficulty: ""
 timelimit: 0
+enhanced_loading: null
 ---
 
 # ES|QL Essentials for Troubleshooting

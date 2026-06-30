@@ -1,8 +1,9 @@
 ---
 slug: bi-01-lab
+id: 3wlnp7l5eatn
 type: challenge
-title: "BI 01 — Dashboard & Data Exploration Basics"
-teaser: "Kibana Discover, Lens visualizations, and dashboards for BI users."
+title: BI 01 — Dashboard & Data Exploration Basics
+teaser: Kibana Discover, Lens visualizations, and dashboards for BI users.
 notes:
 - type: text
   contents: |
@@ -16,7 +17,8 @@ notes:
     - Filtering, slicing, and exporting
     - Entry-level friendly — no prior Elastic experience required
 tabs:
-- title: Elastic Serverless
+- id: izovcy4ycxfk
+  title: Elastic Serverless
   type: service
   hostname: es3-api
   path: /app/home
@@ -29,10 +31,13 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-- title: Terminal
+- id: kxnnfn3par4o
+  title: Terminal
   type: terminal
   hostname: es3-api
+difficulty: ""
 timelimit: 0
+enhanced_loading: null
 ---
 
 # Dashboard & Data Exploration Basics

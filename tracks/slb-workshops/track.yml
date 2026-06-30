@@ -1,41 +1,37 @@
 slug: slb-workshops
 id: cl3mlvgk1zt1
-title: SLB × Elastic Workshops
+title: SLB Workshops
 teaser: |
-  Hands-on enablement for SLB SRE — Elastic Observability Serverless labs aligned to the
+  Hands-on enablement for SLB SRE — Elastic Observability Serverless labs for the
   July–November 2026 workshop series.
 description: |-
   **SLB × Elastic Workshop Program**
 
-  Self-paced Instruqt labs for the SLB SRE enablement series. Each live session at
-  [events.elastic.co/slbworkshops](https://events.elastic.co/slbworkshops) has a matching
-  hands-on track in this collection.
+  Self-paced Instruqt labs for the SLB SRE enablement series. Register for live sessions at
+  [events.elastic.co/slbworkshops](https://events.elastic.co/slbworkshops).
 
-  ## Phase 1 — Foundations (July 2026)
-  - **F-02** Intro to Elastic → `slb-f-02-intro-to-elastic`
-  - **F-03** Elastic Day to Day → `slb-f-03-elastic-day-to-day`
+  **This track:** program overview plus a reference **Database Monitoring** lab
+  (OpenTelemetry for MySQL, PostgreSQL, SQL Server, MongoDB, Db2, Oracle).
 
-  ## Phase 2 — SME Tracks (Aug–Nov 2026)
-  - **Developers** — UI, ES|QL, deployment validation
-  - **SRE & Infra Ops** — platform ops, ILM, ingestion, production readiness
-  - **BI / Analysts** — Discover, ES|QL, APIs & dashboards
-  - **AIOps & Alerting** — noise reduction, AI-assisted investigation
-
-  ## This track
-  Start with **Program overview**, then explore the **Database Monitoring** reference lab
-  (OpenTelemetry for six database engines).
-
-  Source: [github.com/poulsbopete/slb-workshops](https://github.com/poulsbopete/slb-workshops)
+  Session-specific labs: `slb-f-02-intro-to-elastic`, `slb-dev-02-esql-essentials`,
+  `slb-sre-01-platform-ops`, and others in
+  [github.com/poulsbopete/slb-workshops](https://github.com/poulsbopete/slb-workshops).
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-- slb
-- elastic
-- serverless
-- observability
-- co.elastic.workshops
+- postgresql
+- mysql
+- db2
 - co.elastic.workshops.production
+- elastic
+- slb
 - database-monitoring
 - opentelemetry
+- serverless
+- sqlserver
+- mongodb
+- observability
+- oracle
+- co.elastic.workshops
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -52,4 +48,5 @@ lab_config:
   hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
+checksum: "666201097712759484"
 enhanced_loading: false

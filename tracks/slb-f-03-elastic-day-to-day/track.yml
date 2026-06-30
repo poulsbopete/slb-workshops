@@ -1,5 +1,6 @@
 slug: slb-f-03-elastic-day-to-day
-title: "SLB F-03 — Elastic Day to Day"
+id: bb8nfyhx0pay
+title: SLB F-03 — Elastic Day to Day
 teaser: |
   Practical examples of data ingestion, querying with ES|QL, and using Kibana dashboards — with a focus on what Grafana users need to know.
 description: |-
@@ -19,13 +20,13 @@ description: |-
   - Grafana → Elastic mental model translation
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-  - all
-  - co.elastic.workshops
-  - elastic
-  - observability
-  - serverless
-  - shared-foundations
-  - slb
+- elastic
+- slb
+- serverless
+- shared-foundations
+- all
+- observability
+- co.elastic.workshops
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -38,6 +39,9 @@ lab_config:
   loadingMessages: true
   theme:
     name: modern-dark
+  override_challenge_layout: false
+  hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-  override_challenge_layout: false
+checksum: "14667918095538650318"
+enhanced_loading: false

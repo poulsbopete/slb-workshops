@@ -1,8 +1,9 @@
 ---
 slug: bi-02-lab
+id: nnet8vyzftqd
 type: challenge
-title: "BI 02 — ES|QL for Analysts"
-teaser: "ES|QL query patterns, aggregations, and time-series analysis for analysts."
+title: BI 02 — ES|QL for Analysts
+teaser: ES|QL query patterns, aggregations, and time-series analysis for analysts.
 notes:
 - type: text
   contents: |
@@ -16,7 +17,8 @@ notes:
     - Time-based analysis
     - Correlating observability data with cost and utilization context
 tabs:
-- title: Elastic Serverless
+- id: rx4kavtmizgc
+  title: Elastic Serverless
   type: service
   hostname: es3-api
   path: /app/home
@@ -29,10 +31,13 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-- title: Terminal
+- id: 1or3gx7inxyw
+  title: Terminal
   type: terminal
   hostname: es3-api
+difficulty: ""
 timelimit: 0
+enhanced_loading: null
 ---
 
 # ES|QL for Analysts

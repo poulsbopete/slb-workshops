@@ -1,5 +1,6 @@
 slug: slb-sre-01-platform-ops
-title: "SLB SRE 01 — Platform Operations Fundamentals"
+id: ngbwze0bbfn7
+title: SLB SRE 01 — Platform Operations Fundamentals
 teaser: |
   Core building blocks — data streams, indices, tiers, templates, and pipelines.
 description: |-
@@ -18,13 +19,13 @@ description: |-
   - Fleet-managed vs standalone deployment models
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-  - co.elastic.workshops
-  - elastic
-  - observability
-  - serverless
-  - slb
-  - sme-track--sre-&-infra-ops
-  - sre
+- elastic
+- slb
+- sme-track--sre-&-infra-ops
+- serverless
+- observability
+- sre
+- co.elastic.workshops
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -37,6 +38,9 @@ lab_config:
   loadingMessages: true
   theme:
     name: modern-dark
+  override_challenge_layout: false
+  hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-  override_challenge_layout: false
+checksum: "5163607625992701856"
+enhanced_loading: false

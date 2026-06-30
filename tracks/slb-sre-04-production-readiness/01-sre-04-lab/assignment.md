@@ -1,8 +1,9 @@
 ---
 slug: sre-04-lab
+id: whmifgelxfmb
 type: challenge
-title: "SRE 04 — Production Readiness Workshop"
-teaser: "Validation checklists, runbook documentation, and ingestion health checks."
+title: SRE 04 — Production Readiness Workshop
+teaser: Validation checklists, runbook documentation, and ingestion health checks.
 notes:
 - type: text
   contents: |
@@ -16,7 +17,8 @@ notes:
     - Ingestion health checks
     - Building confidence operating Elastic in production
 tabs:
-- title: Elastic Serverless
+- id: tzs36ugxw8ak
+  title: Elastic Serverless
   type: service
   hostname: es3-api
   path: /app/home
@@ -29,10 +31,13 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-- title: Terminal
+- id: meoh8e6xvdod
+  title: Terminal
   type: terminal
   hostname: es3-api
+difficulty: ""
 timelimit: 0
+enhanced_loading: null
 ---
 
 # Production Readiness Workshop
