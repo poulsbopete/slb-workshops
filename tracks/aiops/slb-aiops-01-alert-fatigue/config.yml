@@ -17,3 +17,6 @@ virtualmachines:
   - http
   - https
   - high-ports
+secrets:
+- name: LLM_PROXY_PROD
+- name: ESS_CLOUD_API_KEY
