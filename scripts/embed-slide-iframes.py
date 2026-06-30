@@ -70,7 +70,7 @@ def patch_simple_assignment(path: Path, workshop: dict) -> bool:
 
     front["notes"] = notes
     dumped = yaml.dump(front, default_flow_style=False, sort_keys=False, allow_unicode=True)
-    new_text = f"---\n{dumped}---{body}"
+    new_text = f"---\n{dumped.rstrip()}\n---\n{body.lstrip()}"
     if new_text == text:
         return False
     path.write_text(new_text)

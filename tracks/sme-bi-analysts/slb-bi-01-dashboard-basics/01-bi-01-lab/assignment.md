@@ -28,7 +28,9 @@ tabs:
 difficulty: ''
 timelimit: 0
 enhanced_loading: null
----> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
+---
+
+> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
 
 # Dashboard & Data Exploration Basics
 
