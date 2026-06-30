@@ -6,16 +6,28 @@ title: BI 02 — ES|QL for Analysts
 teaser: ES|QL query patterns, aggregations, and time-series analysis for analysts.
 notes:
 - type: text
-  contents: |
-    ## Provisioning your lab…
+  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/bi-02/\"\
+    \n  width=\"100%\" height=\"800\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block\"\
+    >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
+    \ **BI 02** (usually 2–3 minutes).*"
+- type: text
+  contents: '## Provisioning your lab…
+
 
     Creating an Elastic **Observability Serverless** project for **BI 02**.
+
     This usually takes 2–3 minutes.
 
+
     **Live session topics:**
+
     - Simple query patterns and aggregations
+
     - Time-based analysis
+
     - Correlating observability data with cost and utilization context
+
+    '
 tabs:
 - id: rx4kavtmizgc
   title: Elastic Serverless
@@ -35,7 +47,7 @@ tabs:
   title: Terminal
   type: terminal
   hostname: es3-api
-difficulty: ""
+difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---

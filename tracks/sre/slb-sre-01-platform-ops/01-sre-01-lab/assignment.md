@@ -6,16 +6,28 @@ title: SRE 01 — Platform Operations Fundamentals
 teaser: Core building blocks — data streams, indices, tiers, templates, and pipelines.
 notes:
 - type: text
-  contents: |
-    ## Provisioning your lab…
+  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/sre-01/\"\
+    \n  width=\"100%\" height=\"800\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block\"\
+    >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
+    \ **SRE 01** (usually 2–3 minutes).*"
+- type: text
+  contents: '## Provisioning your lab…
+
 
     Creating an Elastic **Observability Serverless** project for **SRE 01**.
+
     This usually takes 2–3 minutes.
 
+
     **Live session topics:**
+
     - Data streams, indices, tiers, templates, pipelines
+
     - Elastic Agent default integrations vs OTel-native receiver patterns
+
     - Fleet-managed vs standalone deployment models
+
+    '
 tabs:
 - id: t4ybuasacvzc
   title: Elastic Serverless
@@ -35,7 +47,7 @@ tabs:
   title: Terminal
   type: terminal
   hostname: es3-api
-difficulty: ""
+difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---

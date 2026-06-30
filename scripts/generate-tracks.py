@@ -523,10 +523,28 @@ BASE_TAGS = [
 ]
 
 
+PAGES_BASE = "https://poulsbopete.github.io/slb-workshops"
+
+
+def iframe_note(workshop: dict) -> str:
+    wid = workshop["id"]
+    code = workshop["code"]
+    url = f"{PAGES_BASE}/slides/{wid}/"
+    return (
+        f"## While you wait…\\n\\n"
+        f"<iframe src=\\"{url}\\"\\n"
+        f"  width=\\"100%\\" height=\\"800\\" frameborder=\\"0\\"\\n"
+        f"  style=\\"border-radius:8px;display:block\\">\\n"
+        f"</iframe>\\n\\n"
+        f"*Provisioning your Elastic **Observability Serverless** lab for **{code}** "
+        f"(usually 2–3 minutes).*"
+    )
+
+
 def assignment_md(workshop: dict) -> str:
     wid = workshop["id"]
     body = LABS.get(wid, f"\n# {workshop['title']}\n\nLab content TBD.\n")
-    topics_md = "\n".join(f"- {t}" for t in workshop.get("topics", []))
+    topic_lines = chr(10).join("    - " + t for t in workshop.get("topics", []))
     front = f"""---
 slug: {wid}-lab
 type: challenge
@@ -534,14 +552,11 @@ title: "{workshop['code']} — {workshop['title']}"
 teaser: "{workshop['description'].strip().replace(chr(10), ' ')[:200]}"
 notes:
 - type: text
+  contents: "{iframe_note(workshop)}"
+- type: text
   contents: |
-    ## Provisioning your lab…
-
-    Creating an Elastic **Observability Serverless** project for **{workshop['code']}**.
-    This usually takes 2–3 minutes.
-
-    **Live session topics:**
-{chr(10).join('    - ' + t for t in workshop.get('topics', []))}
+    ## Session topics
+{topic_lines}
 tabs:
 {KIBANA_TAB}
 timelimit: 0

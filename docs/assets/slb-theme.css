@@ -1,0 +1,101 @@
+/* SLB × Elastic workshop slides — GitHub Pages + Instruqt iframe */
+:root {
+  --slb-accent: #00bfb3;
+  --slb-accent-dim: #008f86;
+  --slb-bg: #0d1117;
+  --slb-text: #e6edf3;
+  --slb-muted: #8b949e;
+}
+
+.reveal {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  color: var(--slb-text);
+}
+
+.reveal .slides section {
+  text-align: left;
+}
+
+.reveal h1, .reveal h2, .reveal h3 {
+  color: var(--slb-accent);
+  text-transform: none;
+  letter-spacing: -0.02em;
+}
+
+.reveal h2 {
+  font-size: 1.6em;
+  margin-bottom: 0.6em;
+  border-bottom: 2px solid var(--slb-accent-dim);
+  padding-bottom: 0.25em;
+}
+
+.reveal p, .reveal li {
+  font-size: 0.92em;
+  line-height: 1.45;
+}
+
+.reveal ul {
+  margin-left: 1.2em;
+}
+
+.reveal a {
+  color: var(--slb-accent);
+}
+
+.reveal .series {
+  color: var(--slb-muted);
+  font-size: 0.85em;
+  margin-top: -0.5em;
+}
+
+.reveal .muted {
+  color: var(--slb-muted);
+  font-size: 0.8em;
+  margin-top: 2em;
+}
+
+.reveal .mono {
+  font-family: ui-monospace, monospace;
+  font-size: 0.75em;
+  color: var(--slb-muted);
+}
+
+/* Hub index page */
+body.hub {
+  background: var(--slb-bg);
+  color: var(--slb-text);
+  font-family: system-ui, sans-serif;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+body.hub header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #30363d;
+  padding-bottom: 1rem;
+}
+
+body.hub h1 {
+  color: var(--slb-accent);
+  font-size: 1.75rem;
+}
+
+body.hub h2 {
+  color: var(--slb-accent);
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+}
+
+body.hub a {
+  color: var(--slb-accent);
+  text-decoration: none;
+}
+
+body.hub a:hover {
+  text-decoration: underline;
+}
+
+body.hub li {
+  margin: 0.35rem 0;
+}

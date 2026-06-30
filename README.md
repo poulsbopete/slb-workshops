@@ -7,6 +7,7 @@ Hands-on Instruqt tracks for the **SLB SRE × Elastic** enablement program. **On
 | Live registration | [events.elastic.co/slbworkshops](https://events.elastic.co/slbworkshops) |
 | Instruqt | [play.instruqt.com/manage/elastic/tracks](https://play.instruqt.com/manage/elastic/tracks) |
 | Source repo | [github.com/poulsbopete/slb-workshops](https://github.com/poulsbopete/slb-workshops) |
+| Slide decks (GitHub Pages) | [poulsbopete.github.io/slb-workshops](https://poulsbopete.github.io/slb-workshops) |
 
 Filter tracks in Instruqt by tag **`slb-workshops`** or **`slb`** (all program tracks), or by section e.g. **`slb-section-aiops`**.
 
@@ -58,6 +59,7 @@ scripts/
 ```bash
 make list                  # tracks grouped by section
 make list-sections         # section tags and collection names
+make slides-all            # regenerate GitHub Pages decks + embed in Instruqt
 make push-section SECTION=aiops   # push one section only
 make publish               # git push + push all Instruqt tracks
 ```

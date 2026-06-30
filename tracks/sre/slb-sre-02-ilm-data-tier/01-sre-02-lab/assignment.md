@@ -6,16 +6,28 @@ title: SRE 02 — ILM & Data Tier Deep Dive
 teaser: ILM policy design, data tier allocation, and common misconfigurations.
 notes:
 - type: text
-  contents: |
-    ## Provisioning your lab…
+  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/sre-02/\"\
+    \n  width=\"100%\" height=\"800\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block\"\
+    >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
+    \ **SRE 02** (usually 2–3 minutes).*"
+- type: text
+  contents: '## Provisioning your lab…
+
 
     Creating an Elastic **Observability Serverless** project for **SRE 02**.
+
     This usually takes 2–3 minutes.
 
+
     **Live session topics:**
+
     - ILM policy design and data tier allocation
+
     - ILM phase transitions and tier allocation behavior
+
     - Node roles and common misconfigurations
+
+    '
 tabs:
 - id: mdakwvjarazc
   title: Elastic Serverless
@@ -35,7 +47,7 @@ tabs:
   title: Terminal
   type: terminal
   hostname: es3-api
-difficulty: ""
+difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---

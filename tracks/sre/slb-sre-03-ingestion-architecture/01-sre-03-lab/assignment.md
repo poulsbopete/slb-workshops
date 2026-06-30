@@ -6,17 +6,30 @@ title: SRE 03 — Ingestion Architecture & Troubleshooting
 teaser: Elastic Agent vs OTel tradeoffs, Prometheus ingestion, and failure store handling.
 notes:
 - type: text
-  contents: |
-    ## Provisioning your lab…
+  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/sre-03/\"\
+    \n  width=\"100%\" height=\"800\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block\"\
+    >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
+    \ **SRE 03** (usually 2–3 minutes).*"
+- type: text
+  contents: '## Provisioning your lab…
+
 
     Creating an Elastic **Observability Serverless** project for **SRE 03**.
+
     This usually takes 2–3 minutes.
 
+
     **Live session topics:**
+
     - Elastic Agent integrations vs OTel-native collection tradeoffs
+
     - Prometheus scrape and remote_write ingestion patterns
+
     - Failure store and ingest error handling
+
     - Diagnosing dashboard instability when switching Prometheus environments
+
+    '
 tabs:
 - id: 7qsvzoxxwzgp
   title: Elastic Serverless
@@ -36,7 +49,7 @@ tabs:
   title: Terminal
   type: terminal
   hostname: es3-api
-difficulty: ""
+difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---

@@ -1,4 +1,4 @@
-.PHONY: list push-all pull-all generate publish git-push push-section list-sections sync-sections
+.PHONY: list push-all pull-all generate publish git-push push-section list-sections sync-sections slides embed-slides
 
 TRACKS := $(shell find tracks -mindepth 2 -maxdepth 2 -type d -name 'slb-*' | sort)
 SECTIONS := foundations developers sre bi aiops reference
@@ -16,6 +16,14 @@ list-sections:
 
 generate:
 	python3 scripts/generate-tracks.py
+
+slides:
+	python3 scripts/generate-slides.py
+
+embed-slides:
+	python3 scripts/embed-slide-iframes.py
+
+slides-all: slides embed-slides
 
 sync-sections:
 	python3 scripts/sync-section-tags.py

@@ -6,16 +6,28 @@ title: SRE 04 — Production Readiness Workshop
 teaser: Validation checklists, runbook documentation, and ingestion health checks.
 notes:
 - type: text
-  contents: |
-    ## Provisioning your lab…
+  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/sre-04/\"\
+    \n  width=\"100%\" height=\"800\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block\"\
+    >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
+    \ **SRE 04** (usually 2–3 minutes).*"
+- type: text
+  contents: '## Provisioning your lab…
+
 
     Creating an Elastic **Observability Serverless** project for **SRE 04**.
+
     This usually takes 2–3 minutes.
 
+
     **Live session topics:**
+
     - Validation checklists and runbook documentation
+
     - Ingestion health checks
+
     - Building confidence operating Elastic in production
+
+    '
 tabs:
 - id: tzs36ugxw8ak
   title: Elastic Serverless
@@ -35,7 +47,7 @@ tabs:
   title: Terminal
   type: terminal
   hostname: es3-api
-difficulty: ""
+difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
