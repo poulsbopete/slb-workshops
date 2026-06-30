@@ -1,0 +1,14 @@
+---
+description: After any change to Instruqt tracks or workshop content, always publish to GitHub and Instruqt.
+globs: tracks/**,catalog/**,shared/**,scripts/**
+alwaysApply: false
+---
+
+# Publish workflow
+
+After editing workshop tracks or catalog content:
+
+1. Run `make publish` (commits, pushes to GitHub, pushes all tracks to Instruqt).
+2. Or manually: `git add -A && git commit && git push` then `make push-all`.
+
+Never leave track changes only on disk — always push to both remotes.

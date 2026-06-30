@@ -1,0 +1,42 @@
+slug: slb-dev-03-deployment-validation
+title: "SLB Dev 03 — Deployment Validation & Incident Workflows"
+teaser: |
+  Elastic-native workflows for validating service health and correlating telemetry.
+description: |-
+  **Dev 03 — Deployment Validation & Incident Workflows**
+
+  Elastic-native workflows for validating service health and correlating telemetry.
+
+  **Series:** SME Track — Developers
+  **Audience:** developers
+  **Presenter:** Pramod Saripalli
+  **Live date:** 2026-10-07
+
+  ## Session topics
+  - Service health checks after deployments
+  - Correlating telemetry sources (logs, metrics, traces)
+  - Saved queries and views for daily use
+icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
+tags:
+  - co.elastic.workshops
+  - developers
+  - elastic
+  - observability
+  - serverless
+  - slb
+  - sme-track--developers
+owner: elastic
+developers:
+- peter.simkins@elastic.co
+idle_timeout: 3600
+timelimit: 10800
+lab_config:
+  sidebar_enabled: true
+  feedback_recap_enabled: true
+  feedback_tab_enabled: false
+  loadingMessages: true
+  theme:
+    name: modern-dark
+  default_layout: AssignmentRight
+  default_layout_sidebar_size: 35
+  override_challenge_layout: false

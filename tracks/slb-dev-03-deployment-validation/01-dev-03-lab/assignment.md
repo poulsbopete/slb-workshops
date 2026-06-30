@@ -1,0 +1,64 @@
+---
+slug: dev-03-lab
+type: challenge
+title: "Dev 03 — Deployment Validation & Incident Workflows"
+teaser: "Elastic-native workflows for validating service health and correlating telemetry."
+notes:
+- type: text
+  contents: |
+    ## Provisioning your lab…
+
+    Creating an Elastic **Observability Serverless** project for **Dev 03**.
+    This usually takes 2–3 minutes.
+
+    **Live session topics:**
+    - Service health checks after deployments
+    - Correlating telemetry sources (logs, metrics, traces)
+    - Saved queries and views for daily use
+tabs:
+- title: Elastic Serverless
+  type: service
+  hostname: es3-api
+  path: /app/home
+  port: 8080
+  custom_request_headers:
+  - key: Content-Security-Policy
+    value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
+      style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
+  custom_response_headers:
+  - key: Content-Security-Policy
+    value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
+      style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
+- title: Terminal
+  type: terminal
+  hostname: es3-api
+timelimit: 0
+---
+
+# Deployment Validation & Incident Workflows
+
+## Part 1 — Service health after deploy
+
+1. **Observability → APM → Services** — pick a service (or use sample data).
+2. Compare error rate and latency for **last 15 minutes** vs **previous day**.
+
+## Part 2 — Correlate logs, metrics, traces
+
+1. From a service view, pivot to **Logs** and **Metrics** for the same time range.
+2. Use **Unified view** or split tabs to correlate signals.
+
+## Part 3 — Saved views
+
+1. Save an ES|QL query as a **saved search**.
+2. Pin a dashboard panel for post-deploy validation.
+
+## Part 4 — Runbook snippet (Terminal)
+
+Document your validation query in a note:
+
+```bash
+source ~/.bashrc
+echo "Post-deploy check: FROM logs-* | WHERE service.environment == 'production' ..."
+```
+
+Click **Check**.

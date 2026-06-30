@@ -1,0 +1,42 @@
+slug: slb-sre-02-ilm-data-tier
+title: "SLB SRE 02 — ILM & Data Tier Deep Dive"
+teaser: |
+  ILM policy design, data tier allocation, and common misconfigurations.
+description: |-
+  **SRE 02 — ILM & Data Tier Deep Dive**
+
+  ILM policy design, data tier allocation, and common misconfigurations.
+
+  **Series:** SME Track — SRE & Infra Ops
+  **Audience:** sre
+  **Presenter:** Specialist (DSR)
+  **Live date:** 2026-09-16
+
+  ## Session topics
+  - ILM policy design and data tier allocation
+  - ILM phase transitions and tier allocation behavior
+  - Node roles and common misconfigurations
+icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
+tags:
+  - co.elastic.workshops
+  - elastic
+  - observability
+  - serverless
+  - slb
+  - sme-track--sre-&-infra-ops
+  - sre
+owner: elastic
+developers:
+- peter.simkins@elastic.co
+idle_timeout: 3600
+timelimit: 10800
+lab_config:
+  sidebar_enabled: true
+  feedback_recap_enabled: true
+  feedback_tab_enabled: false
+  loadingMessages: true
+  theme:
+    name: modern-dark
+  default_layout: AssignmentRight
+  default_layout_sidebar_size: 35
+  override_challenge_layout: false

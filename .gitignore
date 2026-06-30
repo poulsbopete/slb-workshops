@@ -1,0 +1,7 @@
+# SLB Workshops — Instruqt track sources
+.DS_Store
+*.pyc
+__pycache__/
+.venv/
+.env
+*.log

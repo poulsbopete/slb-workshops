@@ -1,0 +1,42 @@
+slug: slb-dev-02-esql-essentials
+title: "SLB Dev 02 — ES|QL Essentials for Troubleshooting"
+teaser: |
+  Core ES|QL syntax, common patterns, and queries across logs, metrics, and traces.
+description: |-
+  **Dev 02 — ES|QL Essentials for Troubleshooting**
+
+  Core ES|QL syntax, common patterns, and queries across logs, metrics, and traces.
+
+  **Series:** SME Track — Developers
+  **Audience:** developers
+  **Presenter:** Pramod Saripalli
+  **Live date:** 2026-09-09
+
+  ## Session topics
+  - Core ES|QL syntax and common patterns
+  - Logs/metrics/traces query patterns
+  - Incident investigation workflows
+icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
+tags:
+  - co.elastic.workshops
+  - developers
+  - elastic
+  - observability
+  - serverless
+  - slb
+  - sme-track--developers
+owner: elastic
+developers:
+- peter.simkins@elastic.co
+idle_timeout: 3600
+timelimit: 10800
+lab_config:
+  sidebar_enabled: true
+  feedback_recap_enabled: true
+  feedback_tab_enabled: false
+  loadingMessages: true
+  theme:
+    name: modern-dark
+  default_layout: AssignmentRight
+  default_layout_sidebar_size: 35
+  override_challenge_layout: false

@@ -1,0 +1,38 @@
+slug: slb-workshops
+id: cl3mlvgk1zt1
+title: SLB Workshops — Database Monitoring
+description: Reference track — live OTel for MySQL, PostgreSQL, SQL Server, MongoDB, Db2, Oracle.
+icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
+tags:
+- postgresql
+- mysql
+- db2
+- co.elastic.workshops.production
+- elastic
+- database-monitoring
+- opentelemetry
+- serverless
+- co.elastic.workshops.production.elastic_database_monitoring
+- sqlserver
+- mongodb
+- observability
+- oracle
+- co.elastic.workshops
+- slb
+owner: elastic
+developers:
+- peter.simkins@elastic.co
+idle_timeout: 3600
+timelimit: 10800
+lab_config:
+  sidebar_enabled: true
+  feedback_recap_enabled: true
+  feedback_tab_enabled: false
+  loadingMessages: true
+  theme:
+    name: modern-dark
+  override_challenge_layout: false
+  hideStopButton: false
+  default_layout: AssignmentRight
+  default_layout_sidebar_size: 35
+enhanced_loading: false

@@ -1,0 +1,68 @@
+#!/bin/bash
+# Restart the DB monitoring data generator and re-deploy all dashboards.
+
+set -euo pipefail
+source /root/.bashrc || true
+
+DB_REPO_DIR=/opt/dbmonitoring
+
+# Restart generator if not running
+if ! pgrep -f db_otel_generator.py > /dev/null 2>&1; then
+  echo "Restarting data generator..."
+  mkdir -p /tmp/db-monitoring-logs
+  nohup /opt/workshop-venv/bin/python3 "$DB_REPO_DIR/tools/db_otel_generator.py" \
+    --otlp-endpoint "${WORKSHOP_OTLP_ENDPOINT}" \
+    --otlp-auth "${WORKSHOP_OTLP_AUTH_HEADER}" \
+    --historical-days 4 \
+    --live \
+    >> /tmp/db-monitoring-logs/generator.log 2>&1 &
+  echo "Generator PID: $! (log: /tmp/db-monitoring-logs/generator.log)"
+else
+  echo "Generator already running (PID: $(pgrep -f db_otel_generator.py))."
+fi
+
+# Pull latest files from GitHub
+echo "Pulling latest files from GitHub..."
+git -C "$DB_REPO_DIR" pull --ff-only 2>&1 | tail -3 || true
+
+# Wait for Kibana to be ready
+echo "Waiting for Kibana..."
+for i in $(seq 1 12); do
+  status=$(curl -s -o /dev/null -w "%{http_code}" \
+    -H "Authorization: ApiKey ${ES_API_KEY}" \
+    "${KIBANA_URL}/api/status" 2>/dev/null || echo "000")
+  [ "$status" = "200" ] && break
+  echo "  Kibana not ready yet (${i}/12) — waiting 5s..."
+  sleep 5
+done
+
+# Deploy dashboards via kibana-dashboards.js (uses /api/dashboards with Elastic-Api-Version: 2023-10-31)
+echo "Deploying dashboards..."
+export KIBANA_API_KEY="${ES_API_KEY}"
+
+_deploy() {
+  local title="$1" file="$2"
+  local result
+  result=$(KIBANA_URL="$KIBANA_URL" KIBANA_API_KEY="$KIBANA_API_KEY" \
+    node "$DB_REPO_DIR/scripts/kibana-dashboards.js" dashboard create "$file" 2>&1)
+  if echo "$result" | grep -q "created successfully"; then
+    local id
+    id=$(echo "$result" | grep "ID:" | awk '{print $2}')
+    echo "  ✓ ${title} (id=${id})"
+    echo "$id" >> /root/workshop/build/db-monitoring/dashboard-ids.txt
+  else
+    echo "  ✗ ${title}"
+    echo "$result" | head -5
+  fi
+}
+
+mkdir -p /root/workshop/build/db-monitoring
+> /root/workshop/build/db-monitoring/dashboard-ids.txt
+
+_deploy "MySQL — Slow Query & Error Monitoring"   "$DB_REPO_DIR/dashboards/mysql-monitoring.json"
+_deploy "PostgreSQL — Performance & Health"        "$DB_REPO_DIR/dashboards/postgres-monitoring.json"
+_deploy "SQL Server — Performance & Health"        "$DB_REPO_DIR/dashboards/mssql-monitoring.json"
+_deploy "MongoDB — Operations & Health"            "$DB_REPO_DIR/dashboards/mongodb-monitoring.json"
+
+echo ""
+echo "Done. Open Kibana → Dashboards to explore."

@@ -1,0 +1,378 @@
+# SLB × Elastic Workshop Program — June 2026 draft
+# Source: SLB Workshops - Draft June 2026.ods
+# Registration: https://events.elastic.co/slbworkshops
+
+campaign:
+  parent: 2026-07-15-SLB Workshops-AMER-EntW-AE-WS
+  registration_url: https://events.elastic.co/slbworkshops
+
+personas:
+  - id: all
+    name: All Personas
+  - id: developers
+    name: Developers
+  - id: sre
+    name: SREs & Infrastructure Ops
+  - id: architects
+    name: Architects
+  - id: bi
+    name: BI / Analysts
+  - id: aiops
+    name: AIOps & Alert Engineers
+
+workshops:
+  # --- Phase 1: Foundation Series ---
+  - id: f-01
+    code: F-01
+    title: Your Elastic Team, Support & Best Practices
+    date: 2026-07-15
+    presenter: Pramod Saripalli
+    audience: all
+    series: Shared Foundations
+    format: webinar
+    instruqt_track: null
+    topics:
+      - Meet your Elastic team — who does what and when to reach out
+      - How to open an effective support ticket and what to expect
+      - Escalation paths — when and how to escalate a case
+      - Best practices for faster responses
+      - Introduction to the enablement program
+    description: >
+      Start here. This session introduces your Elastic team, shows you how to get
+      the fastest and most effective support responses, and sets you up to have the
+      best possible experience with Elastic.
+
+  - id: f-02
+    code: F-02
+    title: Intro to Elastic
+    date: 2026-07-22
+    presenter: Roberto Pantoja
+    audience: all
+    series: Shared Foundations
+    format: hybrid
+    instruqt_track: slb-f-02-intro-to-elastic
+    topics:
+      - Elastic Platform Overview
+      - How each persona uses Elastic
+      - SLB SRE's journey with Elastic — current state
+      - Data lifecycle and tiers — hot, warm, cold, frozen, delete
+    description: >
+      Overview of the Elastic platform and how it fits into SLB SRE's observability
+      journey — ingestion, storage, query, and visualization.
+
+  - id: f-03
+    code: F-03
+    title: Elastic Day to Day
+    date: 2026-07-29
+    presenter: Enrique
+    audience: all
+    series: Shared Foundations
+    format: hybrid
+    instruqt_track: slb-f-03-elastic-day-to-day
+    topics:
+      - Data lifecycle in practice
+      - Where ES|QL, dashboards and APIs fit into daily workflows
+      - Ingestion fundamentals
+      - Grafana → Elastic mental model translation
+    description: >
+      Practical examples of data ingestion, querying with ES|QL, and using Kibana
+      dashboards — with a focus on what Grafana users need to know.
+
+  - id: f-04
+    code: F-04
+    title: Looking Forward with Elastic
+    date: 2026-08-05
+    presenter: Specialist (DSR)
+    audience: all
+    series: Shared Foundations
+    format: webinar
+    instruqt_track: null
+    topics:
+      - What's new in Elastic 9.x
+      - What to expect during the migration
+      - Key features relevant to SLB SRE
+      - Roadmap highlights
+    description: >
+      First look at Elastic 9.x and what it means for SLB SRE.
+
+  # --- SME Track: Developers ---
+  - id: dev-01
+    code: Dev 01
+    title: Elastic UI & Dashboard Workflows
+    date: 2026-08-12
+    presenter: Roberto Pantoja
+    audience: developers
+    series: SME Track — Developers
+    format: hands-on
+    instruqt_track: slb-dev-01-ui-dashboards
+    topics:
+      - Navigating Discover, filtering, drilldowns
+      - Grafana-to-Elastic translation for dashboard users
+      - Dashboard navigation and customization
+    description: >
+      Fast track to Kibana — Discover, dashboards, filters, and drilldowns with
+      direct comparisons to Grafana workflows.
+
+  - id: dev-02
+    code: Dev 02
+    title: ES|QL Essentials for Troubleshooting
+    date: 2026-09-09
+    presenter: Pramod Saripalli
+    audience: developers
+    series: SME Track — Developers
+    format: hands-on
+    instruqt_track: slb-dev-02-esql-essentials
+    topics:
+      - Core ES|QL syntax and common patterns
+      - Logs/metrics/traces query patterns
+      - Incident investigation workflows
+    description: >
+      Core ES|QL syntax, common patterns, and queries across logs, metrics, and traces.
+
+  - id: dev-03
+    code: Dev 03
+    title: Deployment Validation & Incident Workflows
+    date: 2026-10-07
+    presenter: Pramod Saripalli
+    audience: developers
+    series: SME Track — Developers
+    format: hands-on
+    instruqt_track: slb-dev-03-deployment-validation
+    topics:
+      - Service health checks after deployments
+      - Correlating telemetry sources (logs, metrics, traces)
+      - Saved queries and views for daily use
+    description: >
+      Elastic-native workflows for validating service health and correlating telemetry.
+
+  # --- SME Track: SRE & Infra Ops ---
+  - id: sre-01
+    code: SRE 01
+    title: Platform Operations Fundamentals
+    date: 2026-08-19
+    presenter: Pramod Saripalli
+    audience: sre
+    series: SME Track — SRE & Infra Ops
+    format: hands-on
+    instruqt_track: slb-sre-01-platform-ops
+    topics:
+      - Data streams, indices, tiers, templates, pipelines
+      - Elastic Agent default integrations vs OTel-native receiver patterns
+      - Fleet-managed vs standalone deployment models
+    description: >
+      Core building blocks — data streams, indices, tiers, templates, and pipelines.
+
+  - id: sre-02
+    code: SRE 02
+    title: ILM & Data Tier Deep Dive
+    date: 2026-09-16
+    presenter: Specialist (DSR)
+    audience: sre
+    series: SME Track — SRE & Infra Ops
+    format: hands-on
+    instruqt_track: slb-sre-02-ilm-data-tier
+    topics:
+      - ILM policy design and data tier allocation
+      - ILM phase transitions and tier allocation behavior
+      - Node roles and common misconfigurations
+    description: >
+      ILM policy design, data tier allocation, and common misconfigurations.
+
+  - id: sre-03
+    code: SRE 03
+    title: Ingestion Architecture & Troubleshooting
+    date: 2026-10-14
+    presenter: Specialist (DSR)
+    audience: sre
+    series: SME Track — SRE & Infra Ops
+    format: hands-on
+    instruqt_track: slb-sre-03-ingestion-architecture
+    topics:
+      - Elastic Agent integrations vs OTel-native collection tradeoffs
+      - Prometheus scrape and remote_write ingestion patterns
+      - Failure store and ingest error handling
+      - Diagnosing dashboard instability when switching Prometheus environments
+    description: >
+      Elastic Agent vs OTel tradeoffs, Prometheus ingestion, and failure store handling.
+
+  - id: sre-04
+    code: SRE 04
+    title: Production Readiness Workshop
+    date: 2026-10-28
+    presenter: Specialist (DSR)
+    audience: sre
+    series: SME Track — SRE & Infra Ops
+    format: hands-on
+    instruqt_track: slb-sre-04-production-readiness
+    topics:
+      - Validation checklists and runbook documentation
+      - Ingestion health checks
+      - Building confidence operating Elastic in production
+    description: >
+      Validation checklists, runbook documentation, and ingestion health checks.
+
+  # --- SME Track: Architects ---
+  - id: arch-01
+    code: Arch 01
+    title: Architecture & Migration Strategy
+    date: 2026-08-26
+    presenter: Specialist (DSR)
+    audience: architects
+    series: SME Track — Architects
+    format: webinar
+    instruqt_track: null
+    topics:
+      - Target-state ingestion design
+      - Coexistence planning during migration (Grafana + Elastic side by side)
+      - Multi-team deployment and access patterns
+    description: >
+      Target-state ingestion design and coexistence planning during migration.
+
+  - id: arch-02
+    code: Arch 02
+    title: Lifecycle, Governance & Standards
+    date: 2026-09-23
+    presenter: Specialist (DSR)
+    audience: architects
+    series: SME Track — Architects
+    format: webinar
+    instruqt_track: null
+    topics:
+      - ILM/retention strategy and long-term platform design
+      - Fleet-managed vs standalone tradeoffs
+      - ECS vs OTel semantic conventions
+      - Ownership boundaries and reusable standards across teams
+    description: >
+      ILM and retention strategy, Fleet tradeoffs, and ECS vs OTel conventions.
+
+  # --- SME Track: BI & Data Analysts ---
+  - id: bi-01
+    code: BI 01
+    title: Dashboard & Data Exploration Basics
+    date: 2026-09-02
+    presenter: Pramod Saripalli
+    audience: bi
+    series: SME Track — BI & Data Analysts
+    format: hands-on
+    instruqt_track: slb-bi-01-dashboard-basics
+    topics:
+      - Navigating Discover, Lens, and dashboards
+      - Filtering, slicing, and exporting
+      - Entry-level friendly — no prior Elastic experience required
+    description: >
+      Kibana Discover, Lens visualizations, and dashboards for BI users.
+
+  - id: bi-02
+    code: BI 02
+    title: ES|QL for Analysts
+    date: 2026-09-30
+    presenter: Pramod Saripalli
+    audience: bi
+    series: SME Track — BI & Data Analysts
+    format: hands-on
+    instruqt_track: slb-bi-02-esql-analysts
+    topics:
+      - Simple query patterns and aggregations
+      - Time-based analysis
+      - Correlating observability data with cost and utilization context
+    description: >
+      ES|QL query patterns, aggregations, and time-series analysis for analysts.
+
+  - id: bi-03
+    code: BI 03
+    title: APIs, Integrations & Dashboard Building
+    date: 2026-10-21
+    presenter: Pramod Saripalli
+    audience: bi
+    series: SME Track — BI & Data Analysts
+    format: hands-on
+    instruqt_track: slb-bi-03-apis-dashboards
+    topics:
+      - API calls and pulling data into external tools
+      - Building dashboards for operational and business review
+      - Data schema considerations
+    description: >
+      Elasticsearch API basics and building dashboards for operational reporting.
+
+  # --- SME Track: AIOps & Alerting ---
+  - id: aiops-00
+    code: AIOps 00
+    title: AI/ML Capabilities Overview (one-off demo)
+    date: null
+    presenter: Specialist (DSR) — AIOps
+    audience: aiops
+    series: SME Track — AIOps & Alerting
+    format: webinar
+    instruqt_track: null
+    topics:
+      - Overview of Elastic AI/ML capabilities for observability
+    description: >
+      One-off demo session — late June / early July 2026.
+
+  - id: aiops-01
+    code: AIOps 01
+    title: Alert Fatigue & Noise Reduction
+    date: 2026-11-11
+    presenter: Specialist (DSR) — AIOps
+    audience: aiops
+    series: SME Track — AIOps & Alerting
+    format: hands-on
+    instruqt_track: slb-aiops-01-alert-fatigue
+    topics:
+      - Understanding why alert fatigue happens in Elastic
+      - Rule tuning — thresholds and conditions
+      - Alert deduplication, suppression, and exceptions
+      - Day-to-day alert triage and diagnosis workflows
+    description: >
+      Reduce alert volume through rule tuning, deduplication, and suppression.
+
+  - id: aiops-02
+    code: AIOps 02
+    title: AI-Assisted Investigation & Automated Response
+    date: 2026-11-18
+    presenter: Specialist (DSR) — AIOps
+    audience: aiops
+    series: SME Track — AIOps & Alerting
+    format: hands-on
+    instruqt_track: slb-aiops-02-ai-investigation
+    topics:
+      - Intelligent alert investigation with AI Assistant for Observability
+      - Root cause analysis — correlating logs, metrics, traces
+      - Log pattern analysis and anomaly detection
+      - Automated remediation workflows with Elastic Workflows
+    description: >
+      AI-assisted investigation and automated remediation workflows.
+
+  # --- Cross-team ---
+  - id: cross-team
+    code: Cross-team
+    title: Cross-team Platform Review
+    date: 2026-11-04
+    presenter: Roberto Pantoja
+    audience: all
+    series: SME Track — All Teams
+    format: webinar
+    instruqt_track: null
+    topics:
+      - Elastic adoption progress across all teams
+      - Open Q&A and live troubleshooting
+      - Next steps and program evolution
+    description: >
+      Cross-team session reviewing adoption progress and next steps.
+
+  # --- Bonus / reference track (existing POC) ---
+  - id: bonus-dbmon
+    code: Bonus
+    title: Database Monitoring Lab (reference)
+    date: null
+    presenter: Elastic
+    audience: sre
+    series: Reference
+    format: hands-on
+    instruqt_track: slb-workshops
+    skip_generate: true
+    topics:
+      - OpenTelemetry database monitoring for six engines
+      - Kibana dashboards and alerting
+    description: >
+      Reference track — live OTel for MySQL, PostgreSQL, SQL Server, MongoDB, Db2, Oracle.

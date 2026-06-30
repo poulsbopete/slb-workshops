@@ -1,0 +1,4 @@
+#!/bin/bash
+set -euo pipefail
+echo "Environment is provisioned by track setup. Refresh the Elastic Serverless tab."
+exit 0

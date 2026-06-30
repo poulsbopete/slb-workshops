@@ -1,0 +1,10 @@
+#!/bin/bash
+set -euo pipefail
+# Provision Observability Serverless + Kibana proxy (:8080)
+if [ -f /opt/slb-workshops/shared/scripts/setup-es3-api-base.sh ]; then
+  exec bash /opt/slb-workshops/shared/scripts/setup-es3-api-base.sh
+fi
+curl -fsSL "https://raw.githubusercontent.com/poulsbopete/slb-workshops/main/shared/scripts/setup-es3-api-base.sh" \
+  -o /tmp/setup-es3-api-base.sh
+chmod +x /tmp/setup-es3-api-base.sh
+exec bash /tmp/setup-es3-api-base.sh

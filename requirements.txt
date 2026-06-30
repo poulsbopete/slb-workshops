@@ -1,0 +1,2 @@
+# Python deps for track generation (optional)
+PyYAML>=6.0
