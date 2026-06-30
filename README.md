@@ -7,7 +7,7 @@ Hands-on Instruqt tracks for the **SLB SRE × Elastic** enablement program. **Ei
 | Live registration | [events.elastic.co/slbworkshops](https://events.elastic.co/slbworkshops) |
 | Instruqt | [play.instruqt.com/manage/elastic/tracks](https://play.instruqt.com/manage/elastic/tracks) |
 | Source repo | [github.com/poulsbopete/slb-workshops](https://github.com/poulsbopete/slb-workshops) |
-| Slide decks (GitHub Pages) | [poulsbopete.github.io/slb-workshops/docs](https://poulsbopete.github.io/slb-workshops/docs) |
+| Slide decks (GitHub Pages) | [poulsbopete.github.io/slb-workshops](https://poulsbopete.github.io/slb-workshops) |
 
 Filter tracks in Instruqt by tag **`slb-workshops`** or **`slb`** (all program tracks), or by series e.g. **`slb-series-shared-foundations`**.
 
@@ -66,12 +66,12 @@ scripts/
 
 Slide decks live in [`docs/`](docs/) (Reveal.js) and embed in each challenge while labs provision.
 
-**Pages setup:** Repo → **Settings → Pages** → deploy from branch `main` folder **`/docs`** (or use the GitHub Actions workflow).
+**Pages setup:** Repo → **Settings → Pages** → branch `main`, folder **`/docs`**. The site root is then `.../slb-workshops/` (no `/docs` in public URLs).
 
 | URL | Content |
 |-----|---------|
-| [poulsbopete.github.io/slb-workshops/docs](https://poulsbopete.github.io/slb-workshops/docs) | Slide index |
-| `.../docs/slides/f-02/` | F-02 deck (example) |
+| [poulsbopete.github.io/slb-workshops](https://poulsbopete.github.io/slb-workshops) | Slide index |
+| `.../slides/sre-01/` | SRE 01 deck (example) |
 
 ```bash
 make slides-all    # rebuild decks + update Instruqt iframes

@@ -6,22 +6,22 @@ title: AIOps 02 — AI-Assisted Investigation & Automated Response
 teaser: AI-assisted investigation and automated remediation workflows.
 notes:
 - type: text
-  contents: |-
-    ## While you wait…
-
-    <iframe src="https://poulsbopete.github.io/slb-workshops/docs/slides/aiops-02/"
-      width="100%" height="1400" frameborder="0"
-      style="border-radius:8px;display:block;width:100%;min-height:900px">
-    </iframe>
-
-    *Provisioning your Elastic **Observability Serverless** lab for **AIOps 02** (usually 2–3 minutes).*
+  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/aiops-02/\"\
+    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
+    >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
+    \ **AIOps 02** (usually 2–3 minutes).*"
 - type: text
-  contents: |
-    ## Session topics
+  contents: '## Session topics
+
     - Intelligent alert investigation with AI Assistant for Observability
+
     - Root cause analysis — correlating logs, metrics, traces
+
     - Log pattern analysis and anomaly detection
+
     - Automated remediation workflows with Elastic Workflows
+
+    '
 tabs:
 - id: jut8ttqqn8c4
   title: Elastic Serverless
@@ -37,7 +37,7 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-difficulty: ""
+difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---

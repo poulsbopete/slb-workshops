@@ -6,22 +6,22 @@ title: SRE 03 — Ingestion Architecture & Troubleshooting
 teaser: Elastic Agent vs OTel tradeoffs, Prometheus ingestion, and failure store handling.
 notes:
 - type: text
-  contents: |-
-    ## While you wait…
-
-    <iframe src="https://poulsbopete.github.io/slb-workshops/docs/slides/sre-03/"
-      width="100%" height="1400" frameborder="0"
-      style="border-radius:8px;display:block;width:100%;min-height:900px">
-    </iframe>
-
-    *Provisioning your Elastic **Observability Serverless** lab for **SRE 03** (usually 2–3 minutes).*
+  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/sre-03/\"\
+    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
+    >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
+    \ **SRE 03** (usually 2–3 minutes).*"
 - type: text
-  contents: |
-    ## Session topics
+  contents: '## Session topics
+
     - Elastic Agent integrations vs OTel-native collection tradeoffs
+
     - Prometheus scrape and remote_write ingestion patterns
+
     - Failure store and ingest error handling
+
     - Diagnosing dashboard instability when switching Prometheus environments
+
+    '
 tabs:
 - id: jru4krdqiog7
   title: Elastic Serverless
@@ -37,7 +37,7 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-difficulty: ""
+difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---

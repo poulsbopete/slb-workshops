@@ -11,7 +11,7 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog" / "workshops.yaml"
 TRACKS = ROOT / "tracks"
-PAGES_BASE = "https://poulsbopete.github.io/slb-workshops/docs"
+PAGES_BASE = "https://poulsbopete.github.io/slb-workshops"
 IFRAME_HEIGHT = 1400
 
 

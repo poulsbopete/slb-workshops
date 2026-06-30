@@ -6,21 +6,20 @@ title: SRE 01 — Platform Operations Fundamentals
 teaser: Core building blocks — data streams, indices, tiers, templates, and pipelines.
 notes:
 - type: text
-  contents: |-
-    ## While you wait…
-
-    <iframe src="https://poulsbopete.github.io/slb-workshops/docs/slides/sre-01/"
-      width="100%" height="1400" frameborder="0"
-      style="border-radius:8px;display:block;width:100%;min-height:900px">
-    </iframe>
-
-    *Provisioning your Elastic **Observability Serverless** lab for **SRE 01** (usually 2–3 minutes).*
+  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/sre-01/\"\
+    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
+    >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
+    \ **SRE 01** (usually 2–3 minutes).*"
 - type: text
-  contents: |
-    ## Session topics
+  contents: '## Session topics
+
     - Data streams, indices, tiers, templates, pipelines
+
     - Elastic Agent default integrations vs OTel-native receiver patterns
+
     - Fleet-managed vs standalone deployment models
+
+    '
 tabs:
 - id: hcdahyovlngd
   title: Elastic Serverless
@@ -36,7 +35,7 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-difficulty: ""
+difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---

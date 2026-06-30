@@ -6,22 +6,22 @@ title: AIOps 01 — Alert Fatigue & Noise Reduction
 teaser: Reduce alert volume through rule tuning, deduplication, and suppression.
 notes:
 - type: text
-  contents: |-
-    ## While you wait…
-
-    <iframe src="https://poulsbopete.github.io/slb-workshops/docs/slides/aiops-01/"
-      width="100%" height="1400" frameborder="0"
-      style="border-radius:8px;display:block;width:100%;min-height:900px">
-    </iframe>
-
-    *Provisioning your Elastic **Observability Serverless** lab for **AIOps 01** (usually 2–3 minutes).*
+  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/aiops-01/\"\
+    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
+    >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
+    \ **AIOps 01** (usually 2–3 minutes).*"
 - type: text
-  contents: |
-    ## Session topics
+  contents: '## Session topics
+
     - Understanding why alert fatigue happens in Elastic
+
     - Rule tuning — thresholds and conditions
+
     - Alert deduplication, suppression, and exceptions
+
     - Day-to-day alert triage and diagnosis workflows
+
+    '
 tabs:
 - id: gdxdjt59pvyr
   title: Elastic Serverless
@@ -37,7 +37,7 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-difficulty: ""
+difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
