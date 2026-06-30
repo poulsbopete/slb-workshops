@@ -29,8 +29,8 @@ workshops:
     presenter: Pramod Saripalli
     audience: all
     series: Shared Foundations
-    format: webinar
-    instruqt_track: null
+    format: hybrid
+    instruqt_track: slb-f-01-support-best-practices
     topics:
       - Meet your Elastic team — who does what and when to reach out
       - How to open an effective support ticket and what to expect
@@ -85,8 +85,8 @@ workshops:
     presenter: Specialist (DSR)
     audience: all
     series: Shared Foundations
-    format: webinar
-    instruqt_track: null
+    format: hybrid
+    instruqt_track: slb-f-04-looking-forward
     topics:
       - What's new in Elastic 9.x
       - What to expect during the migration
@@ -102,7 +102,7 @@ workshops:
     date: 2026-08-12
     presenter: Roberto Pantoja
     audience: developers
-    series: SME Track — Developers
+    series: "SME Track: Developers"
     format: hands-on
     instruqt_track: slb-dev-01-ui-dashboards
     topics:
@@ -119,7 +119,7 @@ workshops:
     date: 2026-09-09
     presenter: Pramod Saripalli
     audience: developers
-    series: SME Track — Developers
+    series: "SME Track: Developers"
     format: hands-on
     instruqt_track: slb-dev-02-esql-essentials
     topics:
@@ -135,7 +135,7 @@ workshops:
     date: 2026-10-07
     presenter: Pramod Saripalli
     audience: developers
-    series: SME Track — Developers
+    series: "SME Track: Developers"
     format: hands-on
     instruqt_track: slb-dev-03-deployment-validation
     topics:
@@ -152,7 +152,7 @@ workshops:
     date: 2026-08-19
     presenter: Pramod Saripalli
     audience: sre
-    series: SME Track — SRE & Infra Ops
+    series: "SME Track: SRE & Infra Ops"
     format: hands-on
     instruqt_track: slb-sre-01-platform-ops
     topics:
@@ -168,7 +168,7 @@ workshops:
     date: 2026-09-16
     presenter: Specialist (DSR)
     audience: sre
-    series: SME Track — SRE & Infra Ops
+    series: "SME Track: SRE & Infra Ops"
     format: hands-on
     instruqt_track: slb-sre-02-ilm-data-tier
     topics:
@@ -184,7 +184,7 @@ workshops:
     date: 2026-10-14
     presenter: Specialist (DSR)
     audience: sre
-    series: SME Track — SRE & Infra Ops
+    series: "SME Track: SRE & Infra Ops"
     format: hands-on
     instruqt_track: slb-sre-03-ingestion-architecture
     topics:
@@ -201,7 +201,7 @@ workshops:
     date: 2026-10-28
     presenter: Specialist (DSR)
     audience: sre
-    series: SME Track — SRE & Infra Ops
+    series: "SME Track: SRE & Infra Ops"
     format: hands-on
     instruqt_track: slb-sre-04-production-readiness
     topics:
@@ -218,9 +218,9 @@ workshops:
     date: 2026-08-26
     presenter: Specialist (DSR)
     audience: architects
-    series: SME Track — Architects
-    format: webinar
-    instruqt_track: null
+    series: "SME Track: Architects"
+    format: hybrid
+    instruqt_track: slb-arch-01-architecture-migration
     topics:
       - Target-state ingestion design
       - Coexistence planning during migration (Grafana + Elastic side by side)
@@ -234,9 +234,9 @@ workshops:
     date: 2026-09-23
     presenter: Specialist (DSR)
     audience: architects
-    series: SME Track — Architects
-    format: webinar
-    instruqt_track: null
+    series: "SME Track: Architects"
+    format: hybrid
+    instruqt_track: slb-arch-02-lifecycle-governance
     topics:
       - ILM/retention strategy and long-term platform design
       - Fleet-managed vs standalone tradeoffs
@@ -252,7 +252,7 @@ workshops:
     date: 2026-09-02
     presenter: Pramod Saripalli
     audience: bi
-    series: SME Track — BI & Data Analysts
+    series: "SME Track: BI & Data Analysts"
     format: hands-on
     instruqt_track: slb-bi-01-dashboard-basics
     topics:
@@ -268,7 +268,7 @@ workshops:
     date: 2026-09-30
     presenter: Pramod Saripalli
     audience: bi
-    series: SME Track — BI & Data Analysts
+    series: "SME Track: BI & Data Analysts"
     format: hands-on
     instruqt_track: slb-bi-02-esql-analysts
     topics:
@@ -284,7 +284,7 @@ workshops:
     date: 2026-10-21
     presenter: Pramod Saripalli
     audience: bi
-    series: SME Track — BI & Data Analysts
+    series: "SME Track: BI & Data Analysts"
     format: hands-on
     instruqt_track: slb-bi-03-apis-dashboards
     topics:
@@ -295,27 +295,13 @@ workshops:
       Elasticsearch API basics and building dashboards for operational reporting.
 
   # --- SME Track: AIOps & Alerting ---
-  - id: aiops-00
-    code: AIOps 00
-    title: AI/ML Capabilities Overview (one-off demo)
-    date: null
-    presenter: Specialist (DSR) — AIOps
-    audience: aiops
-    series: SME Track — AIOps & Alerting
-    format: webinar
-    instruqt_track: null
-    topics:
-      - Overview of Elastic AI/ML capabilities for observability
-    description: >
-      One-off demo session — late June / early July 2026.
-
   - id: aiops-01
     code: AIOps 01
     title: Alert Fatigue & Noise Reduction
     date: 2026-11-11
     presenter: Specialist (DSR) — AIOps
     audience: aiops
-    series: SME Track — AIOps & Alerting
+    series: "SME Track: AIOps & Alerting"
     format: hands-on
     instruqt_track: slb-aiops-01-alert-fatigue
     topics:
@@ -332,7 +318,7 @@ workshops:
     date: 2026-11-18
     presenter: Specialist (DSR) — AIOps
     audience: aiops
-    series: SME Track — AIOps & Alerting
+    series: "SME Track: AIOps & Alerting"
     format: hands-on
     instruqt_track: slb-aiops-02-ai-investigation
     topics:
@@ -343,6 +329,71 @@ workshops:
     description: >
       AI-assisted investigation and automated remediation workflows.
 
+  - id: aiops-03
+    code: AIOps 03
+    title: Workflows & Automated Remediation
+    date: 2026-11-25
+    presenter: Specialist (DSR) — AIOps
+    audience: aiops
+    series: "SME Track: AIOps & Alerting"
+    format: hands-on
+    instruqt_track: slb-aiops-03-workflows-remediation
+    topics:
+      - Elastic Workflows for alert-driven automation
+      - Connector patterns — Slack, PagerDuty, webhooks
+      - Safe remediation guardrails and approval steps
+    description: >
+      Build and test automated remediation workflows triggered from observability alerts.
+
+  # --- One-offs ---
+  - id: oneoff-ai-ml
+    code: One-off
+    title: AI/ML Overview
+    date: null
+    presenter: Specialist (DSR) — AIOps
+    audience: all
+    series: "One-off: AI/ML Overview"
+    format: hybrid
+    instruqt_track: slb-oneoff-ai-ml-overview
+    topics:
+      - Overview of Elastic AI/ML capabilities for observability
+      - Anomaly detection and log pattern analysis
+      - AI Assistant for Observability
+    description: >
+      One-off demo session — Elastic AI/ML capabilities across observability use cases.
+
+  - id: oneoff-rag-mcp
+    code: One-off
+    title: RAG & MCP
+    date: null
+    presenter: Specialist (DSR)
+    audience: all
+    series: "One-off: RAG & MCP"
+    format: hybrid
+    instruqt_track: slb-oneoff-rag-mcp
+    topics:
+      - Retrieval-augmented generation with Elasticsearch
+      - Model Context Protocol (MCP) integrations
+      - Building agent workflows on Elastic data
+    description: >
+      Hands-on overview of RAG patterns and MCP tooling with Elasticsearch.
+
+  - id: oneoff-hybrid-search
+    code: One-off
+    title: Hybrid Search
+    date: null
+    presenter: Specialist (DSR)
+    audience: all
+    series: "One-off: Hybrid Search"
+    format: hybrid
+    instruqt_track: slb-oneoff-hybrid-search
+    topics:
+      - Combining lexical and semantic search
+      - Hybrid search in Elasticsearch
+      - Relevance tuning for observability and log search
+    description: >
+      Explore hybrid search — BM25 plus vector similarity — in Elasticsearch.
+
   # --- Cross-team ---
   - id: cross-team
     code: Cross-team
@@ -350,9 +401,9 @@ workshops:
     date: 2026-11-04
     presenter: Roberto Pantoja
     audience: all
-    series: SME Track — All Teams
-    format: webinar
-    instruqt_track: null
+    series: "SME Track: All Teams"
+    format: hybrid
+    instruqt_track: slb-all-teams-platform-review
     topics:
       - Elastic adoption progress across all teams
       - Open Q&A and live troubleshooting

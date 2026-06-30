@@ -7,7 +7,15 @@ teaser: Live OTel for six engines in Kibana—dashboards plus one alert; optiona
   lab at the end.
 notes:
 - type: text
-  contents: "## While you wait… \U0001F9DB\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/bonus-dbmon/\"\n
+  contents: "## While you wait…
+
+<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/bonus-dbmon/\"
+  width=\"100%\" height=\"800\" frameborder=\"0\"
+  style=\"border-radius:8px;display:block\">
+</iframe>
+
+*Your Elastic environment and database telemetry are generating in the background.*
+"https://poulsbopete.github.io/slb-workshops/slides/bonus-dbmon/\"\n
     \ width=\"100%\" height=\"800\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block\">\n</iframe>\n\n*Your
     Elastic environment and database telemetry are generating in the background.*\n"
 - type: text

@@ -1,0 +1,9 @@
+#!/bin/bash
+set -euo pipefail
+source /root/.bashrc 2>/dev/null || true
+if [ -n "${KIBANA_URL:-}" ] || [ -n "${ES_URL:-}" ]; then
+  echo "CHECK PASS — Elastic Serverless environment is ready"
+  exit 0
+fi
+echo "CHECK FAIL — environment not bootstrapped; wait or run solve-es3-api"
+exit 1

@@ -1,0 +1,42 @@
+slug: slb-oneoff-ai-ml-overview
+title: "SLB One-off — AI/ML Overview"
+teaser: |
+  One-off demo session — Elastic AI/ML capabilities across observability use cases.
+description: |-
+  **One-off — AI/ML Overview**
+
+  One-off demo session — Elastic AI/ML capabilities across observability use cases.
+
+  **Series:** One-off: AI/ML Overview
+  **Audience:** all
+  **Presenter:** Specialist (DSR) — AIOps
+  **Live date:** TBD
+
+  ## Session topics
+  - Overview of Elastic AI/ML capabilities for observability
+  - Anomaly detection and log pattern analysis
+  - AI Assistant for Observability
+icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
+tags:
+  - slb
+  - slb-workshops
+  - slb-series-oneoff-ai-ml
+  - elastic
+  - serverless
+  - observability
+  - co.elastic.workshops
+owner: elastic
+developers:
+- peter.simkins@elastic.co
+idle_timeout: 3600
+timelimit: 10800
+lab_config:
+  sidebar_enabled: true
+  feedback_recap_enabled: true
+  feedback_tab_enabled: false
+  loadingMessages: true
+  theme:
+    name: modern-dark
+  default_layout: AssignmentRight
+  default_layout_sidebar_size: 35
+  override_challenge_layout: false

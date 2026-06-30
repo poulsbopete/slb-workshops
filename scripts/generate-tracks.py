@@ -79,6 +79,32 @@ exit 0
 
 # Lab instructions keyed by workshop id
 LABS: dict[str, str] = {
+    "f-01": """
+# Your Elastic Team, Support & Best Practices
+
+## Part 1 — Navigate Kibana help resources
+
+1. Open **Elastic Serverless** (Kibana Home).
+2. Click **Help** (?) — note **Documentation**, **Support**, and **Give feedback**.
+3. Open **Stack Management → Stack Monitoring** (if visible) — observe health signals.
+
+## Part 2 — Support readiness checklist
+
+In a Markdown panel or your notes, draft a support ticket template:
+
+| Field | Your answer |
+|-------|-------------|
+| Environment | Serverless Observability |
+| Symptom | |
+| Time range | |
+| Steps tried | |
+
+## Part 3 — Enablement program
+
+Discuss with facilitator: which SME track matches your role?
+
+Click **Check**.
+""",
     "f-02": """
 # Intro to Elastic — Hands-on Lab
 
@@ -110,6 +136,25 @@ Discuss with your facilitator: which of these building blocks map to your curren
 Grafana / Prometheus / OTel workflows today?
 
 When finished, click **Check**.
+""",
+    "f-04": """
+# Looking Forward with Elastic — Hands-on Lab
+
+## Part 1 — What's new in 9.x
+
+1. Open **Elastic Serverless** → **What's new** (release highlights).
+2. Browse **Stack Management → Upgrade Assistant** or release notes links.
+
+## Part 2 — Migration preview
+
+1. **Observability → Overview** — note unified navigation changes.
+2. **Stack Management → Index Management** — review data stream defaults.
+
+## Part 3 — SLB roadmap discussion
+
+With facilitator, identify one Elastic 9.x feature relevant to your team's migration.
+
+Click **Check**.
 """,
     "f-03": """
 # Elastic Day to Day — Hands-on Lab
@@ -506,6 +551,155 @@ Click **Check**.
 
 Click **Check**.
 """,
+    "aiops-03": """
+# Workflows & Automated Remediation
+
+## Part 1 — Explore Workflows
+
+1. Open **Management → Workflows** (or **Stack Management → Connectors and Actions**).
+2. Review available workflow templates and connectors.
+
+## Part 2 — Alert-driven automation
+
+1. **Observability → Alerts → Rules** — open a rule.
+2. Note **Actions** / **Connectors** that could trigger a workflow.
+
+## Part 3 — Design a safe remediation
+
+Document a workflow with:
+
+| Step | Guardrail |
+|------|-----------|
+| Trigger | Alert threshold |
+| Action | Notify / runbook link |
+| Approval | Human in the loop |
+
+Click **Check**.
+""",
+    "oneoff-ai-ml": """
+# AI/ML Overview — Hands-on Lab
+
+## Part 1 — AI Assistant
+
+1. Open **AI Assistant** from Observability.
+2. Ask: "Summarize error patterns in the last hour."
+
+## Part 2 — ML features
+
+1. **Machine Learning → Anomaly Detection** — browse job templates.
+2. **Logs → Log patterns** (if available) — review pattern grouping.
+
+## Part 3 — Use cases for SLB
+
+Discuss with facilitator: anomaly detection vs AI Assistant vs alerting — when to use each.
+
+Click **Check**.
+""",
+    "oneoff-rag-mcp": """
+# RAG & MCP — Hands-on Lab
+
+## Part 1 — Semantic search basics
+
+1. Open **Search → Playground** or **Elasticsearch → Search** (if available).
+2. Run a natural-language query against sample documents.
+
+## Part 2 — RAG pattern
+
+1. Note how retrieved documents ground the model response.
+2. In **Dev Tools**, inspect an index with dense_vector or semantic fields (if present).
+
+## Part 3 — MCP integration
+
+Discuss with facilitator: how MCP tools could expose Elasticsearch indices to agent workflows.
+
+Click **Check**.
+""",
+    "oneoff-hybrid-search": """
+# Hybrid Search — Hands-on Lab
+
+## Part 1 — Lexical search
+
+1. **Dev Tools** — run a BM25 search:
+
+```
+GET logs-*/_search
+{
+  "query": { "match": { "message": "error timeout" } },
+  "size": 5
+}
+```
+
+## Part 2 — Hybrid relevance
+
+1. Discuss combining keyword + vector scores (RRF / hybrid query).
+2. Review Elastic docs on hybrid search in your facilitator's walkthrough.
+
+## Part 3 — Observability use case
+
+Identify one log search scenario where hybrid search beats keyword-only.
+
+Click **Check**.
+""",
+    "arch-01": """
+# Architecture & Migration Strategy
+
+## Part 1 — Current state inventory
+
+1. **Stack Management → Index Management** — list data streams and retention.
+2. **Fleet** (if visible) — note agent vs OTel collection patterns.
+
+## Part 2 — Target-state sketch
+
+Document coexistence plan:
+
+| Phase | Grafana | Elastic |
+|-------|---------|---------|
+| Now | Primary | Pilot |
+| Migration | Side-by-side | Growing |
+| Target | Retained? | Primary |
+
+## Part 3 — Multi-team access
+
+Review **Stack Management → Roles** — note space and index privileges patterns.
+
+Click **Check**.
+""",
+    "arch-02": """
+# Lifecycle, Governance & Standards
+
+## Part 1 — ILM policies
+
+1. **Stack Management → Index Lifecycle Policies**.
+2. Review hot/warm/cold/frozen phases for a sample policy.
+
+## Part 2 — Standards
+
+Compare **ECS** vs **OTel semantic conventions** for one log type.
+
+## Part 3 — Ownership
+
+Draft reusable standards: naming, retention, and who owns each data stream tier.
+
+Click **Check**.
+""",
+    "cross-team": """
+# Cross-team Platform Review
+
+## Part 1 — Adoption snapshot
+
+1. **Observability → Overview** — note active data sources.
+2. **Analytics → Dashboards** — browse shared dashboards.
+
+## Part 2 — Open Q&A prep
+
+List three questions for the live session (ingestion, alerts, ES|QL, migration).
+
+## Part 3 — Next steps
+
+Identify one action item for your team before the next SME session.
+
+Click **Check**.
+""",
 }
 
 
@@ -552,12 +746,12 @@ def iframe_note(workshop: dict) -> str:
     code = workshop["code"]
     url = f"{PAGES_BASE}/slides/{wid}/"
     return (
-        "## While you wait…\\n\\n"
-        f'<iframe src="{url}"\\n'
-        '  width="100%" height="800" frameborder="0"\\n'
-        '  style="border-radius:8px;display:block">\\n'
-        "</iframe>\\n\\n"
-        f"*Provisioning your Elastic **Observability Serverless** lab for **{code}** "
+        "    ## While you wait…\n\n"
+        f'    <iframe src="{url}"\n'
+        '      width="100%" height="800" frameborder="0"\n'
+        '      style="border-radius:8px;display:block">\n'
+        "    </iframe>\n\n"
+        f"    *Provisioning your Elastic **Observability Serverless** lab for **{code}** "
         "(usually 2–3 minutes).*"
     )
 
@@ -573,7 +767,8 @@ title: "{workshop['code']} — {workshop['title']}"
 teaser: "{workshop['description'].strip().replace(chr(10), ' ')[:200]}"
 notes:
 - type: text
-  contents: "{iframe_note(workshop)}"
+  contents: |-
+{iframe_note(workshop)}
 - type: text
   contents: |
     ## Session topics
@@ -602,8 +797,7 @@ description: |-
 
   {desc}
 
-  **Section:** {section_name}
-  **Series:** {workshop['series']}
+  **Series:** {section_name}
   **Audience:** {workshop['audience']}
   **Presenter:** {workshop['presenter']}
   **Live date:** {workshop.get('date') or 'TBD'}
@@ -633,6 +827,13 @@ lab_config:
 
 def write_track(workshop: dict, slug: str, section_id: str) -> None:
     track_dir = TRACKS_DIR / section_id / slug
+    track_yml_path = track_dir / "track.yml"
+    if track_yml_path.exists():
+        existing = yaml.safe_load(track_yml_path.read_text())
+        if isinstance(existing, dict) and existing.get("id"):
+            print(f"  · skip {slug} (preserves Instruqt id)")
+            return
+
     challenge_dir = track_dir / f"01-{workshop['id']}-lab"
     scripts_dir = track_dir / "track_scripts"
 

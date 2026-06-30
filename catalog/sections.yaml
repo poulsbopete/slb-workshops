@@ -1,63 +1,95 @@
-# Instruqt section groupings — one track per workshop session.
-# Filter in Instruqt UI:
-#   slb-workshops  — all SLB program tracks
-#   slb            — same (short alias)
-#   slb-section-<id> — one persona/phase section
+# Legacy alias — see catalog/series.yaml for the canonical series list.
+# Kept for scripts that import sections.yaml during transition.
+
+series_file: catalog/series.yaml
 
 sections:
-  - id: foundations
+  - id: shared-foundations
     name: Shared Foundations
-    phase: 1
-    instruqt_collection: SLB — Foundations
-    tag: slb-section-foundations
+    tag: slb-series-shared-foundations
+    instruqt_collection: SLB — Shared Foundations
     tracks:
+      - slb-f-01-support-best-practices
       - slb-f-02-intro-to-elastic
       - slb-f-03-elastic-day-to-day
+      - slb-f-04-looking-forward
 
-  - id: developers
-    name: Developers
-    phase: 2
-    instruqt_collection: SLB — Developer Track
-    tag: slb-section-developers
+  - id: sme-developers
+    name: "SME Track: Developers"
+    tag: slb-series-sme-developers
+    instruqt_collection: "SLB — SME Track: Developers"
     tracks:
       - slb-dev-01-ui-dashboards
       - slb-dev-02-esql-essentials
       - slb-dev-03-deployment-validation
 
-  - id: sre
-    name: SRE & Infrastructure Ops
-    phase: 2
-    instruqt_collection: SLB — SRE Track
-    tag: slb-section-sre
+  - id: sme-sre-infra-ops
+    name: "SME Track: SRE & Infra Ops"
+    tag: slb-series-sme-sre
+    instruqt_collection: "SLB — SME Track: SRE & Infra Ops"
     tracks:
       - slb-sre-01-platform-ops
       - slb-sre-02-ilm-data-tier
       - slb-sre-03-ingestion-architecture
       - slb-sre-04-production-readiness
 
-  - id: bi
-    name: BI & Data Analysts
-    phase: 2
-    instruqt_collection: SLB — BI & Analyst Track
-    tag: slb-section-bi
+  - id: sme-architects
+    name: "SME Track: Architects"
+    tag: slb-series-sme-architects
+    instruqt_collection: "SLB — SME Track: Architects"
+    tracks:
+      - slb-arch-01-architecture-migration
+      - slb-arch-02-lifecycle-governance
+
+  - id: sme-bi-analysts
+    name: "SME Track: BI & Data Analysts"
+    tag: slb-series-sme-bi
+    instruqt_collection: "SLB — SME Track: BI & Data Analysts"
     tracks:
       - slb-bi-01-dashboard-basics
       - slb-bi-02-esql-analysts
       - slb-bi-03-apis-dashboards
 
-  - id: aiops
-    name: AIOps & Alerting
-    phase: 2
-    instruqt_collection: SLB — AIOps Track
-    tag: slb-section-aiops
+  - id: sme-aiops-alerting
+    name: "SME Track: AIOps & Alerting"
+    tag: slb-series-sme-aiops
+    instruqt_collection: "SLB — SME Track: AIOps & Alerting"
     tracks:
       - slb-aiops-01-alert-fatigue
       - slb-aiops-02-ai-investigation
+      - slb-aiops-03-workflows-remediation
+
+  - id: oneoff-ai-ml
+    name: "One-off: AI/ML Overview"
+    tag: slb-series-oneoff-ai-ml
+    instruqt_collection: "SLB — One-off: AI/ML Overview"
+    tracks:
+      - slb-oneoff-ai-ml-overview
+
+  - id: oneoff-rag-mcp
+    name: "One-off: RAG & MCP"
+    tag: slb-series-oneoff-rag-mcp
+    instruqt_collection: "SLB — One-off: RAG & MCP"
+    tracks:
+      - slb-oneoff-rag-mcp
+
+  - id: oneoff-hybrid-search
+    name: "One-off: Hybrid Search"
+    tag: slb-series-oneoff-hybrid-search
+    instruqt_collection: "SLB — One-off: Hybrid Search"
+    tracks:
+      - slb-oneoff-hybrid-search
+
+  - id: sme-all-teams
+    name: "SME Track: All Teams"
+    tag: slb-series-sme-all-teams
+    instruqt_collection: "SLB — SME Track: All Teams"
+    tracks:
+      - slb-all-teams-platform-review
 
   - id: reference
     name: Reference
-    phase: 0
+    tag: slb-series-reference
     instruqt_collection: null
-    tag: slb-section-reference
     tracks:
       - slb-workshops

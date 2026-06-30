@@ -1,0 +1,69 @@
+# Instruqt series — workshop groupings for collections and tag filters.
+# Filter: slb-series-<id>  or  slb-workshops (all)
+
+series:
+  - id: shared-foundations
+    name: Shared Foundations
+    tag: slb-series-shared-foundations
+    instruqt_collection: SLB — Shared Foundations
+    workshop_ids: [f-01, f-02, f-03, f-04]
+
+  - id: sme-developers
+    name: "SME Track: Developers"
+    tag: slb-series-sme-developers
+    instruqt_collection: "SLB — SME Track: Developers"
+    workshop_ids: [dev-01, dev-02, dev-03]
+
+  - id: sme-sre-infra-ops
+    name: "SME Track: SRE & Infra Ops"
+    tag: slb-series-sme-sre
+    instruqt_collection: "SLB — SME Track: SRE & Infra Ops"
+    workshop_ids: [sre-01, sre-02, sre-03, sre-04]
+
+  - id: sme-architects
+    name: "SME Track: Architects"
+    tag: slb-series-sme-architects
+    instruqt_collection: "SLB — SME Track: Architects"
+    workshop_ids: [arch-01, arch-02]
+
+  - id: sme-bi-analysts
+    name: "SME Track: BI & Data Analysts"
+    tag: slb-series-sme-bi
+    instruqt_collection: "SLB — SME Track: BI & Data Analysts"
+    workshop_ids: [bi-01, bi-02, bi-03]
+
+  - id: sme-aiops-alerting
+    name: "SME Track: AIOps & Alerting"
+    tag: slb-series-sme-aiops
+    instruqt_collection: "SLB — SME Track: AIOps & Alerting"
+    workshop_ids: [aiops-01, aiops-02, aiops-03]
+
+  - id: oneoff-ai-ml
+    name: "One-off: AI/ML Overview"
+    tag: slb-series-oneoff-ai-ml
+    instruqt_collection: "SLB — One-off: AI/ML Overview"
+    workshop_ids: [oneoff-ai-ml]
+
+  - id: oneoff-rag-mcp
+    name: "One-off: RAG & MCP"
+    tag: slb-series-oneoff-rag-mcp
+    instruqt_collection: "SLB — One-off: RAG & MCP"
+    workshop_ids: [oneoff-rag-mcp]
+
+  - id: oneoff-hybrid-search
+    name: "One-off: Hybrid Search"
+    tag: slb-series-oneoff-hybrid-search
+    instruqt_collection: "SLB — One-off: Hybrid Search"
+    workshop_ids: [oneoff-hybrid-search]
+
+  - id: sme-all-teams
+    name: "SME Track: All Teams"
+    tag: slb-series-sme-all-teams
+    instruqt_collection: "SLB — SME Track: All Teams"
+    workshop_ids: [cross-team]
+
+  - id: reference
+    name: Reference
+    tag: slb-series-reference
+    instruqt_collection: null
+    workshop_ids: [bonus-dbmon]

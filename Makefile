@@ -1,10 +1,10 @@
 .PHONY: list push-all pull-all generate publish git-push push-section list-sections sync-sections slides embed-slides
 
 TRACKS := $(shell find tracks -mindepth 2 -maxdepth 2 -type d -name 'slb-*' | sort)
-SECTIONS := foundations developers sre bi aiops reference
+SECTIONS := shared-foundations sme-developers sme-sre-infra-ops sme-architects sme-bi-analysts sme-aiops-alerting oneoff-ai-ml oneoff-rag-mcp oneoff-hybrid-search sme-all-teams reference
 
 list:
-	@echo "SLB Instruqt tracks (by section):"
+	@echo "SLB Instruqt tracks (by series):"
 	@for s in $(SECTIONS); do \
 		echo "  $$s:"; \
 		for t in tracks/$$s/slb-*; do [ -d "$$t" ] && echo "    $$t"; done; \
@@ -12,7 +12,7 @@ list:
 
 list-sections:
 	@python3 -c "import yaml; d=yaml.safe_load(open('catalog/sections.yaml')); \
-	  [print(f\"{s['id']:12} {s['tag']:28} {s['instruqt_collection'] or '(none)'}\") for s in d['sections']]"
+	  [print(f\"{s['id']:22} {s['tag']:34} {s['instruqt_collection'] or '(none)'}\") for s in d['sections']]"
 
 generate:
 	python3 scripts/generate-tracks.py
@@ -38,7 +38,7 @@ push-all: sync-sections
 	done
 
 push-section: sync-sections
-	@test -n "$(SECTION)" || (echo "Usage: make push-section SECTION=aiops" && exit 1)
+	@test -n "$(SECTION)" || (echo "Usage: make push-section SECTION=sme-aiops-alerting" && exit 1)
 	@for t in tracks/$(SECTION)/slb-*; do \
 		echo "==> Pushing $$t"; \
 		(cd "$$t" && instruqt track push) || exit 1; \

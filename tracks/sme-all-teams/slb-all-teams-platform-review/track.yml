@@ -1,0 +1,42 @@
+slug: slb-all-teams-platform-review
+title: "SLB Cross-team — Cross-team Platform Review"
+teaser: |
+  Cross-team session reviewing adoption progress and next steps.
+description: |-
+  **Cross-team — Cross-team Platform Review**
+
+  Cross-team session reviewing adoption progress and next steps.
+
+  **Series:** SME Track: All Teams
+  **Audience:** all
+  **Presenter:** Roberto Pantoja
+  **Live date:** 2026-11-04
+
+  ## Session topics
+  - Elastic adoption progress across all teams
+  - Open Q&A and live troubleshooting
+  - Next steps and program evolution
+icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
+tags:
+  - slb
+  - slb-workshops
+  - slb-series-sme-all-teams
+  - elastic
+  - serverless
+  - observability
+  - co.elastic.workshops
+owner: elastic
+developers:
+- peter.simkins@elastic.co
+idle_timeout: 3600
+timelimit: 10800
+lab_config:
+  sidebar_enabled: true
+  feedback_recap_enabled: true
+  feedback_tab_enabled: false
+  loadingMessages: true
+  theme:
+    name: modern-dark
+  default_layout: AssignmentRight
+  default_layout_sidebar_size: 35
+  override_challenge_layout: false

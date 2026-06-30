@@ -1,0 +1,42 @@
+slug: slb-oneoff-rag-mcp
+title: "SLB One-off — RAG & MCP"
+teaser: |
+  Hands-on overview of RAG patterns and MCP tooling with Elasticsearch.
+description: |-
+  **One-off — RAG & MCP**
+
+  Hands-on overview of RAG patterns and MCP tooling with Elasticsearch.
+
+  **Series:** One-off: RAG & MCP
+  **Audience:** all
+  **Presenter:** Specialist (DSR)
+  **Live date:** TBD
+
+  ## Session topics
+  - Retrieval-augmented generation with Elasticsearch
+  - Model Context Protocol (MCP) integrations
+  - Building agent workflows on Elastic data
+icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
+tags:
+  - slb
+  - slb-workshops
+  - slb-series-oneoff-rag-mcp
+  - elastic
+  - serverless
+  - observability
+  - co.elastic.workshops
+owner: elastic
+developers:
+- peter.simkins@elastic.co
+idle_timeout: 3600
+timelimit: 10800
+lab_config:
+  sidebar_enabled: true
+  feedback_recap_enabled: true
+  feedback_tab_enabled: false
+  loadingMessages: true
+  theme:
+    name: modern-dark
+  default_layout: AssignmentRight
+  default_layout_sidebar_size: 35
+  override_challenge_layout: false

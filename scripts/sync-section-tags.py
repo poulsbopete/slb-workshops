@@ -33,6 +33,8 @@ STRIP_TAGS = {
     "developers",
     "sre",
     "bi",
+    "foundations",
+    "shared-foundations",
 }
 
 
@@ -62,7 +64,11 @@ def parse_track_yml(text: str) -> tuple[dict, str]:
 
 
 def update_tags(existing: list[str], section_tag: str) -> list[str]:
-    tags = [t for t in existing if not t.startswith("slb-section-")]
+    tags = [
+        t
+        for t in existing
+        if not t.startswith("slb-section-") and not t.startswith("slb-series-")
+    ]
     tags = [t for t in tags if t not in STRIP_TAGS]
     # slb + slb-workshops first, then section, then base, then any extras (e.g. database-monitoring)
     combined = ["slb", "slb-workshops", section_tag]
