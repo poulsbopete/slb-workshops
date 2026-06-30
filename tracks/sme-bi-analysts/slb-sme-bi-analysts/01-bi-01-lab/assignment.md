@@ -6,7 +6,7 @@ title: BI 01 — Dashboard & Data Exploration Basics
 teaser: Kibana Discover, Lens visualizations, and dashboards for BI users.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/bi-01/\"\
+  contents: "## While you wait…\n\n<iframe src=\"https://slb-workshops.vercel.app/slides/bi-01/\"\
     \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
     >\n</iframe>\n\n*Provisioning your **Observability Serverless** lab for **BI 01**\
     \ (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"

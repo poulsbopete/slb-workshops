@@ -7,6 +7,7 @@ Hands-on Instruqt tracks for the **SLB SRE × Elastic** enablement program. **Ei
 | Live registration | [events.elastic.co/slbworkshops](https://events.elastic.co/slbworkshops) |
 | Instruqt | [play.instruqt.com/manage/elastic/tracks](https://play.instruqt.com/manage/elastic/tracks) |
 | Source repo | [github.com/poulsbopete/slb-workshops](https://github.com/poulsbopete/slb-workshops) |
+| Slide decks (Vercel) | [slb-workshops.vercel.app](https://slb-workshops.vercel.app) |
 | Slide decks (GitHub Pages) | [poulsbopete.github.io/slb-workshops](https://poulsbopete.github.io/slb-workshops) |
 
 Filter tracks in Instruqt by tag **`slb-workshops`** or **`slb`** (all program tracks), or by series e.g. **`slb-series-shared-foundations`**.
@@ -62,21 +63,26 @@ scripts/
   delete-legacy-tracks.sh     # Remove old per-session Instruqt tracks
 ```
 
-## GitHub Pages slides
+## Slide decks (Vercel + GitHub Pages)
 
-Slide decks live in [`docs/`](docs/) (Reveal.js) and embed in each challenge while labs provision.
+Slide decks live in [`docs/`](docs/) (Reveal.js) with **why-you-need-it infographics** per feature. They embed in each Instruqt challenge while labs provision.
 
-**Pages setup:** Repo → **Settings → Pages** → branch `main`, folder **`/docs`**. The site root is then `.../slb-workshops/` (no `/docs` in public URLs).
+**Primary host:** [slb-workshops.vercel.app](https://slb-workshops.vercel.app) (auto-deploy on push via Vercel).
+
+**Alternate:** GitHub Pages — branch `main`, folder **`/docs`**.
 
 | URL | Content |
 |-----|---------|
-| [poulsbopete.github.io/slb-workshops](https://poulsbopete.github.io/slb-workshops) | Slide index |
-| `.../slides/sre-01/` | SRE 01 deck (example) |
+| [slb-workshops.vercel.app](https://slb-workshops.vercel.app) | Slide index (Vercel) |
+| `.../slides/sre-01/` | SRE 01 deck with infographics (example) |
 
 ```bash
-make slides-all    # rebuild decks + update Instruqt iframes
-make publish       # git push + push all 8 Instruqt tracks
+make slides-all       # rebuild decks + update Instruqt iframes
+make publish-slides   # git push + Vercel deploy
+make publish          # git push + push all 8 Instruqt tracks
 ```
+
+Slide base URL is configured in [`scripts/site_config.py`](scripts/site_config.py) (`SLIDES_BASE_URL` env var overrides default).
 
 ## Workflow
 

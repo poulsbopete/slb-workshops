@@ -6,7 +6,7 @@ title: F-04 — Looking Forward with Elastic
 teaser: First look at Elastic 9.x and what it means for SLB SRE.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/f-04/\"\
+  contents: "## While you wait…\n\n<iframe src=\"https://slb-workshops.vercel.app/slides/f-04/\"\
     \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
     >\n</iframe>\n\n*Provisioning your **Observability Serverless** lab for **F-04**\
     \ (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"

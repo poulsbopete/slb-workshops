@@ -19,11 +19,7 @@ from slide_infographics import infographic_slides
 CATALOG = ROOT / "catalog" / "workshops.yaml"
 DOCS = ROOT / "docs"
 SLIDES = DOCS / "slides"
-PAGES_BASE = "https://poulsbopete.github.io/slb-workshops"
-
-
-def slide_url(workshop_id: str) -> str:
-    return f"{PAGES_BASE}/slides/{workshop_id}/"
+from site_config import slide_deck_url, slides_base
 
 
 def section_slides(workshop: dict) -> list[tuple[str, str]]:
@@ -207,7 +203,7 @@ def main() -> None:
 
     (DOCS / "index.html").write_text(render_index(workshops))
     print(f"  ✓ docs/index.html")
-    print(f"\nSlides base URL: {PAGES_BASE}/slides/<workshop-id>/")
+    print(f"\nSlides base URL: {slides_base()}/slides/<workshop-id>/")
 
 if __name__ == "__main__":
     main()

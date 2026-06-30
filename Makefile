@@ -1,4 +1,4 @@
-.PHONY: list push-all pull-all generate publish git-push push-section list-sections sync-sections slides embed-slides
+.PHONY: list push-all pull-all generate publish git-push push-section list-sections sync-sections slides embed-slides slides-all vercel-deploy publish-slides
 
 TRACKS := $(shell find tracks -mindepth 2 -maxdepth 2 -type d -name 'slb-*' | sort)
 SECTIONS := shared-foundations sme-developers sme-sre-infra-ops sme-architects sme-bi-analysts sme-aiops-alerting one-offs sme-all-teams
@@ -60,3 +60,9 @@ git-push:
 
 publish: git-push push-all
 	@echo "Published to GitHub and Instruqt."
+
+vercel-deploy:
+	vercel deploy --prod
+
+publish-slides: slides-all git-push vercel-deploy
+	@echo "Slides published to GitHub and Vercel."

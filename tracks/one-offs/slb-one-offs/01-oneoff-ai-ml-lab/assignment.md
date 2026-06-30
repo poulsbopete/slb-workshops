@@ -7,7 +7,7 @@ teaser: One-off demo session — Elastic AI/ML capabilities across observability
   cases.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/oneoff-ai-ml/\"\
+  contents: "## While you wait…\n\n<iframe src=\"https://slb-workshops.vercel.app/slides/oneoff-ai-ml/\"\
     \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
     >\n</iframe>\n\n*Provisioning your **Observability Serverless** lab for **One-off**\
     \ (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"

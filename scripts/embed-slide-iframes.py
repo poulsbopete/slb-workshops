@@ -4,14 +4,20 @@
 from __future__ import annotations
 
 import re
+import sys
 from pathlib import Path
 
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
+SCRIPTS = Path(__file__).resolve().parent
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS))
+
 CATALOG = ROOT / "catalog" / "workshops.yaml"
 TRACKS = ROOT / "tracks"
-PAGES_BASE = "https://poulsbopete.github.io/slb-workshops"
+from site_config import slide_deck_url
+
 IFRAME_HEIGHT = 1400
 
 
@@ -29,7 +35,7 @@ def workshop_id_from_path(path: Path) -> str | None:
 def iframe_note(workshop: dict) -> str:
     wid = workshop["id"]
     code = workshop["code"]
-    url = f"{PAGES_BASE}/slides/{wid}/"
+    url = slide_deck_url(wid)
     return (
         f"## While you wait…\n\n"
         f"<iframe src=\"{url}\"\n"

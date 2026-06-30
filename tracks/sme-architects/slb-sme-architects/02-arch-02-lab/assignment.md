@@ -7,7 +7,7 @@ teaser: Governance — Streams standards, schema conventions, and AI agent polic
   across deployments.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/arch-02/\"\
+  contents: "## While you wait…\n\n<iframe src=\"https://slb-workshops.vercel.app/slides/arch-02/\"\
     \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
     >\n</iframe>\n\n*Provisioning your **Observability Serverless** lab for **Arch\
     \ 02** (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"

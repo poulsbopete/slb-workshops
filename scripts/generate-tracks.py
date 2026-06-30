@@ -82,6 +82,7 @@ exit 0
 """
 
 from labs_serverless import LABS
+from site_config import slide_deck_url
 
 
 BASE_TAGS = [
@@ -93,14 +94,13 @@ BASE_TAGS = [
     "co.elastic.workshops",
 ]
 
-PAGES_BASE = "https://poulsbopete.github.io/slb-workshops"
 IFRAME_HEIGHT = 1400
 
 
 def iframe_note(workshop: dict) -> str:
     wid = workshop["id"]
     code = workshop["code"]
-    url = f"{PAGES_BASE}/slides/{wid}/"
+    url = slide_deck_url(wid)
     return (
         "    ## While you wait…\n\n"
         f'    <iframe src="{url}"\n'
