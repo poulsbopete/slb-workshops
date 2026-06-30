@@ -39,48 +39,64 @@ def iframe_note(workshop: dict) -> str:
     )
 
 
-def patch_assignment(path: Path, workshop: dict) -> bool:
-    text = path.read_text()
-    parts = text.split("---", 2)
-    if len(parts) < 3:
-        return False
-
-    front = yaml.safe_load(parts[1])
+def split_front_matter(text: str) -> tuple[str, dict, str] | None:
+    if not text.startswith("---"):
+        return None
+    match = re.match(r"^---\n(.*?)\n---\n", text, re.DOTALL)
+    if not match:
+        return None
+    front_raw = match.group(1)
+    body = text[match.end() :]
+    front = yaml.safe_load(front_raw)
     if not isinstance(front, dict):
+        return None
+    return front_raw, front, body
+
+
+def patch_simple_assignment(path: Path, workshop: dict) -> bool:
+    """Patch standard lab assignments via YAML (safe for simple front matter)."""
+    text = path.read_text()
+    split = split_front_matter(text)
+    if not split:
         return False
+    _, front, body = split
 
     slide_contents = iframe_note(workshop)
     notes = front.get("notes") or []
-
-    # Replace or prepend slide iframe note
     if notes and "iframe src=" in str(notes[0].get("contents", "")):
         notes[0]["contents"] = slide_contents
     else:
         notes.insert(0, {"type": "text", "contents": slide_contents})
 
-    # Keep second note as provisioning topics if missing
-    has_topics = any("Live session topics" in str(n.get("contents", "")) for n in notes[1:])
-    if not has_topics and workshop.get("topics"):
-        topic_lines = "\n".join(f"- {t}" for t in workshop["topics"])
-        notes.append(
-            {
-                "type": "text",
-                "contents": (
-                    f"## Session topics\n\n{topic_lines}"
-                ),
-            }
-        )
-
     front["notes"] = notes
-
-    # Rebuild file — preserve body after second ---
-    body = parts[2]
     dumped = yaml.dump(front, default_flow_style=False, sort_keys=False, allow_unicode=True)
     new_text = f"---\n{dumped}---{body}"
     if new_text == text:
         return False
     path.write_text(new_text)
     return True
+
+
+def patch_db_monitoring(path: Path, workshop: dict) -> bool:
+    """Regex patch for complex assignment with many notes (avoid full YAML rewrite)."""
+    text = path.read_text()
+    url = f"{PAGES_BASE}/slides/{workshop['id']}/"
+    new_iframe = (
+        f'contents: "## While you wait…\\n\\n<iframe src=\\"{url}\\"\\n'
+        f'  width=\\"100%\\" height=\\"800\\" frameborder=\\"0\\"\\n'
+        f'  style=\\"border-radius:8px;display:block\\">\\n</iframe>\\n\\n'
+        f'*Your Elastic environment and database telemetry are generating in the background.*\\n"'
+    )
+    new_text, n = re.subn(
+        r'contents: "## While you wait…[^"]*"',
+        new_iframe,
+        text,
+        count=1,
+    )
+    if n and new_text != text:
+        path.write_text(new_text)
+        return True
+    return False
 
 
 def find_assignments() -> list[tuple[Path, str]]:
@@ -101,7 +117,11 @@ def main() -> None:
         if not ws:
             print(f"  ? skip {path.relative_to(ROOT)} (no catalog entry)")
             continue
-        if patch_assignment(path, ws):
+        if slug == "slb-workshops":
+            ok = patch_db_monitoring(path, ws)
+        else:
+            ok = patch_simple_assignment(path, ws)
+        if ok:
             print(f"  ✓ embedded slides in {path.relative_to(ROOT)}")
         else:
             print(f"  · unchanged {path.relative_to(ROOT)}")

@@ -7,30 +7,27 @@ teaser: Overview of the Elastic platform and how it fits into SLB SRE's observab
   journey — ingestion, storage, query, and visualization.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/f-02/\"\
-    \n  width=\"100%\" height=\"800\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block\"\
-    >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
-    \ **F-02** (usually 2–3 minutes).*"
-- type: text
-  contents: '## Provisioning your lab…
+  contents: |-
+    ## While you wait…
 
+    <iframe src="https://poulsbopete.github.io/slb-workshops/slides/f-02/"
+      width="100%" height="800" frameborder="0"
+      style="border-radius:8px;display:block">
+    </iframe>
+
+    *Provisioning your Elastic **Observability Serverless** lab for **F-02** (usually 2–3 minutes).*
+- type: text
+  contents: |
+    ## Provisioning your lab…
 
     Creating an Elastic **Observability Serverless** project for **F-02**.
-
     This usually takes 2–3 minutes.
 
-
     **Live session topics:**
-
     - Elastic Platform Overview
-
     - How each persona uses Elastic
-
-    - SLB SRE''s journey with Elastic — current state
-
+    - SLB SRE's journey with Elastic — current state
     - Data lifecycle and tiers — hot, warm, cold, frozen, delete
-
-    '
 tabs:
 - id: uk37unyh1jev
   title: Elastic Serverless
@@ -50,7 +47,7 @@ tabs:
   title: Terminal
   type: terminal
   hostname: es3-api
-difficulty: ''
+difficulty: ""
 timelimit: 0
 enhanced_loading: null
 ---

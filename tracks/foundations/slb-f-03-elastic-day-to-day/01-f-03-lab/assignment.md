@@ -7,30 +7,27 @@ teaser: Practical examples of data ingestion, querying with ES|QL, and using Kib
   dashboards — with a focus on what Grafana users need to know.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/f-03/\"\
-    \n  width=\"100%\" height=\"800\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block\"\
-    >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
-    \ **F-03** (usually 2–3 minutes).*"
-- type: text
-  contents: '## Provisioning your lab…
+  contents: |-
+    ## While you wait…
 
+    <iframe src="https://poulsbopete.github.io/slb-workshops/slides/f-03/"
+      width="100%" height="800" frameborder="0"
+      style="border-radius:8px;display:block">
+    </iframe>
+
+    *Provisioning your Elastic **Observability Serverless** lab for **F-03** (usually 2–3 minutes).*
+- type: text
+  contents: |
+    ## Provisioning your lab…
 
     Creating an Elastic **Observability Serverless** project for **F-03**.
-
     This usually takes 2–3 minutes.
 
-
     **Live session topics:**
-
     - Data lifecycle in practice
-
     - Where ES|QL, dashboards and APIs fit into daily workflows
-
     - Ingestion fundamentals
-
     - Grafana → Elastic mental model translation
-
-    '
 tabs:
 - id: otnmdwf9b6d0
   title: Elastic Serverless
@@ -50,7 +47,7 @@ tabs:
   title: Terminal
   type: terminal
   hostname: es3-api
-difficulty: ''
+difficulty: ""
 timelimit: 0
 enhanced_loading: null
 ---

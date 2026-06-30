@@ -7,38 +7,43 @@ teaser: Live OTel for six engines in Kibana—dashboards plus one alert; optiona
   lab at the end.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/bonus-dbmon/\"\
-    \n  width=\"100%\" height=\"800\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block\"\
-    >\n</iframe>\n\n*Provisioning your Elastic **Observability Serverless** lab for\
-    \ **Bonus** (usually 2–3 minutes).*"
+  contents: "## While you wait… \U0001F9DB\n\n<iframe src=\"https://poulsbopete.github.io/slb-workshops/slides/bonus-dbmon/\"\n
+    \ width=\"100%\" height=\"800\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block\">\n</iframe>\n\n*Your
+    Elastic environment and database telemetry are generating in the background.*\n"
 - type: text
-  contents: "## Data is loading…\n\nThe track bootstrap is generating telemetry for\
-    \ all six database\nplatforms via OpenTelemetry → Elastic managed OTLP:\n\n```\n\
-    MySQL · PostgreSQL · SQL Server · MongoDB · Db2 · Oracle\n            │\n    \
-    \        │  Python OTLP HTTP  (db_otel_generator.py)\n            ▼\n    Elastic\
-    \ managed OTLP\n            │\n            ▼\n  Observability Serverless\n  logs-mysql.*\
-    \          ← slow queries + error logs\n  metrics-postgresql.*  ← connections,\
-    \ commits, deadlocks, size\n  metrics-sqlserver.*   ← connections, lock waits,\
-    \ cache hit, I/O latency\n  metrics-mongodb.*     ← operations, memory, replication\
-    \ lag\n  metrics-db2.*         ← connections, buffer pool, log util, tablespaces\n\
-    \  metrics-oracledb.*    ← sessions, tablespaces, parses, PGA memory\n       \
-    \     │\n            ▼\n     Kibana Dashboards  (10 deployed automatically)\n\
-    ```\n\nNo proprietary agents. Pure OpenTelemetry.\n"
-- type: text
-  contents: '## Elastic vs Datadog Database Monitoring (DBM) vs Dynatrace
+  contents: |
+    ## Data is loading…
 
+    The track bootstrap is generating telemetry for all six database
+    platforms via OpenTelemetry → Elastic managed OTLP:
+
+    ```
+    MySQL · PostgreSQL · SQL Server · MongoDB · Db2 · Oracle
+                │
+                │  Python OTLP HTTP  (db_otel_generator.py)
+                ▼
+        Elastic managed OTLP
+                │
+                ▼
+      Observability Serverless
+      logs-mysql.*          ← slow queries + error logs
+      metrics-postgresql.*  ← connections, commits, deadlocks, size
+      metrics-sqlserver.*   ← connections, lock waits, cache hit, I/O latency
+      metrics-mongodb.*     ← operations, memory, replication lag
+      metrics-db2.*         ← connections, buffer pool, log util, tablespaces
+      metrics-oracledb.*    ← sessions, tablespaces, parses, PGA memory
+                │
+                ▼
+         Kibana Dashboards  (10 deployed automatically)
+    ```
+
+    No proprietary agents. Pure OpenTelemetry.
+- type: text
+  contents: |
+    ## Elastic vs Datadog Database Monitoring (DBM) vs Dynatrace
 
     | Capability | Datadog DBM | Dynatrace | **Elastic** |
-
-    |'
-- type: text
-  contents: '## Session topics
-
-
-    - OpenTelemetry database monitoring for six engines
-
-    - Kibana dashboards and alerting'
----|---|---|---|
+    |---|---|---|---|
     | Slow query capture | ✓ proprietary agent | ✓ OneAgent | ✓ **OpenTelemetry** |
     | Full query text | ✓ | Limited | ✓ |
     | MySQL | ✓ | ✓ | ✓ |
