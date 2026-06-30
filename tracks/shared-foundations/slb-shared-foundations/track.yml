@@ -1,0 +1,46 @@
+slug: slb-shared-foundations
+id: i811eppkxvtq
+title: SLB — Shared Foundations
+teaser: |
+  Consolidated Instruqt track for the SLB × Elastic **Shared Foundations** series.
+  Complete the labs in order, or jump to the session matching your live workshop.
+description: |-
+  **SLB — Shared Foundations**
+
+  This track contains **4** hands-on labs — one per live session in the series.
+  Each lab provisions a personal **Elastic Observability Serverless** project.
+
+  ## Sessions in this track
+  - **F-01** — Your Elastic Team, Support & Best Practices
+  - **F-02** — Intro to Elastic
+  - **F-03** — Elastic Day to Day
+  - **F-04** — Looking Forward with Elastic
+
+  Register for live sessions: [events.elastic.co/slbworkshops](https://events.elastic.co/slbworkshops)
+icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
+tags:
+- slb-series-shared-foundations
+- elastic
+- slb
+- slb-workshops
+- serverless
+- observability
+- co.elastic.workshops
+owner: elastic
+developers:
+- peter.simkins@elastic.co
+idle_timeout: 3600
+timelimit: 10800
+lab_config:
+  sidebar_enabled: true
+  feedback_recap_enabled: true
+  feedback_tab_enabled: false
+  loadingMessages: true
+  theme:
+    name: modern-dark
+  override_challenge_layout: false
+  hideStopButton: false
+  default_layout: AssignmentRight
+  default_layout_sidebar_size: 35
+checksum: "5333453368912075214"
+enhanced_loading: false

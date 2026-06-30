@@ -1,0 +1,41 @@
+slug: slb-one-offs
+title: "SLB — One-off Sessions"
+teaser: |
+  Consolidated Instruqt track for the SLB × Elastic **One-off Sessions** series.
+  Complete the labs in order, or jump to the session matching your live workshop.
+description: |-
+  **SLB — One-off Sessions**
+
+  This track contains **3** hands-on labs — one per live session in the series.
+  Each lab provisions a personal **Elastic Observability Serverless** project.
+
+  ## Sessions in this track
+  - **One-off** — AI/ML Overview
+  - **One-off** — RAG & MCP
+  - **One-off** — Hybrid Search
+
+  Register for live sessions: [events.elastic.co/slbworkshops](https://events.elastic.co/slbworkshops)
+icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
+tags:
+  - slb
+  - slb-workshops
+  - slb-series-one-offs
+  - elastic
+  - serverless
+  - observability
+  - co.elastic.workshops
+owner: elastic
+developers:
+- peter.simkins@elastic.co
+idle_timeout: 3600
+timelimit: 10800
+lab_config:
+  sidebar_enabled: true
+  feedback_recap_enabled: true
+  feedback_tab_enabled: false
+  loadingMessages: true
+  theme:
+    name: modern-dark
+  default_layout: AssignmentRight
+  default_layout_sidebar_size: 35
+  override_challenge_layout: false

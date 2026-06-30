@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate Instruqt track scaffolds from catalog/workshops.yaml."""
+"""Generate consolidated Instruqt tracks (8 series tracks, multiple challenges each)."""
 
 from __future__ import annotations
 
@@ -703,31 +703,6 @@ Click **Check**.
 }
 
 
-def slug_section_map() -> dict[str, str]:
-    with SECTIONS.open() as f:
-        data = yaml.safe_load(f)
-    out: dict[str, str] = {}
-    for section in data["sections"]:
-        sid = section["id"]
-        for slug in section["tracks"]:
-            out[slug] = sid
-    return out
-
-
-def section_tag(section_id: str) -> str:
-    with SECTIONS.open() as f:
-        data = yaml.safe_load(f)
-    for section in data["sections"]:
-        if section["id"] == section_id:
-            return section["tag"]
-    return f"slb-section-{section_id}"
-
-
-def tags_for(workshop: dict, section_id: str) -> list[str]:
-    return ["slb", "slb-workshops", section_tag(section_id)] + [
-        t for t in BASE_TAGS if t not in {"slb", "slb-workshops"}
-    ]
-
 BASE_TAGS = [
     "slb",
     "slb-workshops",
@@ -736,7 +711,6 @@ BASE_TAGS = [
     "observability",
     "co.elastic.workshops",
 ]
-
 
 PAGES_BASE = "https://poulsbopete.github.io/slb-workshops"
 
@@ -783,30 +757,52 @@ timelimit: 0
     return front
 
 
-def track_yml(workshop: dict, slug: str, section_id: str) -> str:
-    desc = workshop["description"].strip()
+def workshops_by_id(catalog: dict) -> dict[str, dict]:
+    return {ws["id"]: ws for ws in catalog["workshops"]}
+
+
+def load_sections() -> list[dict]:
     with SECTIONS.open() as f:
-        sections = {s["id"]: s["name"] for s in yaml.safe_load(f)["sections"]}
-    section_name = sections.get(section_id, section_id)
-    return f"""slug: {slug}
-title: "SLB {workshop['code']} — {workshop['title']}"
+        return yaml.safe_load(f)["sections"]
+
+
+def section_tag(section_id: str) -> str:
+    for section in load_sections():
+        if section["id"] == section_id:
+            return section["tag"]
+    return f"slb-series-{section_id}"
+
+
+def tags_for(section_id: str) -> list[str]:
+    return ["slb", "slb-workshops", section_tag(section_id)] + [
+        t for t in BASE_TAGS if t not in {"slb", "slb-workshops"}
+    ]
+
+
+def track_yml(section: dict, workshops: list[dict]) -> str:
+    name = section["name"]
+    session_lines = chr(10).join(
+        f"  - **{ws['code']}** — {ws['title']}" for ws in workshops
+    )
+    lab_word = "labs" if len(workshops) != 1 else "lab"
+    return f"""slug: {section['track']}
+title: "SLB — {name}"
 teaser: |
-  {desc}
+  Consolidated Instruqt track for the SLB × Elastic **{name}** series.
+  Complete the labs in order, or jump to the session matching your live workshop.
 description: |-
-  **{workshop['code']} — {workshop['title']}**
+  **SLB — {name}**
 
-  {desc}
+  This track contains **{len(workshops)}** hands-on {lab_word} — one per live session in the series.
+  Each lab provisions a personal **Elastic Observability Serverless** project.
 
-  **Series:** {section_name}
-  **Audience:** {workshop['audience']}
-  **Presenter:** {workshop['presenter']}
-  **Live date:** {workshop.get('date') or 'TBD'}
+  ## Sessions in this track
+{session_lines}
 
-  ## Session topics
-{chr(10).join('  - ' + t for t in workshop.get('topics', []))}
+  Register for live sessions: [events.elastic.co/slbworkshops](https://events.elastic.co/slbworkshops)
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-{chr(10).join('  - ' + t for t in tags_for(workshop, section_id))}
+{chr(10).join('  - ' + t for t in tags_for(section['id']))}
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -825,27 +821,9 @@ lab_config:
 """
 
 
-def write_track(workshop: dict, slug: str, section_id: str) -> None:
-    track_dir = TRACKS_DIR / section_id / slug
-    track_yml_path = track_dir / "track.yml"
-    if track_yml_path.exists():
-        existing = yaml.safe_load(track_yml_path.read_text())
-        if isinstance(existing, dict) and existing.get("id"):
-            print(f"  · skip {slug} (preserves Instruqt id)")
-            return
-
-    challenge_dir = track_dir / f"01-{workshop['id']}-lab"
-    scripts_dir = track_dir / "track_scripts"
-
-    for d in (challenge_dir, scripts_dir):
-        d.mkdir(parents=True, exist_ok=True)
-
-    (track_dir / "track.yml").write_text(track_yml(workshop, slug, section_id))
-    (track_dir / "config.yml").write_text((ROOT / "shared" / "config.yml").read_text())
-
+def write_challenge(challenge_dir: Path, workshop: dict) -> None:
+    challenge_dir.mkdir(parents=True, exist_ok=True)
     for name, content in [
-        (scripts_dir / "setup-es3-api", SETUP_TRACK),
-        (scripts_dir / "cleanup-es3-api", CLEANUP_TRACK),
         (challenge_dir / "assignment.md", assignment_md(workshop)),
         (challenge_dir / "setup-es3-api", CHALLENGE_SETUP),
         (challenge_dir / "check-es3-api", CHECK_CHALLENGE),
@@ -855,29 +833,50 @@ def write_track(workshop: dict, slug: str, section_id: str) -> None:
         if name.name != "assignment.md":
             name.chmod(0o755)
 
-    print(f"  ✓ tracks/{section_id}/{slug}")
+
+def write_consolidated_track(section: dict, workshops: list[dict]) -> None:
+    section_id = section["id"]
+    track_slug = section["track"]
+    track_dir = TRACKS_DIR / section_id / track_slug
+    track_yml_path = track_dir / "track.yml"
+
+    if track_yml_path.exists():
+        existing = yaml.safe_load(track_yml_path.read_text())
+        if isinstance(existing, dict) and existing.get("id"):
+            print(f"  · skip {track_slug} (preserves Instruqt id)")
+            return
+
+    scripts_dir = track_dir / "track_scripts"
+    scripts_dir.mkdir(parents=True, exist_ok=True)
+
+    track_yml_path.write_text(track_yml(section, workshops))
+    (track_dir / "config.yml").write_text((ROOT / "shared" / "config.yml").read_text())
+    (scripts_dir / "setup-es3-api").write_text(SETUP_TRACK)
+    (scripts_dir / "cleanup-es3-api").write_text(CLEANUP_TRACK)
+    (scripts_dir / "setup-es3-api").chmod(0o755)
+    (scripts_dir / "cleanup-es3-api").chmod(0o755)
+
+    for index, workshop in enumerate(workshops, start=1):
+        challenge_dir = track_dir / f"{index:02d}-{workshop['id']}-lab"
+        write_challenge(challenge_dir, workshop)
+
+    print(f"  ✓ tracks/{section_id}/{track_slug} ({len(workshops)} labs)")
 
 
 def main() -> None:
     with CATALOG.open() as f:
         catalog = yaml.safe_load(f)
+    by_id = workshops_by_id(catalog)
 
-    sections = slug_section_map()
+    for section in load_sections():
+        workshops = [by_id[wid] for wid in section["workshop_ids"]]
+        missing = [wid for wid in section["workshop_ids"] if wid not in by_id]
+        if missing:
+            print(f"  ? skip {section['track']} (missing workshops: {missing})")
+            continue
+        write_consolidated_track(section, workshops)
 
-    for ws in catalog["workshops"]:
-        if ws.get("skip_generate"):
-            print(f"  ⊘ skip {ws.get('instruqt_track')} (skip_generate)")
-            continue
-        slug = ws.get("instruqt_track")
-        if not slug:
-            continue
-        section_id = sections.get(slug)
-        if not section_id:
-            print(f"  ? skip {slug} (not in catalog/sections.yaml)")
-            continue
-        write_track(ws, slug, section_id)
-
-    print(f"\nGenerated tracks in {TRACKS_DIR}")
+    print(f"\nGenerated consolidated tracks in {TRACKS_DIR}")
 
 
 if __name__ == "__main__":

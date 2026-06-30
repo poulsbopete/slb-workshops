@@ -14,14 +14,15 @@ TRACKS = ROOT / "tracks"
 PAGES_BASE = "https://poulsbopete.github.io/slb-workshops"
 
 
-def slug_to_workshop() -> dict[str, dict]:
+def workshops_by_id() -> dict[str, dict]:
     with CATALOG.open() as f:
         data = yaml.safe_load(f)
-    return {
-        ws["instruqt_track"]: ws
-        for ws in data["workshops"]
-        if ws.get("instruqt_track")
-    }
+    return {ws["id"]: ws for ws in data["workshops"]}
+
+
+def workshop_id_from_path(path: Path) -> str | None:
+    m = re.match(r"^\d+-(.+)-lab$", path.parent.name)
+    return m.group(1) if m else None
 
 
 def iframe_note(workshop: dict) -> str:
@@ -54,7 +55,6 @@ def split_front_matter(text: str) -> tuple[str, dict, str] | None:
 
 
 def patch_simple_assignment(path: Path, workshop: dict) -> bool:
-    """Patch standard lab assignments via YAML (safe for simple front matter)."""
     text = path.read_text()
     split = split_front_matter(text)
     if not split:
@@ -80,20 +80,19 @@ def patch_simple_assignment(path: Path, workshop: dict) -> bool:
 def find_assignments() -> list[tuple[Path, str]]:
     out: list[tuple[Path, str]] = []
     for track_yml in TRACKS.rglob("track.yml"):
-        slug = track_yml.parent.name
-        if not slug.startswith("slb-"):
-            continue
-        for assignment in track_yml.parent.glob("*/assignment.md"):
-            out.append((assignment, slug))
+        for assignment in sorted(track_yml.parent.glob("*-lab/assignment.md")):
+            wid = workshop_id_from_path(assignment)
+            if wid:
+                out.append((assignment, wid))
     return out
 
 
 def main() -> None:
-    mapping = slug_to_workshop()
-    for path, slug in find_assignments():
-        ws = mapping.get(slug)
+    by_id = workshops_by_id()
+    for path, wid in find_assignments():
+        ws = by_id.get(wid)
         if not ws:
-            print(f"  ? skip {path.relative_to(ROOT)} (no catalog entry)")
+            print(f"  ? skip {path.relative_to(ROOT)} (no catalog entry for {wid})")
             continue
         if patch_simple_assignment(path, ws):
             print(f"  ✓ embedded slides in {path.relative_to(ROOT)}")

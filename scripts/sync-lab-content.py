@@ -5,14 +5,12 @@ from __future__ import annotations
 
 import importlib.util
 import re
-import sys
 from pathlib import Path
 
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 TRACKS = ROOT / "tracks"
-CATALOG = ROOT / "catalog" / "workshops.yaml"
 
 LAB_INTRO = """> **Serverless lab:** use the **Elastic Serverless** tab only. Every step is copy/paste in Kibana — no terminal or shell required.
 
@@ -30,14 +28,9 @@ def load_labs() -> dict[str, str]:
     return mod.LABS
 
 
-def slug_to_workshop_id() -> dict[str, str]:
-    with CATALOG.open() as f:
-        data = yaml.safe_load(f)
-    return {
-        ws["instruqt_track"]: ws["id"]
-        for ws in data["workshops"]
-        if ws.get("instruqt_track")
-    }
+def workshop_id_from_path(path: Path) -> str | None:
+    m = re.match(r"^\d+-(.+)-lab$", path.parent.name)
+    return m.group(1) if m else None
 
 
 def split_assignment(text: str) -> tuple[dict, str] | None:
@@ -51,9 +44,7 @@ def split_assignment(text: str) -> tuple[dict, str] | None:
     return front, body
 
 
-def strip_terminal_tab(front: dict, slug: str) -> bool:
-    if slug in KEEP_TERMINAL_SLUGS:
-        return False
+def strip_terminal_tab(front: dict) -> bool:
     tabs = front.get("tabs") or []
     new_tabs = [
         t for t in tabs if t.get("type") != "terminal" and t.get("title") != "Terminal"
@@ -87,7 +78,7 @@ def dedupe_notes(front: dict) -> bool:
     return True
 
 
-def patch_assignment(path: Path, workshop_id: str, slug: str, labs: dict[str, str]) -> bool:
+def patch_assignment(path: Path, workshop_id: str, labs: dict[str, str]) -> bool:
     text = path.read_text()
     split = split_assignment(text)
     if not split:
@@ -96,12 +87,12 @@ def patch_assignment(path: Path, workshop_id: str, slug: str, labs: dict[str, st
     changed = False
     new_body = old_body
 
-    if workshop_id in labs and slug not in KEEP_TERMINAL_SLUGS:
+    if workshop_id in labs:
         new_body = LAB_INTRO + labs[workshop_id].strip() + "\n"
         if new_body != old_body:
             changed = True
 
-    if strip_terminal_tab(front, slug):
+    if strip_terminal_tab(front):
         changed = True
     if dedupe_notes(front):
         changed = True
@@ -110,20 +101,18 @@ def patch_assignment(path: Path, workshop_id: str, slug: str, labs: dict[str, st
         return False
 
     dumped = yaml.dump(front, default_flow_style=False, sort_keys=False, allow_unicode=True)
-    path.write_text(f"---\n{dumped}---\n{new_body}")
+    path.write_text(f"---\n{dumped.rstrip()}\n---\n{new_body.lstrip()}")
     return True
 
 
 def main() -> None:
     labs = load_labs()
-    mapping = slug_to_workshop_id()
     for track_yml in sorted(TRACKS.rglob("track.yml")):
-        slug = track_yml.parent.name
-        wid = mapping.get(slug)
-        if not wid:
-            continue
-        for assignment in track_yml.parent.glob("*/assignment.md"):
-            if patch_assignment(assignment, wid, slug, labs):
+        for assignment in sorted(track_yml.parent.glob("*-lab/assignment.md")):
+            wid = workshop_id_from_path(assignment)
+            if not wid:
+                continue
+            if patch_assignment(assignment, wid, labs):
                 print(f"  ✓ {assignment.relative_to(ROOT)}")
 
 

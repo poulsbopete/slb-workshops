@@ -1,6 +1,6 @@
 # SLB × Elastic Workshop Program — Instruqt Labs
 
-Hands-on Instruqt tracks for the **SLB SRE × Elastic** enablement program. **One Instruqt track per workshop session**, organized by **series category**.
+Hands-on Instruqt tracks for the **SLB SRE × Elastic** enablement program. **Eight consolidated tracks** — one per series — each containing multiple lab challenges (one per live session).
 
 | Resource | Link |
 |----------|------|
@@ -11,107 +11,93 @@ Hands-on Instruqt tracks for the **SLB SRE × Elastic** enablement program. **On
 
 Filter tracks in Instruqt by tag **`slb-workshops`** or **`slb`** (all program tracks), or by series e.g. **`slb-series-shared-foundations`**.
 
-## Series categories
+## Eight consolidated tracks
 
-| Series | Tag | Sessions |
-|--------|-----|----------|
-| **All SLB tracks** | `slb-workshops`, `slb` | every track below |
-| **Shared Foundations** | `slb-series-shared-foundations` | F-01–F-04 |
-| **SME Track: Developers** | `slb-series-sme-developers` | Dev 01–03 |
-| **SME Track: SRE & Infra Ops** | `slb-series-sme-sre` | SRE 01–04 |
-| **SME Track: Architects** | `slb-series-sme-architects` | Arch 01–02 |
-| **SME Track: BI & Data Analysts** | `slb-series-sme-bi` | BI 01–03 |
-| **SME Track: AIOps & Alerting** | `slb-series-sme-aiops` | AIOps 01–03 |
-| **One-off: AI/ML Overview** | `slb-series-oneoff-ai-ml` | AI/ML Overview |
-| **One-off: RAG & MCP** | `slb-series-oneoff-rag-mcp` | RAG & MCP |
-| **One-off: Hybrid Search** | `slb-series-oneoff-hybrid-search` | Hybrid Search |
-| **SME Track: All Teams** | `slb-series-sme-all-teams` | Cross-team review |
+| Track slug | Series | Labs (sub-tracks) |
+|------------|--------|-------------------|
+| `slb-shared-foundations` | Shared Foundations | F-01, F-02, F-03, F-04 |
+| `slb-sme-developers` | SME Track: Developers | Dev 01–03 |
+| `slb-sme-sre-infra-ops` | SME Track: SRE & Infra Ops | SRE 01–04 |
+| `slb-sme-architects` | SME Track: Architects | Arch 01–02 |
+| `slb-sme-bi-analysts` | SME Track: BI & Data Analysts | BI 01–03 |
+| `slb-sme-aiops-alerting` | SME Track: AIOps & Alerting | AIOps 01–03 |
+| `slb-one-offs` | One-off Sessions | AI/ML, RAG & MCP, Hybrid Search |
+| `slb-sme-all-teams` | SME Track: All Teams | Cross-team review |
 
-Full mapping: [`catalog/sections.yaml`](catalog/sections.yaml) · [`catalog/series.yaml`](catalog/series.yaml) · Session metadata: [`catalog/workshops.yaml`](catalog/workshops.yaml)
+Each track uses a **single Serverless environment** for the whole series. Learners advance through numbered challenges (e.g. `01-f-01-lab` → `04-f-04-lab`) or jump to the lab matching their live session.
 
-### Example track paths
+Full mapping: [`catalog/sections.yaml`](catalog/sections.yaml) · Session metadata: [`catalog/workshops.yaml`](catalog/workshops.yaml)
+
+### Example layout
 
 ```
-tracks/shared-foundations/slb-f-02-intro-to-elastic/
-tracks/sme-developers/slb-dev-02-esql-essentials/
-tracks/sme-aiops-alerting/slb-aiops-01-alert-fatigue/
-tracks/oneoff-rag-mcp/slb-oneoff-rag-mcp/
+tracks/shared-foundations/slb-shared-foundations/
+  track.yml
+  01-f-01-lab/assignment.md
+  02-f-02-lab/assignment.md
+  03-f-03-lab/assignment.md
+  04-f-04-lab/assignment.md
 ```
-
-Titles follow **`SLB {Code} — {Topic}`** (e.g. *SLB AIOps 01 — Alert Fatigue & Noise Reduction*).
 
 ## Repository layout
 
 ```
 catalog/
   workshops.yaml              # Session schedule (source of truth)
-  sections.yaml               # Series → track slug mapping
+  sections.yaml               # 8 tracks → workshop_ids
   series.yaml                 # Canonical series definitions
 tracks/
-  shared-foundations/         # F-01–F-04
-  sme-developers/             # Dev 01–03
-  sme-sre-infra-ops/          # SRE 01–04
-  sme-architects/             # Arch 01–02
-  sme-bi-analysts/            # BI 01–03
-  sme-aiops-alerting/         # AIOps 01–03
-  oneoff-ai-ml/               # AI/ML Overview
-  oneoff-rag-mcp/             # RAG & MCP
-  oneoff-hybrid-search/       # Hybrid Search
-  sme-all-teams/              # Cross-team review
+  shared-foundations/slb-shared-foundations/
+  sme-developers/slb-sme-developers/
+  sme-sre-infra-ops/slb-sme-sre-infra-ops/
+  sme-architects/slb-sme-architects/
+  sme-bi-analysts/slb-sme-bi-analysts/
+  sme-aiops-alerting/slb-sme-aiops-alerting/
+  one-offs/slb-one-offs/
+  sme-all-teams/slb-sme-all-teams/
 shared/                       # Serverless bootstrap scripts
 scripts/
-  generate-tracks.py          # Scaffold new series tracks
+  generate-tracks.py          # Scaffold consolidated tracks + challenges
   sync-section-tags.py        # Patch series tags on track.yml
+  delete-legacy-tracks.sh     # Remove old per-session Instruqt tracks
 ```
 
 ## GitHub Pages slides
 
-Slide decks live in [`docs/slides/`](docs/slides/) (Reveal.js) and embed in Instruqt while labs provision.
+Slide decks live in [`docs/`](docs/) (Reveal.js) and embed in each challenge while labs provision.
 
-**One-time setup:** Repo → **Settings → Pages** → Source: **Deploy from a branch** → `main` → `/docs`  
-(or enable **GitHub Actions** as source to use `.github/workflows/pages.yml`).
+**Pages setup:** Repo → **Settings → Pages** → Source: **GitHub Actions** (recommended), or deploy from branch `main` folder **`/docs`**.
 
 | URL | Content |
 |-----|---------|
 | [poulsbopete.github.io/slb-workshops](https://poulsbopete.github.io/slb-workshops) | Slide index |
 | `.../slides/f-02/` | F-02 deck (example) |
-| `.../slides/aiops-01/` | AIOps 01 deck |
-
-Regenerate after catalog changes:
 
 ```bash
 make slides-all    # rebuild decks + update Instruqt iframes
-make publish
+make publish       # git push + push all 8 Instruqt tracks
 ```
 
 ## Workflow
 
 ```bash
-make list                  # tracks grouped by series
+make list                  # 8 tracks and their challenge folders
 make list-sections         # series tags and collection names
-make slides-all            # regenerate GitHub Pages decks + embed in Instruqt
-make push-section SECTION=sme-aiops-alerting   # push one series only
-make publish               # git push + push all Instruqt tracks
+make generate              # rebuild track scaffolds from catalog
+make sync-labs             # sync lab bodies from LABS dict
+make push-section SECTION=sme-developers
+make publish
 ```
 
-Each track provisions a fresh **Elastic Observability Serverless** project per participant via `elastic/es3-api-v2`. Labs are **Kibana-only** — copy/paste in the UI (ES|QL, Dev Tools, Lens). No Terminal tab is required.
+Each track provisions **Elastic Observability Serverless** via `elastic/es3-api-v2`. Labs are **Kibana-only** — ES|QL, Dev Tools, Lens; no Terminal tab.
 
 ## Instruqt collections
 
-Create one collection per series in the Instruqt UI (names in `catalog/sections.yaml`):
+Create one collection per series (names in `catalog/sections.yaml`) and add the matching consolidated track:
 
-- **SLB — Shared Foundations**
-- **SLB — SME Track: Developers**
-- **SLB — SME Track: SRE & Infra Ops**
-- **SLB — SME Track: Architects**
-- **SLB — SME Track: BI & Data Analysts**
-- **SLB — SME Track: AIOps & Alerting**
-- **SLB — One-off: AI/ML Overview**
-- **SLB — One-off: RAG & MCP**
-- **SLB — One-off: Hybrid Search**
-- **SLB — SME Track: All Teams**
-
-Add the matching `slb-*` tracks to each collection and share invite links with workshop attendees.
+- **SLB — Shared Foundations** → `slb-shared-foundations`
+- **SLB — SME Track: Developers** → `slb-sme-developers`
+- *(etc.)*
 
 ## License
 

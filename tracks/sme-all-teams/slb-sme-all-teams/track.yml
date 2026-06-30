@@ -1,0 +1,39 @@
+slug: slb-sme-all-teams
+title: "SLB — SME Track: All Teams"
+teaser: |
+  Consolidated Instruqt track for the SLB × Elastic **SME Track: All Teams** series.
+  Complete the labs in order, or jump to the session matching your live workshop.
+description: |-
+  **SLB — SME Track: All Teams**
+
+  This track contains **1** hands-on lab — one per live session in the series.
+  Each lab provisions a personal **Elastic Observability Serverless** project.
+
+  ## Sessions in this track
+  - **Cross-team** — Cross-team Platform Review
+
+  Register for live sessions: [events.elastic.co/slbworkshops](https://events.elastic.co/slbworkshops)
+icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
+tags:
+  - slb
+  - slb-workshops
+  - slb-series-sme-all-teams
+  - elastic
+  - serverless
+  - observability
+  - co.elastic.workshops
+owner: elastic
+developers:
+- peter.simkins@elastic.co
+idle_timeout: 3600
+timelimit: 10800
+lab_config:
+  sidebar_enabled: true
+  feedback_recap_enabled: true
+  feedback_tab_enabled: false
+  loadingMessages: true
+  theme:
+    name: modern-dark
+  default_layout: AssignmentRight
+  default_layout_sidebar_size: 35
+  override_challenge_layout: false
