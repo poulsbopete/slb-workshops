@@ -1,37 +1,28 @@
 slug: slb-bi-01-dashboard-basics
 id: mj8wjaypw1z1
 title: SLB BI 01 — Dashboard & Data Exploration Basics
-teaser: 'Kibana Discover, Lens visualizations, and dashboards for BI users.
-
-  '
-description: '**BI 01 — Dashboard & Data Exploration Basics**
-
+teaser: |
+  Kibana Discover, Lens visualizations, and dashboards for BI users.
+description: |-
+  **BI 01 — Dashboard & Data Exploration Basics**
 
   Kibana Discover, Lens visualizations, and dashboards for BI users.
 
-
   **Series:** SME Track — BI & Data Analysts
-
   **Audience:** bi
-
   **Presenter:** Pramod Saripalli
-
   **Live date:** 2026-09-02
 
-
   ## Session topics
-
   - Navigating Discover, Lens, and dashboards
-
   - Filtering, slicing, and exporting
-
-  - Entry-level friendly — no prior Elastic experience required'
+  - Entry-level friendly — no prior Elastic experience required
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
-- slb
-- slb-workshops
 - slb-section-bi
 - elastic
+- slb
+- slb-workshops
 - serverless
 - observability
 - co.elastic.workshops
@@ -51,5 +42,5 @@ lab_config:
   hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-checksum: '2182278652957776472'
+checksum: "12122492511523361657"
 enhanced_loading: false

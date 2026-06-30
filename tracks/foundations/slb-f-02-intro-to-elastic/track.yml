@@ -1,45 +1,33 @@
 slug: slb-f-02-intro-to-elastic
 id: p34qzgdmcueq
 title: SLB F-02 — Intro to Elastic
-teaser: 'Overview of the Elastic platform and how it fits into SLB SRE''s observability
-  journey — ingestion, storage, query, and visualization.
+teaser: |
+  Overview of the Elastic platform and how it fits into SLB SRE's observability journey — ingestion, storage, query, and visualization.
+description: |-
+  **F-02 — Intro to Elastic**
 
-  '
-description: '**F-02 — Intro to Elastic**
-
-
-  Overview of the Elastic platform and how it fits into SLB SRE''s observability journey
-  — ingestion, storage, query, and visualization.
-
+  Overview of the Elastic platform and how it fits into SLB SRE's observability journey — ingestion, storage, query, and visualization.
 
   **Series:** Shared Foundations
-
   **Audience:** all
-
   **Presenter:** Roberto Pantoja
-
   **Live date:** 2026-07-22
 
-
   ## Session topics
-
   - Elastic Platform Overview
-
   - How each persona uses Elastic
-
-  - SLB SRE''s journey with Elastic — current state
-
-  - Data lifecycle and tiers — hot, warm, cold, frozen, delete'
+  - SLB SRE's journey with Elastic — current state
+  - Data lifecycle and tiers — hot, warm, cold, frozen, delete
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
+- elastic
 - slb
 - slb-workshops
 - slb-section-foundations
-- elastic
 - serverless
+- shared-foundations
 - observability
 - co.elastic.workshops
-- shared-foundations
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -56,5 +44,5 @@ lab_config:
   hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-checksum: '8847684282533603076'
+checksum: "16919415396004865500"
 enhanced_loading: false

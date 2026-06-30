@@ -1,40 +1,29 @@
 slug: slb-sre-03-ingestion-architecture
 id: e29ybxxqdbu2
 title: SLB SRE 03 — Ingestion Architecture & Troubleshooting
-teaser: 'Elastic Agent vs OTel tradeoffs, Prometheus ingestion, and failure store
-  handling.
-
-  '
-description: '**SRE 03 — Ingestion Architecture & Troubleshooting**
-
+teaser: |
+  Elastic Agent vs OTel tradeoffs, Prometheus ingestion, and failure store handling.
+description: |-
+  **SRE 03 — Ingestion Architecture & Troubleshooting**
 
   Elastic Agent vs OTel tradeoffs, Prometheus ingestion, and failure store handling.
 
-
   **Series:** SME Track — SRE & Infra Ops
-
   **Audience:** sre
-
   **Presenter:** Specialist (DSR)
-
   **Live date:** 2026-10-14
 
-
   ## Session topics
-
   - Elastic Agent integrations vs OTel-native collection tradeoffs
-
   - Prometheus scrape and remote_write ingestion patterns
-
   - Failure store and ingest error handling
-
-  - Diagnosing dashboard instability when switching Prometheus environments'
+  - Diagnosing dashboard instability when switching Prometheus environments
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
+- elastic
 - slb
 - slb-workshops
 - slb-section-sre
-- elastic
 - serverless
 - observability
 - co.elastic.workshops
@@ -54,5 +43,5 @@ lab_config:
   hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-checksum: '10099849523216560793'
+checksum: "4729219523484566065"
 enhanced_loading: false
