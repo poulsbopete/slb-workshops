@@ -1,36 +1,42 @@
 slug: slb-workshops
 id: cl3mlvgk1zt1
 title: SLB Bonus — Database Monitoring Lab (reference)
-teaser: |
-  Reference lab — live OpenTelemetry for six database engines with Kibana dashboards
+teaser: 'Reference lab — live OpenTelemetry for six database engines with Kibana dashboards
+
   and alerting. Not tied to a live session; use section tracks for workshop labs.
-description: |-
-  **Reference track** for the SLB × Elastic program.
+
+  '
+description: '**Reference track** for the SLB × Elastic program.
+
 
   Full OTel database monitoring environment: MySQL, PostgreSQL, SQL Server, MongoDB,
+
   Db2, and Oracle — dashboards, alert rules, and optional Cursor lab.
 
+
   For scheduled workshops, use the section tracks (`slb-f-02-*`, `slb-dev-*`,
+
   `slb-sre-*`, `slb-bi-*`, `slb-aiops-*`). See
-  [github.com/poulsbopete/slb-workshops](https://github.com/poulsbopete/slb-workshops).
+
+  [github.com/poulsbopete/slb-workshops](https://github.com/poulsbopete/slb-workshops).'
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
+- slb
+- slb-workshops
+- slb-section-reference
+- elastic
+- serverless
+- observability
+- co.elastic.workshops
 - postgresql
 - mysql
 - db2
 - co.elastic.workshops.production
-- elastic
-- slb
-- slb-workshops
 - database-monitoring
-- slb-section-reference
 - opentelemetry
-- serverless
 - sqlserver
 - mongodb
-- observability
 - oracle
-- co.elastic.workshops
 owner: elastic
 developers:
 - peter.simkins@elastic.co
@@ -47,5 +53,5 @@ lab_config:
   hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 35
-checksum: "10267163720771211919"
+checksum: '10267163720771211919'
 enhanced_loading: false
