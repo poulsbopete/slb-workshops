@@ -6,20 +6,11 @@ title: BI 03 — APIs, Integrations & Dashboard Building
 teaser: Elasticsearch API basics and building dashboards for operational reporting.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://slb-workshops.vercel.app/slides/bi-03/\"\
-    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
-    >\n</iframe>\n\n*Provisioning your **Observability Serverless** lab for **BI 03**\
-    \ (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
-- type: text
-  contents: '## Session topics
-
-    - API calls and pulling data into external tools
-
-    - Building dashboards for operational and business review
-
-    - Data schema considerations
-
-    '
+  contents: |-
+    <iframe src="https://slb-workshops.vercel.app/slides/bi-03/"
+      width="100%" height="1400" frameborder="0"
+      style="border-radius:8px;display:block;width:100%;min-height:900px">
+    </iframe>
 tabs:
 - id: bitfssmxbnj7
   title: Elastic Serverless

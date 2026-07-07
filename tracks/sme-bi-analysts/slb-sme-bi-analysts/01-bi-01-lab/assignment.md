@@ -6,20 +6,11 @@ title: BI 01 — Dashboard & Data Exploration Basics
 teaser: Kibana Discover, Lens visualizations, and dashboards for BI users.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://slb-workshops.vercel.app/slides/bi-01/\"\
-    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
-    >\n</iframe>\n\n*Provisioning your **Observability Serverless** lab for **BI 01**\
-    \ (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
-- type: text
-  contents: '## Session topics
-
-    - Navigating Discover, Lens, and dashboards
-
-    - Filtering, slicing, and exporting
-
-    - Entry-level friendly — no prior Elastic experience required
-
-    '
+  contents: |-
+    <iframe src="https://slb-workshops.vercel.app/slides/bi-01/"
+      width="100%" height="1400" frameborder="0"
+      style="border-radius:8px;display:block;width:100%;min-height:900px">
+    </iframe>
 tabs:
 - id: bmrjyhl5y0ty
   title: Elastic Serverless

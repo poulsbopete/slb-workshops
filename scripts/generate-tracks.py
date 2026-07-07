@@ -111,7 +111,7 @@ exit 0
 """
 
 from labs_serverless import LABS
-from site_config import slide_deck_url
+from site_config import iframe_note
 
 
 BASE_TAGS = [
@@ -126,25 +126,9 @@ BASE_TAGS = [
 IFRAME_HEIGHT = 1400
 
 
-def iframe_note(workshop: dict) -> str:
-    wid = workshop["id"]
-    code = workshop["code"]
-    url = slide_deck_url(wid)
-    return (
-        "    ## While you wait…\n\n"
-        f'    <iframe src="{url}"\n'
-        f'      width="100%" height="{IFRAME_HEIGHT}" frameborder="0"\n'
-        '      style="border-radius:8px;display:block;width:100%;min-height:900px">\n'
-        "    </iframe>\n\n"
-        f"    *Provisioning your **Observability Serverless** lab for **{code}** "
-        "(usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
-    )
-
-
 def assignment_md(workshop: dict) -> str:
     wid = workshop["id"]
     body = LABS.get(wid, f"\n# {workshop['title']}\n\nLab content TBD.\n")
-    topic_lines = chr(10).join("    - " + t for t in workshop.get("topics", []))
     front = f"""---
 slug: {wid}-lab
 type: challenge
@@ -153,11 +137,7 @@ teaser: "{workshop['description'].strip().replace(chr(10), ' ')[:200]}"
 notes:
 - type: text
   contents: |-
-{iframe_note(workshop)}
-- type: text
-  contents: |
-    ## Session topics
-{topic_lines}
+    {iframe_note(wid)}
 tabs:
 {KIBANA_TAB}
 timelimit: 0

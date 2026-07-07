@@ -16,9 +16,7 @@ if str(SCRIPTS) not in sys.path:
 
 CATALOG = ROOT / "catalog" / "workshops.yaml"
 TRACKS = ROOT / "tracks"
-from site_config import slide_deck_url
-
-IFRAME_HEIGHT = 1400
+from site_config import iframe_note
 
 
 def workshops_by_id() -> dict[str, dict]:
@@ -32,19 +30,8 @@ def workshop_id_from_path(path: Path) -> str | None:
     return m.group(1) if m else None
 
 
-def iframe_note(workshop: dict) -> str:
-    wid = workshop["id"]
-    code = workshop["code"]
-    url = slide_deck_url(wid)
-    return (
-        f"## While you wait…\n\n"
-        f"<iframe src=\"{url}\"\n"
-        f"  width=\"100%\" height=\"{IFRAME_HEIGHT}\" frameborder=\"0\"\n"
-        f"  style=\"border-radius:8px;display:block;width:100%;min-height:900px\">\n"
-        f"</iframe>\n\n"
-        f"*Provisioning your **Observability Serverless** lab for **{code}** "
-        f"(usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
-    )
+def iframe_note_for_workshop(workshop: dict) -> str:
+    return iframe_note(workshop["id"])
 
 
 def split_front_matter(text: str) -> tuple[str, dict, str] | None:
@@ -68,14 +55,16 @@ def patch_simple_assignment(path: Path, workshop: dict) -> bool:
         return False
     _, front, body = split
 
-    slide_contents = iframe_note(workshop)
+    slide_contents = iframe_note_for_workshop(workshop)
     notes = front.get("notes") or []
+    # Keep iframe note only — drop session topic notes and extra waiting-room text.
+    notes = [n for n in notes if "## Session topics" not in str(n.get("contents", ""))
+             and "Live session topics" not in str(n.get("contents", ""))]
     if notes and "iframe src=" in str(notes[0].get("contents", "")):
         notes[0]["contents"] = slide_contents
     else:
         notes.insert(0, {"type": "text", "contents": slide_contents})
-
-    front["notes"] = notes
+    front["notes"] = notes[:1]
     dumped = yaml.dump(front, default_flow_style=False, sort_keys=False, allow_unicode=True)
     new_text = f"---\n{dumped.rstrip()}\n---\n{body.lstrip()}"
     if new_text == text:

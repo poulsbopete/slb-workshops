@@ -6,20 +6,11 @@ title: Dev 03 — Deployment Validation & Incident Workflows
 teaser: Elastic-native workflows for validating service health and correlating telemetry.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://slb-workshops.vercel.app/slides/dev-03/\"\
-    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
-    >\n</iframe>\n\n*Provisioning your **Observability Serverless** lab for **Dev\
-    \ 03** (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
-- type: text
-  contents: '## Session topics
-
-    - Service health checks after deployments
-
-    - Correlating telemetry sources (logs, metrics, traces)
-
-    - Saved queries and views for daily use
-
-    '
+  contents: |-
+    <iframe src="https://slb-workshops.vercel.app/slides/dev-03/"
+      width="100%" height="1400" frameborder="0"
+      style="border-radius:8px;display:block;width:100%;min-height:900px">
+    </iframe>
 tabs:
 - id: 16kzhiujlkdd
   title: Elastic Serverless

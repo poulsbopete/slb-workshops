@@ -6,21 +6,11 @@ title: Arch 01 — Architecture & Migration Strategy
 teaser: Target-state ingestion design and coexistence planning during migration.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://slb-workshops.vercel.app/slides/arch-01/\"\
-    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
-    >\n</iframe>\n\n*Provisioning your **Observability Serverless** lab for **Arch\
-    \ 01** (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
-- type: text
-  contents: '## Session topics
-
-
-    - Streams and OTel target-state (Serverless, ECH, or on-prem)
-
-    - Coexistence planning during migration (Grafana + Elastic side by side)
-
-    - Multi-team project access and API keys
-
-    '
+  contents: |-
+    <iframe src="https://slb-workshops.vercel.app/slides/arch-01/"
+      width="100%" height="1400" frameborder="0"
+      style="border-radius:8px;display:block;width:100%;min-height:900px">
+    </iframe>
 tabs:
 - id: 9vejoukhuxkm
   title: Elastic Serverless

@@ -7,23 +7,11 @@ teaser: Platform overview — labs use Serverless; the same observability capabi
   apply on ECH and self-managed deployments.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://slb-workshops.vercel.app/slides/f-02/\"\
-    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
-    >\n</iframe>\n\n*Provisioning your **Observability Serverless** lab for **F-02**\
-    \ (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
-- type: text
-  contents: '## Session topics
-
-
-    - Elastic Observability — Serverless, ECH, and self-managed (same Kibana value)
-
-    - Streams, ES|QL, and unified Observability
-
-    - SLB SRE''s journey with Elastic — current state
-
-    - AI Assistant and Agent Builder introduction
-
-    '
+  contents: |-
+    <iframe src="https://slb-workshops.vercel.app/slides/f-02/"
+      width="100%" height="1400" frameborder="0"
+      style="border-radius:8px;display:block;width:100%;min-height:900px">
+    </iframe>
 tabs:
 - id: psprkcbh11mx
   title: Elastic Serverless

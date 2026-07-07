@@ -14,3 +14,17 @@ def slides_base() -> str:
 
 def slide_deck_url(workshop_id: str) -> str:
     return f"{slides_base()}/slides/{workshop_id}/"
+
+
+IFRAME_HEIGHT = 1400
+
+
+def iframe_note(workshop_id: str, *, height: int = IFRAME_HEIGHT) -> str:
+    """Instruqt waiting-room note: slide deck iframe only."""
+    url = slide_deck_url(workshop_id)
+    return (
+        f'<iframe src="{url}"\n'
+        f'  width="100%" height="{height}" frameborder="0"\n'
+        f'  style="border-radius:8px;display:block;width:100%;min-height:900px">\n'
+        f"</iframe>"
+    )

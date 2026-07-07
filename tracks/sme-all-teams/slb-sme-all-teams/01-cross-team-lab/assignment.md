@@ -6,20 +6,11 @@ title: Cross-team — Cross-team Platform Review
 teaser: Cross-team session reviewing adoption progress and next steps.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://slb-workshops.vercel.app/slides/cross-team/\"\
-    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
-    >\n</iframe>\n\n*Provisioning your **Observability Serverless** lab for **Cross-team**\
-    \ (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
-- type: text
-  contents: '## Session topics
-
-    - Elastic adoption progress across all teams
-
-    - Open Q&A and live troubleshooting
-
-    - Next steps and program evolution
-
-    '
+  contents: |-
+    <iframe src="https://slb-workshops.vercel.app/slides/cross-team/"
+      width="100%" height="1400" frameborder="0"
+      style="border-radius:8px;display:block;width:100%;min-height:900px">
+    </iframe>
 tabs:
 - id: ahuakfmqw6b5
   title: Elastic Serverless

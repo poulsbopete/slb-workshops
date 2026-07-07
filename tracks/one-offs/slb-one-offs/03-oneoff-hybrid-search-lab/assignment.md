@@ -6,20 +6,11 @@ title: One-off — Hybrid Search
 teaser: Explore hybrid search — BM25 plus vector similarity — in Elasticsearch.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://slb-workshops.vercel.app/slides/oneoff-hybrid-search/\"\
-    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
-    >\n</iframe>\n\n*Provisioning your **Observability Serverless** lab for **One-off**\
-    \ (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
-- type: text
-  contents: '## Session topics
-
-    - Combining lexical and semantic search
-
-    - Hybrid search in Elasticsearch
-
-    - Relevance tuning for observability and log search
-
-    '
+  contents: |-
+    <iframe src="https://slb-workshops.vercel.app/slides/oneoff-hybrid-search/"
+      width="100%" height="1400" frameborder="0"
+      style="border-radius:8px;display:block;width:100%;min-height:900px">
+    </iframe>
 tabs:
 - id: mp56y2peydbu
   title: Elastic Serverless
