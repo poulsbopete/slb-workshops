@@ -9,24 +9,27 @@ notes:
   contents: |-
     ## While you wait…
     
-    <div style="width:100%;max-width:100%;margin:0;padding:0;">
-    <iframe src="https://slb-workshops.vercel.app/slides/oneoff-rag-mcp/" width="100%" height="1400" frameborder="0" style="display:block;width:100%;min-width:100%;height:1400px;border:0;border-radius:8px"></iframe>
-    </div>
+    Open the **Session slides** tab for today's deck while your Observability Serverless project provisions (~2–3 minutes).
+    
+    When provisioning finishes, switch to **Elastic Serverless** for the hands-on lab.
 tabs:
-- id: m5a3xelh56rn
-  title: Elastic Serverless
-  type: service
-  hostname: es3-api
-  path: /app/home
-  port: 8080
-  custom_request_headers:
-  - key: Content-Security-Policy
-    value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
-      style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-  custom_response_headers:
-  - key: Content-Security-Policy
-    value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
-      style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
+  - title: Session slides
+    type: website
+    url: https://slb-workshops.vercel.app/slides/oneoff-rag-mcp/
+  - title: Elastic Serverless
+    type: service
+    hostname: es3-api
+    path: /app/home
+    port: 8080
+    custom_request_headers:
+    - key: Content-Security-Policy
+      value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
+        style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
+    custom_response_headers:
+    - key: Content-Security-Policy
+      value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
+        style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
+    id: m5a3xelh56rn
 difficulty: ''
 timelimit: 0
 enhanced_loading: null

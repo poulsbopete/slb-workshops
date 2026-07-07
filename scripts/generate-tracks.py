@@ -111,7 +111,7 @@ exit 0
 """
 
 from labs_serverless import LABS
-from site_config import iframe_note
+from site_config import kibana_tab_dict, slides_tab_yaml, waiting_room_note
 
 
 BASE_TAGS = [
@@ -129,6 +129,13 @@ IFRAME_HEIGHT = 1400
 def assignment_md(workshop: dict) -> str:
     wid = workshop["id"]
     body = LABS.get(wid, f"\n# {workshop['title']}\n\nLab content TBD.\n")
+    note = waiting_room_note(wid).replace("\n", "\n    ")
+    slides = yaml.dump(
+        slides_tab_yaml(wid), default_flow_style=False, sort_keys=False, allow_unicode=True
+    ).rstrip()
+    kibana = yaml.dump(
+        kibana_tab_dict(), default_flow_style=False, sort_keys=False, allow_unicode=True
+    ).rstrip()
     front = f"""---
 slug: {wid}-lab
 type: challenge
@@ -137,9 +144,10 @@ teaser: "{workshop['description'].strip().replace(chr(10), ' ')[:200]}"
 notes:
 - type: text
   contents: |-
-    {iframe_note(wid)}
+    {note}
 tabs:
-{KIBANA_TAB}
+{chr(10).join('  ' + line for line in slides.splitlines())}
+{chr(10).join('  ' + line for line in kibana.splitlines())}
 timelimit: 0
 ---
 

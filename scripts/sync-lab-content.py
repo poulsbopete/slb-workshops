@@ -17,7 +17,7 @@ if str(SCRIPTS) not in sys.path:
 TRACKS = ROOT / "tracks"
 CATALOG = ROOT / "catalog" / "workshops.yaml"
 
-from site_config import iframe_note
+from site_config import kibana_tab_dict, slide_deck_url, slides_tab_yaml, waiting_room_note
 
 LAB_INTRO = """> **Lab environment:** Use the **Elastic Serverless** tab only. Hands-on steps run on **Observability Serverless** with **pre-loaded SLB sample data** (logs, metrics, traces, alert rules, and an SLO). The **same observability capabilities** apply on **ECH** and **self-managed**; Serverless mainly saves platform management. Steps are copy/paste in Kibana — no terminal required.
 
@@ -76,15 +76,15 @@ def strip_session_topic_notes(front: dict) -> bool:
     return True
 
 
-def update_iframe_note(front: dict, workshop_id: str) -> bool:
-    expected = iframe_note(workshop_id)
+def update_waiting_room_note(front: dict, workshop_id: str) -> bool:
+    expected = waiting_room_note(workshop_id)
     notes = front.get("notes") or []
     contents = str(notes[0].get("contents", "")) if notes else ""
     needs_update = (
         len(notes) != 1
         or "## Session topics" in contents
+        or "iframe src=" in contents
         or "Provisioning your" in contents
-        or "max-width:100%" not in contents
         or notes[0].get("contents") != expected
     )
     if not needs_update:
@@ -93,27 +93,72 @@ def update_iframe_note(front: dict, workshop_id: str) -> bool:
     return True
 
 
+def ensure_slides_tab(front: dict, workshop_id: str) -> bool:
+    tabs = front.get("tabs") or []
+    expected_url = slide_deck_url(workshop_id)
+    slides_tabs = [t for t in tabs if t.get("type") == "website"]
+    kibana_tabs = [t for t in tabs if t.get("type") == "service" and t.get("hostname") == "es3-api"]
+    other_tabs = [
+        t
+        for t in tabs
+        if t not in slides_tabs and t not in kibana_tabs
+    ]
+
+    slides = slides_tab_yaml(workshop_id)
+    if slides_tabs and slides_tabs[0].get("url") == expected_url and slides_tabs[0].get("title") == "Session slides":
+        new_slides = slides_tabs[0]
+        changed = False
+    else:
+        new_slides = slides
+        changed = True
+
+    if not kibana_tabs:
+        kibana_tabs = [kibana_tab_dict()]
+        changed = True
+    else:
+        # Preserve Instruqt tab id and headers from existing kibana tab
+        merged = kibana_tab_dict()
+        merged.update({k: v for k, v in kibana_tabs[0].items() if k in ("id",)})
+        kibana_tabs = [merged]
+
+    new_tabs = [new_slides, kibana_tabs[0], *other_tabs]
+    if new_tabs != tabs:
+        front["tabs"] = new_tabs
+        return True
+    return changed
+
+
 def dedupe_notes(front: dict) -> bool:
     notes = front.get("notes") or []
     if len(notes) <= 1:
-        return False
-    first_has_iframe = "iframe src=" in str(notes[0].get("contents", ""))
-    if not first_has_iframe:
         return False
     front["notes"] = [notes[0]]
     return True
 
 
-def format_iframe_notes_yaml(workshop_id: str) -> str:
-    iframe = iframe_note(workshop_id)
-    indented = "\n".join(f"    {line}" for line in iframe.splitlines())
+def format_waiting_notes_yaml(workshop_id: str) -> str:
+    note = waiting_room_note(workshop_id)
+    indented = "\n".join(f"    {line}" for line in note.splitlines())
     return f"notes:\n- type: text\n  contents: |-\n{indented}\n"
 
 
+def format_tabs_yaml(front: dict, workshop_id: str) -> str:
+    ensure_slides_tab(front, workshop_id)
+    lines = ["tabs:"]
+    for tab in front.get("tabs") or []:
+        dumped = yaml.dump(
+            [tab], default_flow_style=False, sort_keys=False, allow_unicode=True
+        ).rstrip()
+        lines.extend(f"  {line}" for line in dumped.splitlines())
+    return "\n".join(lines) + "\n"
+
+
 def yaml_dump_front(front: dict, workshop_id: str) -> str:
-    """Dump front matter with notes (iframe only) before tabs."""
+    """Dump front matter with waiting-room text and website slides tab."""
     copy = dict(front)
     copy.pop("notes", None)
+    copy.pop("tabs", None)
+    ensure_slides_tab(front, workshop_id)
     head_keys = ["slug", "id", "type", "title", "teaser"]
     parts: list[str] = []
     for key in head_keys:
@@ -126,7 +171,17 @@ def yaml_dump_front(front: dict, workshop_id: str) -> str:
                     allow_unicode=True,
                 )
             )
-    parts.append(format_iframe_notes_yaml(workshop_id))
+    parts.append(format_waiting_notes_yaml(workshop_id))
+    parts.append(format_tabs_yaml(front, workshop_id))
+    tail_keys = ["difficulty", "timelimit", "enhanced_loading"]
+    tail: dict = {}
+    for key in tail_keys:
+        if key in copy:
+            tail[key] = copy.pop(key)
+    if tail:
+        parts.append(
+            yaml.dump(tail, default_flow_style=False, sort_keys=False, allow_unicode=True)
+        )
     if copy:
         parts.append(
             yaml.dump(copy, default_flow_style=False, sort_keys=False, allow_unicode=True)
@@ -153,13 +208,15 @@ def patch_assignment(
 
     front_matter = text.split("---", 2)[1]
     notes_after_tabs = "tabs:" in front_matter and front_matter.find("notes:") > front_matter.find("tabs:")
-    iframe_stale = (
-        "max-width:100%" not in front_matter
+    needs_layout_refresh = (
+        "iframe src=" in front_matter
+        or "type: website" not in front_matter
+        or "Session slides" not in front_matter
         or "## Session topics" in front_matter
         or "Provisioning your" in front_matter
+        or notes_after_tabs
     )
-    if "contents: |-" not in front_matter or notes_after_tabs or iframe_stale:
-        update_iframe_note(front, workshop_id)
+    if needs_layout_refresh:
         changed = True
 
     if workshop_id in labs:
@@ -182,7 +239,9 @@ def patch_assignment(
         changed = True
     if dedupe_notes(front):
         changed = True
-    if update_iframe_note(front, workshop_id):
+    if update_waiting_room_note(front, workshop_id):
+        changed = True
+    if ensure_slides_tab(front, workshop_id):
         changed = True
 
     if not changed:

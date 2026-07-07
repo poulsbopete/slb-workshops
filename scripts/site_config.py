@@ -19,14 +19,52 @@ def slide_deck_url(workshop_id: str) -> str:
 IFRAME_HEIGHT = 1400
 
 
-def iframe_note(workshop_id: str, *, height: int = IFRAME_HEIGHT) -> str:
-    """Instruqt waiting-room note: slide deck iframe (no session topic bullets)."""
-    url = slide_deck_url(workshop_id)
+def waiting_room_note(workshop_id: str) -> str:
+    """Short provisioning note — slides live in the Session slides tab (full-width)."""
     return (
         "## While you wait…\n\n"
-        '<div style="width:100%;max-width:100%;margin:0;padding:0;">\n'
-        f'<iframe src="{url}" width="100%" height="{height}" frameborder="0" '
-        f'style="display:block;width:100%;min-width:100%;height:{height}px;'
-        f'border:0;border-radius:8px"></iframe>\n'
-        "</div>"
+        "Open the **Session slides** tab for today's deck while your "
+        "Observability Serverless project provisions (~2–3 minutes).\n\n"
+        "When provisioning finishes, switch to **Elastic Serverless** for the hands-on lab."
     )
+
+
+def slides_tab_yaml(workshop_id: str) -> dict:
+    return {
+        "title": "Session slides",
+        "type": "website",
+        "url": slide_deck_url(workshop_id),
+    }
+
+
+def kibana_tab_dict() -> dict:
+    return {
+        "title": "Elastic Serverless",
+        "type": "service",
+        "hostname": "es3-api",
+        "path": "/app/home",
+        "port": 8080,
+        "custom_request_headers": [
+            {
+                "key": "Content-Security-Policy",
+                "value": (
+                    "script-src 'self' https://kibana.estccdn.com; worker-src blob: 'self'; "
+                    "style-src 'unsafe-inline' 'self' https://kibana.estccdn.com"
+                ),
+            }
+        ],
+        "custom_response_headers": [
+            {
+                "key": "Content-Security-Policy",
+                "value": (
+                    "script-src 'self' https://kibana.estccdn.com; worker-src blob: 'self'; "
+                    "style-src 'unsafe-inline' 'self' https://kibana.estccdn.com"
+                ),
+            }
+        ],
+    }
+
+
+# Back-compat alias used by older scripts during transition
+def iframe_note(workshop_id: str, *, height: int = IFRAME_HEIGHT) -> str:
+    return waiting_room_note(workshop_id)

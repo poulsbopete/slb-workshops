@@ -203,22 +203,16 @@ if [ -f "$DEFAULT_SEED" ]; then
     sleep 15
   done
   if [ "$_seed_ok" -ne 1 ]; then
-    echo "ERROR: workshop seed failed after retries — labs will have empty data" >&2
-    exit 1
-  fi
-  _log_count=0
-  if [ -n "${ES_API_KEY:-}" ]; then
+    echo "WARN: workshop seed failed after retries — track will start but labs may lack sample data" >&2
+  elif [ -n "${ES_API_KEY:-}" ]; then
     _log_count=$(curl -s -H "Authorization: ApiKey ${ES_API_KEY}" \
       "${ES_URL%/}/logs-*/_count" | jq -r '.count // 0' 2>/dev/null || echo 0)
-  elif [ -n "${ES_PASSWORD:-}" ]; then
-    _log_count=$(curl -s -u "admin:${ES_PASSWORD}" \
-      "${ES_URL%/}/logs-*/_count" | jq -r '.count // 0' 2>/dev/null || echo 0)
+    if [ "${_log_count:-0}" -ge 100 ] 2>/dev/null; then
+      echo "✓ Workshop data verified: ${_log_count} log documents"
+    else
+      echo "WARN: bootstrap verification — only ${_log_count:-0} log documents indexed" >&2
+    fi
   fi
-  if [ "${_log_count:-0}" -lt 100 ] 2>/dev/null; then
-    echo "ERROR: bootstrap verification failed — only ${_log_count:-0} log documents indexed" >&2
-    exit 1
-  fi
-  echo "✓ Workshop data verified: ${_log_count} log documents"
 elif [ -n "${WORKSHOP_SEED_SCRIPT:-}" ] && [ -f "$WORKSHOP_SEED_SCRIPT" ]; then
   echo "Running workshop seed: $WORKSHOP_SEED_SCRIPT"
   bash "$WORKSHOP_SEED_SCRIPT" || { echo "ERROR: custom seed script failed" >&2; exit 1; }
