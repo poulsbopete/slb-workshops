@@ -6,16 +6,8 @@ title: F-04 — Looking Forward with Elastic
 teaser: First look at Elastic 9.x and what it means for SLB SRE.
 notes:
 - type: text
-  contents: |-
-    ## While you wait…
-    
-    Open the **Session slides** tab for today's deck while your Observability Serverless project provisions (~2–3 minutes).
-    
-    When provisioning finishes, switch to **Elastic Serverless** for the hands-on lab.
+  contents: "## While you wait\u2026\n\n<iframe src=\"https://slb-workshops.vercel.app/slides/f-04/\"\n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\">\n</iframe>\n\n*Provisioning your **Observability Serverless** lab for **F-04** (usually 2\u20133 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
 tabs:
-  - title: Session slides
-    type: website
-    url: https://slb-workshops.vercel.app/slides/f-04/
   - title: Elastic Serverless
     type: service
     hostname: es3-api

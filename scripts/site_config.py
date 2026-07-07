@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import os
 
 # Override at build/deploy time: SLIDES_BASE_URL=https://your-domain.com
@@ -19,52 +20,22 @@ def slide_deck_url(workshop_id: str) -> str:
 IFRAME_HEIGHT = 1400
 
 
-def waiting_room_note(workshop_id: str) -> str:
-    """Short provisioning note — slides live in the Session slides tab (full-width)."""
+def iframe_note(workshop_id: str, code: str, *, height: int = IFRAME_HEIGHT) -> str:
+    """Instruqt waiting-room note with embedded slide deck iframe."""
+    url = slide_deck_url(workshop_id)
     return (
-        "## While you wait…\n\n"
-        "Open the **Session slides** tab for today's deck while your "
-        "Observability Serverless project provisions (~2–3 minutes).\n\n"
-        "When provisioning finishes, switch to **Elastic Serverless** for the hands-on lab."
+        f"## While you wait…\n\n"
+        f'<iframe src="{url}"\n'
+        f'  width="100%" height="{height}" frameborder="0"\n'
+        f'  style="border-radius:8px;display:block;width:100%;min-height:900px">\n'
+        f"</iframe>\n\n"
+        f"*Provisioning your **Observability Serverless** lab for **{code}** "
+        f"(usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
     )
 
 
-def slides_tab_yaml(workshop_id: str) -> dict:
-    return {
-        "title": "Session slides",
-        "type": "website",
-        "url": slide_deck_url(workshop_id),
-    }
-
-
-def kibana_tab_dict() -> dict:
-    return {
-        "title": "Elastic Serverless",
-        "type": "service",
-        "hostname": "es3-api",
-        "path": "/app/home",
-        "port": 8080,
-        "custom_request_headers": [
-            {
-                "key": "Content-Security-Policy",
-                "value": (
-                    "script-src 'self' https://kibana.estccdn.com; worker-src blob: 'self'; "
-                    "style-src 'unsafe-inline' 'self' https://kibana.estccdn.com"
-                ),
-            }
-        ],
-        "custom_response_headers": [
-            {
-                "key": "Content-Security-Policy",
-                "value": (
-                    "script-src 'self' https://kibana.estccdn.com; worker-src blob: 'self'; "
-                    "style-src 'unsafe-inline' 'self' https://kibana.estccdn.com"
-                ),
-            }
-        ],
-    }
-
-
-# Back-compat alias used by older scripts during transition
-def iframe_note(workshop_id: str, *, height: int = IFRAME_HEIGHT) -> str:
-    return waiting_room_note(workshop_id)
+def iframe_note_yaml(workshop_id: str, code: str) -> str:
+    """YAML notes block using quoted string format (Instruqt-compatible)."""
+    content = iframe_note(workshop_id, code)
+    quoted = json.dumps(content)
+    return f"notes:\n- type: text\n  contents: {quoted}\n"
