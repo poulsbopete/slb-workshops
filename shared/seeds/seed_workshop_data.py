@@ -114,16 +114,37 @@ def request(
         return exc.code, exc.read().decode("utf-8", errors="replace")
 
 
-def wait_for_es(es_url: str, attempts: int = 40) -> None:
+def wait_for_es(es_url: str, attempts: int = 60) -> None:
+    """Wait until Elasticsearch accepts API requests (Serverless has no cluster health API)."""
+    base = es_url.rstrip("/")
+    probes = (
+        f"{base}/",
+        f"{base}/_security/_authenticate",
+        f"{base}/_cluster/health",
+    )
+    auths: list[str] = []
+    try:
+        auths.append(auth_header())
+    except RuntimeError:
+        pass
+    if env("ES_PASSWORD"):
+        auths.append(kibana_auth_header())
+    if not auths:
+        raise RuntimeError("No credentials available to probe Elasticsearch")
+
+    last_code = 0
     for i in range(attempts):
-        code, _ = request("GET", f"{es_url.rstrip('/')}/_cluster/health")
-        if code == 200:
-            print("  ✓ Elasticsearch ready")
-            return
-        time.sleep(3)
+        for auth in auths:
+            for url in probes:
+                code, _ = request_with_auth(auth, "GET", url, timeout=30)
+                last_code = code
+                if code in (200, 201):
+                    print("  ✓ Elasticsearch ready")
+                    return
+        time.sleep(5)
         if i % 5 == 0:
-            print(f"  … waiting for Elasticsearch ({i + 1}/{attempts})")
-    raise RuntimeError("Elasticsearch not ready for seeding")
+            print(f"  … waiting for Elasticsearch ({i + 1}/{attempts}, last HTTP {last_code})")
+    raise RuntimeError(f"Elasticsearch not ready for seeding (last HTTP {last_code})")
 
 
 def bulk_ndjson(es_url: str, lines: list[str], label: str) -> int:

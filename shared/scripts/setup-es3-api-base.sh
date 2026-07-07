@@ -166,18 +166,41 @@ export ES_USERNAME="admin"
 export ES_PASSWORD="${ELASTICSEARCH_PASSWORD}"
 export WORKSHOP_OTLP_ENDPOINT="${WORKSHOP_OTLP_BASE:-}"
 
+# Brief pause so Serverless ingest accepts writes before seeding
+echo "Waiting for Elasticsearch to accept API requests…"
+_es_ready=0
+for _i in $(seq 1 36); do
+  if [ -n "${ES_API_KEY:-}" ]; then
+    _code=$(curl -s -o /dev/null -w "%{http_code}" \
+      -H "Authorization: ApiKey ${ES_API_KEY}" \
+      "${ES_URL%/}/_security/_authenticate" 2>/dev/null || echo 000)
+  else
+    _code=$(curl -s -o /dev/null -w "%{http_code}" \
+      -u "admin:${ES_PASSWORD}" \
+      "${ES_URL%/}/" 2>/dev/null || echo 000)
+  fi
+  if [ "$_code" = "200" ]; then
+    _es_ready=1
+    echo "  ✓ Elasticsearch API ready (HTTP ${_code})"
+    break
+  fi
+  [ $((_i % 6)) -eq 1 ] && echo "  … waiting for ES API (${_i}/36, HTTP ${_code})"
+  sleep 5
+done
+[ "$_es_ready" -eq 1 ] || echo "WARN: ES API probe timed out — seed will retry internally" >&2
+
 DEFAULT_SEED="${SLB_REPO_DIR}/shared/seeds/seed-workshop-data.sh"
 if [ -f "$DEFAULT_SEED" ]; then
   chmod +x "$DEFAULT_SEED"
   echo "Running default workshop seed: $DEFAULT_SEED"
   _seed_ok=0
-  for _attempt in 1 2; do
+  for _attempt in 1 3; do
     if bash "$DEFAULT_SEED"; then
       _seed_ok=1
       break
     fi
-    echo "WARN: seed attempt ${_attempt} failed — retrying in 10s…" >&2
-    sleep 10
+    echo "WARN: seed attempt ${_attempt} failed — retrying in 15s…" >&2
+    sleep 15
   done
   if [ "$_seed_ok" -ne 1 ]; then
     echo "ERROR: workshop seed failed after retries — labs will have empty data" >&2

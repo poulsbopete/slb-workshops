@@ -22,18 +22,7 @@ echo "=== SLB Workshop seed script ==="
 echo "ES_URL=$ES_URL"
 [ -n "${WORKSHOP_OTLP_ENDPOINT:-}" ] && echo "OTLP=$WORKSHOP_OTLP_ENDPOINT"
 
-# Python deps for OTLP export (optional — bulk APM docs are seeded without OTLP)
-if ! python3 -c "import opentelemetry.sdk" 2>/dev/null; then
-  echo "Installing OTLP seed dependencies (optional)…"
-  set +e
-  python3 -m pip install --break-system-packages -q -r "${SLB_SEED_DIR}/requirements-seed.txt" \
-    || pip3 install --break-system-packages -q -r "${SLB_SEED_DIR}/requirements-seed.txt" \
-    || python3 -m pip install --user -q -r "${SLB_SEED_DIR}/requirements-seed.txt" \
-    || true
-  set -e
-  if ! python3 -c "import opentelemetry.sdk" 2>/dev/null; then
-    echo "  · OTLP packages unavailable — continuing with bulk log/metric/trace seed"
-  fi
-fi
+# OTLP is optional; skip slow pip installs during bootstrap (bulk APM docs cover labs).
+export SLB_SKIP_OTLP_PIP=1
 
 exec python3 "${SLB_SEED_DIR}/seed_workshop_data.py"
