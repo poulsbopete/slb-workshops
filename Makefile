@@ -28,6 +28,9 @@ slides-all: slides embed-slides
 sync-labs:
 	python3 scripts/sync-lab-content.py
 
+sync-checks:
+	python3 scripts/sync-challenge-checks.py
+
 sync-sections:
 	python3 scripts/sync-section-tags.py
 

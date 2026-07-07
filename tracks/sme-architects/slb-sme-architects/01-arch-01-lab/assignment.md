@@ -6,22 +6,21 @@ title: Arch 01 — Architecture & Migration Strategy
 teaser: Target-state ingestion design and coexistence planning during migration.
 notes:
 - type: text
-  contents: |-
-    ## While you wait…
-
-    <iframe src="https://slb-workshops.vercel.app/slides/arch-01/"
-      width="100%" height="1400" frameborder="0"
-      style="border-radius:8px;display:block;width:100%;min-height:900px">
-    </iframe>
-
-    *Provisioning your **Observability Serverless** lab for **Arch 01** (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*
+  contents: "## While you wait…\n\n<iframe src=\"https://slb-workshops.vercel.app/slides/arch-01/\"\
+    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
+    >\n</iframe>\n\n*Provisioning your **Observability Serverless** lab for **Arch\
+    \ 01** (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
 - type: text
-  contents: |
-    ## Session topics
+  contents: '## Session topics
+
 
     - Streams and OTel target-state (Serverless, ECH, or on-prem)
+
     - Coexistence planning during migration (Grafana + Elastic side by side)
+
     - Multi-team project access and API keys
+
+    '
 tabs:
 - id: 9vejoukhuxkm
   title: Elastic Serverless
@@ -37,11 +36,11 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-difficulty: ""
+difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Lab environment:** Use the **Elastic Serverless** tab only. Hands-on steps run on **Observability Serverless** for a zero-ops learning experience. The **same observability capabilities** — ES|QL, Streams, AI Assistant, Agent Builder, Workflows, SLOs — apply on **ECH** and **self-managed**; Serverless mainly saves platform management (cluster sizing, ILM, Fleet, upgrades). Steps are copy/paste in Kibana — no terminal required.
+> **Lab environment:** Use the **Elastic Serverless** tab only. Hands-on steps run on **Observability Serverless** with **pre-loaded SLB sample data** (logs, metrics, traces, and alert rules). The **same observability capabilities** apply on **ECH** and **self-managed**; Serverless mainly saves platform management. Steps are copy/paste in Kibana — no terminal required.
 
 # Architecture & Migration Strategy
 

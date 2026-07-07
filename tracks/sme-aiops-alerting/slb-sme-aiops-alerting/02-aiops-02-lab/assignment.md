@@ -6,22 +6,22 @@ title: AIOps 02 — AI-Assisted Investigation & Automated Response
 teaser: AI-assisted investigation and automated remediation workflows.
 notes:
 - type: text
-  contents: |-
-    ## While you wait…
-
-    <iframe src="https://slb-workshops.vercel.app/slides/aiops-02/"
-      width="100%" height="1400" frameborder="0"
-      style="border-radius:8px;display:block;width:100%;min-height:900px">
-    </iframe>
-
-    *Provisioning your **Observability Serverless** lab for **AIOps 02** (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*
+  contents: "## While you wait…\n\n<iframe src=\"https://slb-workshops.vercel.app/slides/aiops-02/\"\
+    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
+    >\n</iframe>\n\n*Provisioning your **Observability Serverless** lab for **AIOps\
+    \ 02** (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
 - type: text
-  contents: |
-    ## Session topics
+  contents: '## Session topics
+
     - Intelligent alert investigation with AI Assistant for Observability
+
     - Root cause analysis — correlating logs, metrics, traces
+
     - Log pattern analysis and anomaly detection
+
     - Automated remediation workflows with Elastic Workflows
+
+    '
 tabs:
 - id: jut8ttqqn8c4
   title: Elastic Serverless
@@ -37,11 +37,11 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-difficulty: ""
+difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Lab environment:** Use the **Elastic Serverless** tab only. Hands-on steps run on **Observability Serverless** for a zero-ops learning experience. The **same observability capabilities** — ES|QL, Streams, AI Assistant, Agent Builder, Workflows, SLOs — apply on **ECH** and **self-managed**; Serverless mainly saves platform management (cluster sizing, ILM, Fleet, upgrades). Steps are copy/paste in Kibana — no terminal required.
+> **Lab environment:** Use the **Elastic Serverless** tab only. Hands-on steps run on **Observability Serverless** with **pre-loaded SLB sample data** (logs, metrics, traces, and alert rules). The **same observability capabilities** apply on **ECH** and **self-managed**; Serverless mainly saves platform management. Steps are copy/paste in Kibana — no terminal required.
 
 # AI-Assisted Investigation & Automated Response
 

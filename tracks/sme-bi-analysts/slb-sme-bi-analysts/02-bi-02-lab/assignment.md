@@ -6,21 +6,20 @@ title: BI 02 — ES|QL for Analysts
 teaser: ES|QL query patterns, aggregations, and time-series analysis for analysts.
 notes:
 - type: text
-  contents: |-
-    ## While you wait…
-
-    <iframe src="https://slb-workshops.vercel.app/slides/bi-02/"
-      width="100%" height="1400" frameborder="0"
-      style="border-radius:8px;display:block;width:100%;min-height:900px">
-    </iframe>
-
-    *Provisioning your **Observability Serverless** lab for **BI 02** (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*
+  contents: "## While you wait…\n\n<iframe src=\"https://slb-workshops.vercel.app/slides/bi-02/\"\
+    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
+    >\n</iframe>\n\n*Provisioning your **Observability Serverless** lab for **BI 02**\
+    \ (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
 - type: text
-  contents: |
-    ## Session topics
+  contents: '## Session topics
+
     - Simple query patterns and aggregations
+
     - Time-based analysis
+
     - Correlating observability data with cost and utilization context
+
+    '
 tabs:
 - id: cie5ndzcqs93
   title: Elastic Serverless
@@ -36,11 +35,11 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-difficulty: ""
+difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Lab environment:** Use the **Elastic Serverless** tab only. Hands-on steps run on **Observability Serverless** for a zero-ops learning experience. The **same observability capabilities** — ES|QL, Streams, AI Assistant, Agent Builder, Workflows, SLOs — apply on **ECH** and **self-managed**; Serverless mainly saves platform management (cluster sizing, ILM, Fleet, upgrades). Steps are copy/paste in Kibana — no terminal required.
+> **Lab environment:** Use the **Elastic Serverless** tab only. Hands-on steps run on **Observability Serverless** with **pre-loaded SLB sample data** (logs, metrics, traces, and alert rules). The **same observability capabilities** apply on **ECH** and **self-managed**; Serverless mainly saves platform management. Steps are copy/paste in Kibana — no terminal required.
 
 # ES|QL for Analysts
 

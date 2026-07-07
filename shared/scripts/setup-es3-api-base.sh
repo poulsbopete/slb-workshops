@@ -125,8 +125,10 @@ SLB_REPO_DIR=/opt/slb-workshops
 if [ ! -d "$SLB_REPO_DIR/.git" ]; then
   export DEBIAN_FRONTEND=noninteractive
   apt-get update -y
-  apt-get install -y --no-install-recommends git jq curl ca-certificates
+  apt-get install -y --no-install-recommends git jq curl ca-certificates python3-pip
   git clone --depth 1 "$SLB_REPO_URL" "$SLB_REPO_DIR" 2>/dev/null || true
+else
+  git -C "$SLB_REPO_DIR" pull --ff-only 2>/dev/null || true
 fi
 
 # OTLP endpoint for optional seed scripts
@@ -142,9 +144,21 @@ fi
 WORKSHOP_OTLP_BASE="${MOTLP_FROM_API:-$DERIVED_OTLP}"
 [ -n "$WORKSHOP_OTLP_BASE" ] && agent variable set ES_OTLP_ENDPOINT "$WORKSHOP_OTLP_BASE" || true
 
-if [ -n "${WORKSHOP_SEED_SCRIPT:-}" ] && [ -f "$WORKSHOP_SEED_SCRIPT" ]; then
+# Export credentials for seed script (before .bashrc)
+export ES_API_KEY="${WORKSHOP_ES_API_KEY:-}"
+export ELASTIC_API_KEY="${WORKSHOP_ES_API_KEY:-}"
+export ES_USERNAME="admin"
+export ES_PASSWORD="${ELASTICSEARCH_PASSWORD}"
+export WORKSHOP_OTLP_ENDPOINT="${WORKSHOP_OTLP_BASE:-}"
+
+DEFAULT_SEED="${SLB_REPO_DIR}/shared/seeds/seed-workshop-data.sh"
+if [ -f "$DEFAULT_SEED" ]; then
+  chmod +x "$DEFAULT_SEED"
+  echo "Running default workshop seed: $DEFAULT_SEED"
+  bash "$DEFAULT_SEED" || { echo "WARN: seed script failed — labs may have empty data" >&2; }
+elif [ -n "${WORKSHOP_SEED_SCRIPT:-}" ] && [ -f "$WORKSHOP_SEED_SCRIPT" ]; then
   echo "Running workshop seed: $WORKSHOP_SEED_SCRIPT"
-  bash "$WORKSHOP_SEED_SCRIPT"
+  bash "$WORKSHOP_SEED_SCRIPT" || { echo "WARN: seed script failed" >&2; }
 fi
 
 {

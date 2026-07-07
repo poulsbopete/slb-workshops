@@ -97,6 +97,8 @@ make publish
 
 Each track provisions **Elastic Observability Serverless** via `elastic/es3-api-v2`. Labs are **Kibana-only** — ES|QL, Dev Tools, Lens; no Terminal tab.
 
+**Sample data:** Track bootstrap runs `shared/seeds/seed-workshop-data.sh` — SLB-themed logs, metrics, APM transactions, OTLP traces, plus sample alert rules and a data view.
+
 ## Instruqt collections
 
 Create one collection per series (names in `catalog/sections.yaml`) and add the matching consolidated track:
