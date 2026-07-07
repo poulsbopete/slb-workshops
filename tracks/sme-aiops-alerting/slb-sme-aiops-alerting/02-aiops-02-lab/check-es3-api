@@ -5,15 +5,34 @@ if [ -z "${KIBANA_URL:-}" ] && [ -z "${ES_URL:-}" ]; then
   echo "CHECK FAIL — environment not bootstrapped; wait or run solve-es3-api"
   exit 1
 fi
-if [ -n "${ES_URL:-}" ] && [ -n "${ES_API_KEY:-}" ]; then
-  _count=$(curl -s -H "Authorization: ApiKey ${ES_API_KEY}" \
-    "${ES_URL%/}/logs-*/_count" | jq -r '.count // 0' 2>/dev/null || echo 0)
-  if [ "${_count:-0}" -gt 0 ] 2>/dev/null; then
-    echo "CHECK PASS — Elastic Serverless ready with ${_count} log documents"
+
+_es_count() {
+  local pattern="$1"
+  if [ -n "${ES_API_KEY:-}" ]; then
+    curl -s -H "Authorization: ApiKey ${ES_API_KEY}" \
+      "${ES_URL%/}/${pattern}/_count" | jq -r '.count // 0' 2>/dev/null || echo 0
+  elif [ -n "${ES_PASSWORD:-}" ]; then
+    curl -s -u "admin:${ES_PASSWORD}" \
+      "${ES_URL%/}/${pattern}/_count" | jq -r '.count // 0' 2>/dev/null || echo 0
+  else
+    echo 0
+  fi
+}
+
+if [ -n "${ES_URL:-}" ]; then
+  _logs=$(_es_count "logs-*")
+  _metrics=$(_es_count "metrics-*")
+  _traces=$(_es_count "traces-*")
+  if [ "${_logs:-0}" -gt 100 ] && [ "${_metrics:-0}" -gt 50 ] && [ "${_traces:-0}" -gt 50 ] 2>/dev/null; then
+    echo "CHECK PASS — workshop data ready (logs=${_logs}, metrics=${_metrics}, traces=${_traces})"
     exit 0
   fi
-  echo "CHECK WARN — project ready but sample logs not indexed yet; refresh in a minute"
-  exit 0
+  if [ "${_logs:-0}" -gt 0 ] 2>/dev/null; then
+    echo "CHECK WARN — partial workshop data (logs=${_logs}, metrics=${_metrics}, traces=${_traces}); refresh in a minute"
+    exit 0
+  fi
+  echo "CHECK FAIL — no workshop sample data indexed; start a fresh session or check bootstrap logs"
+  exit 1
 fi
 echo "CHECK PASS — Elastic Serverless environment is ready"
 exit 0

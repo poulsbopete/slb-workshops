@@ -121,6 +121,7 @@ systemctl is-active --quiet nginx || { echo "ERROR: nginx failed"; exit 1; }
 
 # Clone workshop repo for shared scripts (best-effort)
 SLB_REPO_URL="${SLB_WORKSHOPS_GIT_URL:-https://github.com/poulsbopete/slb-workshops.git}"
+SLB_REPO_RAW="${SLB_WORKSHOPS_RAW_URL:-https://raw.githubusercontent.com/poulsbopete/slb-workshops/main}"
 SLB_REPO_DIR=/opt/slb-workshops
 if [ ! -d "$SLB_REPO_DIR/.git" ]; then
   export DEBIAN_FRONTEND=noninteractive
@@ -130,6 +131,20 @@ if [ ! -d "$SLB_REPO_DIR/.git" ]; then
 else
   git -C "$SLB_REPO_DIR" pull --ff-only 2>/dev/null || true
 fi
+
+ensure_workshop_seed_scripts() {
+  local seed_dir="${SLB_REPO_DIR}/shared/seeds"
+  mkdir -p "$seed_dir"
+  if [ ! -f "${seed_dir}/seed-workshop-data.sh" ] || [ ! -f "${seed_dir}/seed_workshop_data.py" ]; then
+    echo "Fetching workshop seed scripts from ${SLB_REPO_RAW}…"
+    curl -fsSL "${SLB_REPO_RAW}/shared/seeds/seed-workshop-data.sh" -o "${seed_dir}/seed-workshop-data.sh"
+    curl -fsSL "${SLB_REPO_RAW}/shared/seeds/seed_workshop_data.py" -o "${seed_dir}/seed_workshop_data.py"
+    curl -fsSL "${SLB_REPO_RAW}/shared/seeds/requirements-seed.txt" -o "${seed_dir}/requirements-seed.txt" 2>/dev/null || true
+  fi
+  chmod +x "${seed_dir}/seed-workshop-data.sh"
+}
+
+ensure_workshop_seed_scripts
 
 # OTLP endpoint for optional seed scripts
 MOTLP_FROM_API=""
@@ -155,10 +170,38 @@ DEFAULT_SEED="${SLB_REPO_DIR}/shared/seeds/seed-workshop-data.sh"
 if [ -f "$DEFAULT_SEED" ]; then
   chmod +x "$DEFAULT_SEED"
   echo "Running default workshop seed: $DEFAULT_SEED"
-  bash "$DEFAULT_SEED" || { echo "WARN: seed script failed — labs may have empty data" >&2; }
+  _seed_ok=0
+  for _attempt in 1 2; do
+    if bash "$DEFAULT_SEED"; then
+      _seed_ok=1
+      break
+    fi
+    echo "WARN: seed attempt ${_attempt} failed — retrying in 10s…" >&2
+    sleep 10
+  done
+  if [ "$_seed_ok" -ne 1 ]; then
+    echo "ERROR: workshop seed failed after retries — labs will have empty data" >&2
+    exit 1
+  fi
+  _log_count=0
+  if [ -n "${ES_API_KEY:-}" ]; then
+    _log_count=$(curl -s -H "Authorization: ApiKey ${ES_API_KEY}" \
+      "${ES_URL%/}/logs-*/_count" | jq -r '.count // 0' 2>/dev/null || echo 0)
+  elif [ -n "${ES_PASSWORD:-}" ]; then
+    _log_count=$(curl -s -u "admin:${ES_PASSWORD}" \
+      "${ES_URL%/}/logs-*/_count" | jq -r '.count // 0' 2>/dev/null || echo 0)
+  fi
+  if [ "${_log_count:-0}" -lt 100 ] 2>/dev/null; then
+    echo "ERROR: bootstrap verification failed — only ${_log_count:-0} log documents indexed" >&2
+    exit 1
+  fi
+  echo "✓ Workshop data verified: ${_log_count} log documents"
 elif [ -n "${WORKSHOP_SEED_SCRIPT:-}" ] && [ -f "$WORKSHOP_SEED_SCRIPT" ]; then
   echo "Running workshop seed: $WORKSHOP_SEED_SCRIPT"
-  bash "$WORKSHOP_SEED_SCRIPT" || { echo "WARN: seed script failed" >&2; }
+  bash "$WORKSHOP_SEED_SCRIPT" || { echo "ERROR: custom seed script failed" >&2; exit 1; }
+else
+  echo "ERROR: workshop seed script missing at $DEFAULT_SEED" >&2
+  exit 1
 fi
 
 {

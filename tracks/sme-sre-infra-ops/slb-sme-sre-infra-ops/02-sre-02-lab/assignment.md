@@ -7,22 +7,21 @@ teaser: Elastic Streams deep dive — routing and processing; retention differs 
   capabilities do not.
 notes:
 - type: text
-  contents: |-
-    ## While you wait…
-
-    <iframe src="https://slb-workshops.vercel.app/slides/sre-02/"
-      width="100%" height="1400" frameborder="0"
-      style="border-radius:8px;display:block;width:100%;min-height:900px">
-    </iframe>
-
-    *Provisioning your **Observability Serverless** lab for **SRE 02** (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*
+  contents: "## While you wait…\n\n<iframe src=\"https://slb-workshops.vercel.app/slides/sre-02/\"\
+    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
+    >\n</iframe>\n\n*Provisioning your **Observability Serverless** lab for **SRE\
+    \ 02** (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
 - type: text
-  contents: |
-    ## Session topics
+  contents: '## Session topics
+
 
     - Elastic Streams — routing and processing
+
     - Retention on Serverless vs ILM on ECH/on-prem
+
     - Troubleshooting stream health with ES|QL and AI Assistant
+
+    '
 tabs:
 - id: aui2vrhafknu
   title: Elastic Serverless
@@ -38,11 +37,11 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-difficulty: ""
+difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
-> **Lab environment:** Use the **Elastic Serverless** tab only. Hands-on steps run on **Observability Serverless** with **pre-loaded SLB sample data** (logs, metrics, traces, and alert rules). The **same observability capabilities** apply on **ECH** and **self-managed**; Serverless mainly saves platform management. Steps are copy/paste in Kibana — no terminal required.
+> **Lab environment:** Use the **Elastic Serverless** tab only. Hands-on steps run on **Observability Serverless** with **pre-loaded SLB sample data** (logs, metrics, traces, alert rules, and an SLO). The **same observability capabilities** apply on **ECH** and **self-managed**; Serverless mainly saves platform management. Steps are copy/paste in Kibana — no terminal required.
 
 # Elastic Streams & Data Routing
 

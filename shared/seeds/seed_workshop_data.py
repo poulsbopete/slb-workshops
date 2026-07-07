@@ -348,6 +348,54 @@ def kibana_request(
     )
 
 
+def create_data_view(name: str, title: str, time_field: str = "@timestamp") -> None:
+    payload = {
+        "data_view": {
+            "title": title,
+            "name": name,
+            "timeFieldName": time_field,
+        }
+    }
+    code, body = kibana_request("/api/data_views/data_view", payload)
+    if code in (200, 201):
+        print(f"  ✓ Created data view: {name}")
+    else:
+        print(f"  · Data view '{name}' HTTP {code} (may already exist): {body[:200]}")
+
+
+def create_workshop_slo() -> bool:
+    slo = {
+        "id": "slb-workshop-checkout-slo",
+        "name": "SLB Workshop — checkout-api availability",
+        "description": "Checkout API success rate from workshop APM telemetry",
+        "indicator": {
+            "type": "sli.apm.transactionErrorRate",
+            "params": {
+                "environment": "production",
+                "service": "checkout-api",
+                "transactionType": "request",
+            },
+        },
+        "timeWindow": {"duration": "7d"},
+        "budgetingMethod": "occurrences",
+        "objective": {"target": 0.9},
+        "tags": ["slb", "workshop"],
+    }
+    code, body = kibana_request("/api/observability/slos", slo)
+    if code in (200, 201):
+        print("  ✓ Created SLO: SLB Workshop — checkout-api availability")
+        return True
+    if code == 409:
+        code, body = kibana_request(
+            "/api/observability/slos/slb-workshop-checkout-slo", slo, method="PUT"
+        )
+        if code in (200, 201):
+            print("  ✓ Updated SLO: SLB Workshop — checkout-api availability")
+            return True
+    print(f"  · SLO create HTTP {code}: {body[:300]}")
+    return False
+
+
 def create_esql_rule(
     rule_id: str,
     name: str,
@@ -398,19 +446,12 @@ def seed_kibana_assets() -> None:
         print("  · KIBANA_URL not set — skipping Kibana assets")
         return
 
-    # Data view for workshop logs
-    dv_payload = {
-        "data_view": {
-            "title": "logs-slb.workshop-default,logs-*",
-            "name": "SLB Workshop Logs",
-            "timeFieldName": "@timestamp",
-        }
-    }
-    code, body = kibana_request("/api/data_views/data_view", dv_payload)
-    if code in (200, 201):
-        print("  ✓ Created SLB Workshop Logs data view")
-    else:
-        print(f"  · Data view create HTTP {code} (may already exist): {body[:200]}")
+    # Data views for workshop telemetry
+    create_data_view("SLB Workshop Logs", "logs-slb.workshop-default,logs-*")
+    create_data_view("SLB Workshop Metrics", "metrics-*")
+    create_data_view("SLB Workshop Traces", "traces-*")
+
+    create_workshop_slo()
 
     create_esql_rule(
         "slb-workshop-checkout-errors",
@@ -448,14 +489,32 @@ def seed_kibana_assets() -> None:
         print(f"  · Could not list alert rules (HTTP {code})")
 
 
-def verify(es_url: str) -> None:
+def verify(es_url: str) -> dict[str, int]:
+    counts: dict[str, int] = {}
     for pattern in ("logs-*", "traces-*", "metrics-*"):
         code, body = request("GET", f"{es_url.rstrip('/')}/{pattern}/_count")
         if code == 200:
             count = json.loads(body).get("count", 0)
+            counts[pattern] = count
             print(f"  ✓ {pattern}: {count} documents")
         else:
+            counts[pattern] = 0
             print(f"  · {pattern}: count unavailable (HTTP {code})")
+    return counts
+
+
+def verify_minimums(counts: dict[str, int]) -> bool:
+    ok = True
+    minimums = {"logs-*": 500, "metrics-*": 100, "traces-*": 100}
+    for pattern, minimum in minimums.items():
+        actual = counts.get(pattern, 0)
+        if actual < minimum:
+            print(
+                f"ERROR: {pattern} has {actual} documents (need >= {minimum})",
+                file=sys.stderr,
+            )
+            ok = False
+    return ok
 
 
 def main() -> int:
@@ -476,7 +535,9 @@ def main() -> int:
     seed_kibana_assets()
     time.sleep(2)
     print("=== Verification ===")
-    verify(es_url)
+    counts = verify(es_url)
+    if not verify_minimums(counts):
+        return 1
     print("=== SLB Workshop seed complete ===")
     return 0
 
