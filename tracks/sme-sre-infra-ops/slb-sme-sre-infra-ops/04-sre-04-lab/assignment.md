@@ -7,21 +7,22 @@ teaser: Production readiness for Elastic Observability — SLOs, alerts, Streams
   AI ops on any deployment.
 notes:
 - type: text
-  contents: "## While you wait…\n\n<iframe src=\"https://slb-workshops.vercel.app/slides/sre-04/\"\
-    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
-    >\n</iframe>\n\n*Provisioning your **Observability Serverless** lab for **SRE\
-    \ 04** (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
-- type: text
-  contents: '## Session topics
+  contents: |-
+    ## While you wait…
 
+    <iframe src="https://slb-workshops.vercel.app/slides/sre-04/"
+      width="100%" height="1400" frameborder="0"
+      style="border-radius:8px;display:block;width:100%;min-height:900px">
+    </iframe>
+
+    *Provisioning your **Observability Serverless** lab for **SRE 04** (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*
+- type: text
+  contents: |
+    ## Session topics
 
     - SLOs, alerts, and Streams readiness
-
     - AI Assistant and Workflows in production runbooks
-
     - Production checklist — plus ILM/Fleet on ECH and self-managed
-
-    '
 tabs:
 - id: lqsvkreyeozl
   title: Elastic Serverless
@@ -37,7 +38,7 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-difficulty: ''
+difficulty: ""
 timelimit: 0
 enhanced_loading: null
 ---
