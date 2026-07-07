@@ -20,11 +20,13 @@ IFRAME_HEIGHT = 1400
 
 
 def iframe_note(workshop_id: str, *, height: int = IFRAME_HEIGHT) -> str:
-    """Instruqt waiting-room note: slide deck iframe only."""
+    """Instruqt waiting-room note: slide deck iframe (no session topic bullets)."""
     url = slide_deck_url(workshop_id)
     return (
-        f'<iframe src="{url}"\n'
-        f'  width="100%" height="{height}" frameborder="0"\n'
-        f'  style="border-radius:8px;display:block;width:100%;min-height:900px">\n'
-        f"</iframe>"
+        "## While you wait…\n\n"
+        '<div style="width:100%;max-width:100%;margin:0;padding:0;">\n'
+        f'<iframe src="{url}" width="100%" height="{height}" frameborder="0" '
+        f'style="display:block;width:100%;min-width:100%;height:{height}px;'
+        f'border:0;border-radius:8px"></iframe>\n'
+        "</div>"
     )

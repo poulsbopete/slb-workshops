@@ -83,9 +83,8 @@ def update_iframe_note(front: dict, workshop_id: str) -> bool:
     needs_update = (
         len(notes) != 1
         or "## Session topics" in contents
-        or "## While you wait" in contents
         or "Provisioning your" in contents
-        or contents.startswith('"')
+        or "max-width:100%" not in contents
         or notes[0].get("contents") != expected
     )
     if not needs_update:
@@ -154,7 +153,12 @@ def patch_assignment(
 
     front_matter = text.split("---", 2)[1]
     notes_after_tabs = "tabs:" in front_matter and front_matter.find("notes:") > front_matter.find("tabs:")
-    if "contents: |-" not in front_matter or notes_after_tabs:
+    iframe_stale = (
+        "max-width:100%" not in front_matter
+        or "## Session topics" in front_matter
+        or "Provisioning your" in front_matter
+    )
+    if "contents: |-" not in front_matter or notes_after_tabs or iframe_stale:
         update_iframe_note(front, workshop_id)
         changed = True
 

@@ -7,10 +7,11 @@ teaser: AI-assisted investigation and automated remediation workflows.
 notes:
 - type: text
   contents: |-
-    <iframe src="https://slb-workshops.vercel.app/slides/aiops-02/"
-      width="100%" height="1400" frameborder="0"
-      style="border-radius:8px;display:block;width:100%;min-height:900px">
-    </iframe>
+    ## While you wait…
+    
+    <div style="width:100%;max-width:100%;margin:0;padding:0;">
+    <iframe src="https://slb-workshops.vercel.app/slides/aiops-02/" width="100%" height="1400" frameborder="0" style="display:block;width:100%;min-width:100%;height:1400px;border:0;border-radius:8px"></iframe>
+    </div>
 tabs:
 - id: jut8ttqqn8c4
   title: Elastic Serverless

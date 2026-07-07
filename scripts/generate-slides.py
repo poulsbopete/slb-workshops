@@ -136,9 +136,11 @@ def render_deck(workshop: dict) -> str:
     Reveal.initialize({{
       hash: true,
       slideNumber: true,
-      width: 960,
-      height: 700,
-      margin: 0.08,
+      width: 1280,
+      height: 720,
+      margin: 0.04,
+      minScale: 0.2,
+      maxScale: 1.0,
       transition: 'slide'
     }});
   </script>

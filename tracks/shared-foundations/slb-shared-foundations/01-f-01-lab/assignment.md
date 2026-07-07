@@ -9,10 +9,11 @@ teaser: Start here. This session introduces your Elastic team, shows you how to 
 notes:
 - type: text
   contents: |-
-    <iframe src="https://slb-workshops.vercel.app/slides/f-01/"
-      width="100%" height="1400" frameborder="0"
-      style="border-radius:8px;display:block;width:100%;min-height:900px">
-    </iframe>
+    ## While you wait…
+    
+    <div style="width:100%;max-width:100%;margin:0;padding:0;">
+    <iframe src="https://slb-workshops.vercel.app/slides/f-01/" width="100%" height="1400" frameborder="0" style="display:block;width:100%;min-width:100%;height:1400px;border:0;border-radius:8px"></iframe>
+    </div>
 tabs:
 - id: ymzcz4ahn8fi
   title: Elastic Serverless

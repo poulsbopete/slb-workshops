@@ -275,3 +275,20 @@ body.hub a:hover {
 body.hub li {
   margin: 0.35rem 0;
 }
+
+/* Instruqt waiting-room iframe — scale deck to available width */
+html, body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.reveal {
+  width: 100% !important;
+}
+
+.reveal .slides {
+  width: 100% !important;
+  max-width: 100%;
+}
