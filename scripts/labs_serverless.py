@@ -42,7 +42,7 @@ Click **Check**.
 | Persona | Start here |
 |---------|------------|
 | Developer | **Observability → APM → Services** |
-| SRE / Infra | **Streams** and **Observability → Alerts** |
+| SRE / Infra | **Streams** and **Alerts** |
 | Analyst | **Analytics → Discover** or **Logs → Explorer** |
 | Architect | **Stack Management → API keys** and access patterns |
 
@@ -82,7 +82,7 @@ FROM logs-* | STATS count = COUNT(*) BY service.name | SORT count DESC | LIMIT 1
 | Explore | Logs Explorer / Discover |
 | Panel | Lens on Dashboards |
 | PromQL | ES|QL or **Metrics** explorer |
-| Alert | **Observability → Alerts → Rules** |
+| Alert | **Alerts → Rules** |
 
 ## Part 3 — Streams quick look
 
@@ -303,7 +303,7 @@ Click **Check**.
 ## Part 2 — SLOs & alerts
 
 1. **Observability → SLOs** — browse or create an SLO for a key service.
-2. **Observability → Alerts → Rules** — confirm rules are not flapping.
+2. **Alerts → Rules** — confirm rules are not flapping.
 
 ## Part 3 — Workflows preview
 
@@ -442,7 +442,7 @@ Click **Check**.
 
 ## Part 1 — Review rules
 
-1. **Observability → Alerts → Rules** — sort by recent activity.
+1. **Alerts → Rules** — sort by recent activity.
 2. Identify noisy rules.
 
 ## Part 2 — Tune a rule
@@ -451,7 +451,7 @@ Adjust threshold, window, or grouping. Enable deduplication / suppression if ava
 
 ## Part 3 — Triage
 
-1. **Observability → Alerts** — acknowledge and annotate an alert.
+1. **Alerts** — acknowledge and annotate an alert.
 2. Use **AI Assistant**: *Why might this alert be firing repeatedly?*
 
 Click **Check**.
@@ -488,7 +488,7 @@ Click **Check**.
 
 ## Part 2 — Alert-driven automation
 
-1. **Observability → Alerts → Rules** — open a rule's **Actions**.
+1. **Alerts → Rules** — open a rule's **Actions**.
 2. Map which workflow could run on trigger.
 
 ## Part 3 — Safe automation design

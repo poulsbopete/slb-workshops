@@ -65,6 +65,37 @@ def auth_header() -> str:
     raise RuntimeError("No ES_API_KEY or ES_PASSWORD available for seeding")
 
 
+def kibana_auth_header() -> str:
+    """Kibana APIs need project admin credentials, not the ES-only workshop API key."""
+    password = env("ES_PASSWORD")
+    user = env("ES_USERNAME", "admin")
+    if password:
+        import base64
+
+        token = base64.b64encode(f"{user}:{password}".encode()).decode()
+        return f"Basic {token}"
+    return auth_header()
+
+
+def request_with_auth(
+    auth: str,
+    method: str,
+    url: str,
+    body: bytes | None = None,
+    headers: dict[str, str] | None = None,
+    timeout: int = 120,
+) -> tuple[int, str]:
+    hdrs = {"Authorization": auth}
+    if headers:
+        hdrs.update(headers)
+    req = urllib.request.Request(url, data=body, headers=hdrs, method=method)
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            return resp.status, resp.read().decode("utf-8", errors="replace")
+    except urllib.error.HTTPError as exc:
+        return exc.code, exc.read().decode("utf-8", errors="replace")
+
+
 def request(
     method: str,
     url: str,
@@ -299,18 +330,66 @@ def seed_otlp(otlp_base: str) -> None:
     print("  ✓ Exported OTLP traces for all services")
 
 
-def kibana_request(path: str, payload: dict | None = None) -> tuple[int, str]:
+def kibana_request(
+    path: str, payload: dict | None = None, method: str | None = None
+) -> tuple[int, str]:
     kibana = env("KIBANA_URL")
     if not kibana:
         return 0, "KIBANA_URL not set"
     body = None if payload is None else json.dumps(payload).encode("utf-8")
     headers = {"kbn-xsrf": "slb-workshop", "Content-Type": "application/json"}
-    return request(
-        "POST" if payload else "GET",
+    http_method = method or ("POST" if payload else "GET")
+    return request_with_auth(
+        kibana_auth_header(),
+        http_method,
         f"{kibana.rstrip('/')}{path}",
         body=body,
         headers=headers,
     )
+
+
+def create_esql_rule(
+    rule_id: str,
+    name: str,
+    esql: str,
+    interval: str,
+    window_size: int,
+    window_unit: str,
+    tags: list[str],
+) -> bool:
+    rule = {
+        "name": name,
+        "tags": tags,
+        "rule_type_id": ".es-query",
+        "consumer": "stackAlerts",
+        "enabled": True,
+        "schedule": {"interval": interval},
+        "actions": [],
+        "params": {
+            "size": 0,
+            "timeWindowSize": window_size,
+            "timeWindowUnit": window_unit,
+            "threshold": [0],
+            "thresholdComparator": ">",
+            "searchType": "esqlQuery",
+            "esqlQuery": {"esql": esql},
+            "timeField": "@timestamp",
+        },
+    }
+    code, body = kibana_request(f"/api/alerting/rule/{rule_id}", rule)
+    if code == 409:
+        code, body = kibana_request(f"/api/alerting/rule/{rule_id}", rule, method="PUT")
+    if code in (200, 201):
+        print(f"  ✓ Created alert rule: {name}")
+        # Trigger first evaluation so Rules UI shows activity
+        run_code, _ = kibana_request(
+            f"/api/alerting/rule/{rule_id}/_run", None, method="POST"
+        )
+        if run_code in (200, 201, 204):
+            print(f"  ✓ Triggered rule run: {name}")
+        return True
+    print(f"  · Alert rule '{name}' HTTP {code}: {body[:400]}")
+    return False
 
 
 def seed_kibana_assets() -> None:
@@ -331,61 +410,42 @@ def seed_kibana_assets() -> None:
     if code in (200, 201):
         print("  ✓ Created SLB Workshop Logs data view")
     else:
-        print(f"  · Data view create HTTP {code} (may already exist)")
+        print(f"  · Data view create HTTP {code} (may already exist): {body[:200]}")
 
-    # Alert rule: checkout-api errors (for AIOps labs)
-    rule = {
-        "name": "SLB Workshop — checkout-api errors",
-        "tags": ["slb", "workshop"],
-        "rule_type_id": ".es-query",
-        "consumer": "alerts",
-        "schedule": {"interval": "5m"},
-        "actions": [],
-        "params": {
-            "size": 100,
-            "timeWindowSize": 30,
-            "timeWindowUnit": "m",
-            "threshold": [1],
-            "thresholdComparator": ">",
-            "searchType": "esqlQuery",
-            "esqlQuery": (
-                "FROM logs-* | WHERE service.name == \"checkout-api\" "
-                "AND log.level == \"error\" | STATS error_count = COUNT(*)"
-            ),
-            "timeField": "@timestamp",
-        },
-    }
-    code, body = kibana_request("/api/alerting/rule", rule)
-    if code in (200, 201):
-        print("  ✓ Created sample alert rule (checkout-api errors)")
+    create_esql_rule(
+        "slb-workshop-checkout-errors",
+        "SLB Workshop — checkout-api errors",
+        'FROM logs-* | WHERE service.name == "checkout-api" AND log.level == "error" | STATS error_count = COUNT(*)',
+        "5m",
+        30,
+        "m",
+        ["slb", "workshop"],
+    )
+    create_esql_rule(
+        "slb-workshop-billing-errors",
+        "SLB Workshop — billing-service errors",
+        'FROM logs-* | WHERE service.name == "billing-service" AND log.level == "error" | STATS errors = COUNT(*)',
+        "10m",
+        1,
+        "h",
+        ["slb", "workshop"],
+    )
+    create_esql_rule(
+        "slb-workshop-auth-noisy",
+        "SLB Workshop — auth-gateway noise (tune me)",
+        'FROM logs-* | WHERE service.name == "auth-gateway" | STATS events = COUNT(*)',
+        "1m",
+        5,
+        "m",
+        ["slb", "workshop", "noisy"],
+    )
+
+    code, body = kibana_request("/api/alerting/rules/_find?per_page=50&search=SLB%20Workshop")
+    if code == 200:
+        total = json.loads(body).get("total", 0)
+        print(f"  ✓ Alert rules in project: {total} matching 'SLB Workshop'")
     else:
-        print(f"  · Alert rule HTTP {code}: {body[:300]}")
-
-    # SLO-style rule for billing-service latency context
-    slo_rule = {
-        "name": "SLB Workshop — billing-service error budget",
-        "tags": ["slb", "workshop", "slo"],
-        "rule_type_id": ".es-query",
-        "consumer": "alerts",
-        "schedule": {"interval": "10m"},
-        "actions": [],
-        "params": {
-            "size": 100,
-            "timeWindowSize": 1,
-            "timeWindowUnit": "h",
-            "threshold": [5],
-            "thresholdComparator": ">",
-            "searchType": "esqlQuery",
-            "esqlQuery": (
-                "FROM logs-* | WHERE service.name == \"billing-service\" "
-                "AND log.level == \"error\" | STATS errors = COUNT(*)"
-            ),
-            "timeField": "@timestamp",
-        },
-    }
-    code, _ = kibana_request("/api/alerting/rule", slo_rule)
-    if code in (200, 201):
-        print("  ✓ Created sample alert rule (billing-service errors)")
+        print(f"  · Could not list alert rules (HTTP {code})")
 
 
 def verify(es_url: str) -> None:

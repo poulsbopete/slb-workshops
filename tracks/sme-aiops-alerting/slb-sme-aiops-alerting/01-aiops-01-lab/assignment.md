@@ -6,22 +6,22 @@ title: AIOps 01 — Alert Fatigue & Noise Reduction
 teaser: Reduce alert volume through rule tuning, deduplication, and suppression.
 notes:
 - type: text
-  contents: |-
-    ## While you wait…
-
-    <iframe src="https://slb-workshops.vercel.app/slides/aiops-01/"
-      width="100%" height="1400" frameborder="0"
-      style="border-radius:8px;display:block;width:100%;min-height:900px">
-    </iframe>
-
-    *Provisioning your **Observability Serverless** lab for **AIOps 01** (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*
+  contents: "## While you wait…\n\n<iframe src=\"https://slb-workshops.vercel.app/slides/aiops-01/\"\
+    \n  width=\"100%\" height=\"1400\" frameborder=\"0\"\n  style=\"border-radius:8px;display:block;width:100%;min-height:900px\"\
+    >\n</iframe>\n\n*Provisioning your **Observability Serverless** lab for **AIOps\
+    \ 01** (usually 2–3 minutes). Same Kibana workflows apply on **ECH** and **self-managed**.*"
 - type: text
-  contents: |
-    ## Session topics
+  contents: '## Session topics
+
     - Understanding why alert fatigue happens in Elastic
+
     - Rule tuning — thresholds and conditions
+
     - Alert deduplication, suppression, and exceptions
+
     - Day-to-day alert triage and diagnosis workflows
+
+    '
 tabs:
 - id: gdxdjt59pvyr
   title: Elastic Serverless
@@ -37,7 +37,7 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self'' https://kibana.estccdn.com; worker-src blob: ''self'';
       style-src ''unsafe-inline'' ''self'' https://kibana.estccdn.com'
-difficulty: ""
+difficulty: ''
 timelimit: 0
 enhanced_loading: null
 ---
@@ -47,7 +47,7 @@ enhanced_loading: null
 
 ## Part 1 — Review rules
 
-1. **Observability → Alerts → Rules** — sort by recent activity.
+1. **Alerts → Rules** — sort by recent activity.
 2. Identify noisy rules.
 
 ## Part 2 — Tune a rule
@@ -56,7 +56,7 @@ Adjust threshold, window, or grouping. Enable deduplication / suppression if ava
 
 ## Part 3 — Triage
 
-1. **Observability → Alerts** — acknowledge and annotate an alert.
+1. **Alerts** — acknowledge and annotate an alert.
 2. Use **AI Assistant**: *Why might this alert be firing repeatedly?*
 
 Click **Check**.
