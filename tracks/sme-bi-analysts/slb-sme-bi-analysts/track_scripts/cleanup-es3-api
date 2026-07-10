@@ -1,9 +1,47 @@
 #!/bin/bash
+# SLB Workshop cleanup — delete the provisioned Serverless project.
+# Inline (not GitHub-fetched) so cleanup cannot fail if raw.githubusercontent.com is unreachable.
 set -euo pipefail
-if [ -f /opt/slb-workshops/shared/scripts/cleanup-es3-api-base.sh ]; then
-  exec bash /opt/slb-workshops/shared/scripts/cleanup-es3-api-base.sh
+
+echo "=== SLB Workshop — cleanup ==="
+
+DEPLOYMENT_ID="$(agent variable get ES_DEPLOYMENT_ID 2>/dev/null || echo "")"
+if [ -z "${DEPLOYMENT_ID:-}" ] && [ -f /tmp/project_results.json ]; then
+  REG="${REGIONS:-aws-us-east-1}"
+  DEPLOYMENT_ID="$(jq -r --arg r "$REG" '.[$r].id // empty' /tmp/project_results.json 2>/dev/null || echo "")"
+  if [ "$DEPLOYMENT_ID" = "null" ]; then DEPLOYMENT_ID=""; fi
 fi
-curl -fsSL "https://raw.githubusercontent.com/poulsbopete/slb-workshops/main/shared/scripts/cleanup-es3-api-base.sh" \
-  -o /tmp/cleanup-es3-api-base.sh
-chmod +x /tmp/cleanup-es3-api-base.sh
-exec bash /tmp/cleanup-es3-api-base.sh
+
+PME_CLOUD_INSTRUQT_API_KEY="${PME_CLOUD_INSTRUQT_API_KEY:-}"
+if [ -z "${PME_CLOUD_INSTRUQT_API_KEY:-}" ]; then
+  PME_CLOUD_INSTRUQT_API_KEY="${ESS_CLOUD_API_KEY:-}"
+fi
+if [ -z "${PME_CLOUD_INSTRUQT_API_KEY:-}" ]; then
+  PME_CLOUD_INSTRUQT_API_KEY="$(agent variable get ESS_CLOUD_API_KEY 2>/dev/null || echo "")"
+fi
+if [ -z "${PME_CLOUD_INSTRUQT_API_KEY:-}" ]; then
+  PME_CLOUD_INSTRUQT_API_KEY="$(agent variable get PME_CLOUD_INSTRUQT_API_KEY 2>/dev/null || echo "")"
+fi
+
+echo "Deployment ID: ${DEPLOYMENT_ID:-<not set>}"
+echo "API key present: $([ -n "${PME_CLOUD_INSTRUQT_API_KEY:-}" ] && echo yes || echo no)"
+
+if [ -z "${DEPLOYMENT_ID:-}" ]; then
+  echo "ERROR: ES_DEPLOYMENT_ID not found — cannot delete Serverless project" >&2
+  exit 1
+fi
+if [ -z "${PME_CLOUD_INSTRUQT_API_KEY:-}" ]; then
+  echo "ERROR: ESS_CLOUD_API_KEY not set — cannot delete" >&2
+  exit 1
+fi
+
+export PME_CLOUD_INSTRUQT_API_KEY
+
+python3 bin/es3-api.py \
+  --operation delete \
+  --project-type "${PROJECT_TYPE:-observability}" \
+  --regions "${REGIONS:-aws-us-east-1}" \
+  --project-id "$DEPLOYMENT_ID" \
+  --api-key "${PME_CLOUD_INSTRUQT_API_KEY}"
+
+echo "Cleanup complete."
