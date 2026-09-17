@@ -1,13 +1,14 @@
 # Shared Instruqt sandbox definition for SLB workshops.
 # Each track copies this file; customize memory/cpus per workshop if needed.
+# IMPORTANT: Do NOT put ESS_CLOUD_API_KEY / LLM_PROXY_PROD under environment:
+# (that injects the literal "$ESS_CLOUD_API_KEY" and Cloud auth fails with 401).
+# Declare them only under secrets: so Instruqt injects the real values.
 version: "3"
 virtualmachines:
 - name: es3-api
   image: elastic/es3-api-v2
   shell: /bin/bash
   environment:
-    ESS_CLOUD_API_KEY: $ESS_CLOUD_API_KEY
-    LLM_PROXY_PROD: $LLM_PROXY_PROD
     PRODUCT_TIER: complete
     PROJECT_TYPE: observability
     REGIONS: aws-us-east-1
